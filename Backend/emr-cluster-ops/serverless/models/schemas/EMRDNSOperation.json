@@ -1,0 +1,26 @@
+{
+  "required": [
+    "account",
+    "dnsName",
+    "clusterName",
+    "action",
+    "masterIp"
+  ],
+  "properties": {
+    "account": {
+      "type": "string"
+    },
+    "clusterName": {
+      "type": "string"
+    },
+     "action": {
+      "type": "string"
+    },
+     "dnsName": {
+      "type": "string"
+    },
+     "masterIp": {
+      "type": "string"
+    }
+  }
+}

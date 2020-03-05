@@ -1,0 +1,22 @@
+INSERT INTO `cluster_metrics` (
+  `emr_id`,
+  `rm_url`,
+  `refresh_timestamp`,
+  `emr_status`,
+  `available_memory_perc`,
+  `available_cores_perc`,
+  `emr_name`,
+  `total_nodes`,
+  `containers_pending`,
+  `apps_pending`,
+  `apps_running`,
+  `apps_succeeded`,
+  `apps_failed`,
+  `created_by`,
+  `account`,
+  `type`,
+  `cluster_create_timestamp`,
+  `segment`) VALUES
+  ('j-123ABC1IABCX1','http://ip-00-00-000-00.us-west-2.compute.internal:8088',CURRENT_TIMESTAMP(),'WAITING',1,1,'exploratory-sales',20,0,0,0,0,0,'QuickFabric User','100000000000','exploratory','2020-01-01 15:13:32','sales'),
+  ('j-234XYZ2HXYZY2','http://ip-11-11-111-11.us-west-2.compute.internal:8088',CURRENT_TIMESTAMP(),'WAITING',0.17,0.31,'scheduled-sales',37,1000,1,5,2,1,'QuickFabric User','100000000000','scheduled','2020-01-02 20:14:20','sales'),
+  ('j-456QWE3JQWEZ3','http://ip-22-22-222-22.us-west-2.compute.internal:8088',CURRENT_TIMESTAMP(),'WAITING',0.23,0.40,'exploratory-sales-test1',17,0,0,0,0,0,'QuickFabric User','200000000000','exploratory','2020-01-03 08:00:17','sales');

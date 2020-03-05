@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing EMR Cost Table Should render the component 1`] = `
+<div
+  className="emr-cost-component"
+>
+  <h2>
+    EMR 
+    <i
+      className="material-icon title-arrow"
+    >
+      double_arrow
+    </i>
+     
+    <span
+      style={
+        Object {
+          "color": "#0097E4",
+        }
+      }
+    >
+      Cost
+    </span>
+  </h2>
+  <StatefulGrid
+    data={
+      Array [
+        Object {
+          "2019-09": 0,
+          "2019-10": 0,
+          "account": "100000000000",
+          "businessOwner": "The Boss",
+          "costPerMonth": Array [
+            Object {
+              "billMonth": "2019-09",
+              "cost": 0,
+            },
+            Object {
+              "billMonth": "2019-10",
+              "cost": 0,
+            },
+          ],
+          "emrGroup": "exploratory-sales",
+          "segment": "sales",
+        },
+      ]
+    }
+    style={
+      Object {
+        "fontSize": "13px",
+        "height": "90vh",
+        "marginTop": 30,
+      }
+    }
+  >
+    <Component
+      editable={true}
+      field="emrGroup"
+      filterable={true}
+      groupable={true}
+      reorderable={true}
+      resizable={true}
+      sortable={true}
+      title="EMR Group"
+      width="150px"
+    />
+    <Component
+      editable={true}
+      field="account"
+      filterable={true}
+      groupable={true}
+      reorderable={true}
+      resizable={true}
+      sortable={true}
+      title="Account"
+      width="120px"
+    />
+    <Component
+      editable={true}
+      field="segment"
+      filterable={true}
+      groupable={true}
+      reorderable={true}
+      resizable={true}
+      sortable={true}
+      title="Segment"
+      width="100px"
+    />
+    <Component
+      editable={true}
+      field="businessOwner"
+      filterable={true}
+      groupable={true}
+      reorderable={true}
+      resizable={true}
+      sortable={true}
+      title="Business Owner"
+      width="150px"
+    />
+    <Component
+      cell={[Function]}
+      editable={true}
+      field="2019-09"
+      filterable={true}
+      groupable={true}
+      reorderable={true}
+      resizable={true}
+      sortable={true}
+      title="2019-09"
+      width="80px"
+    />
+    <Component
+      cell={[Function]}
+      editable={true}
+      field="2019-10"
+      filterable={true}
+      groupable={true}
+      reorderable={true}
+      resizable={true}
+      sortable={true}
+      title="2019-10"
+      width="80px"
+    />
+    <Component
+      cell={[Function]}
+      editable={true}
+      filterable={true}
+      groupable={true}
+      reorderable={true}
+      resizable={true}
+      sortable={true}
+      title="Cost Trend"
+      width="auto"
+    />
+  </StatefulGrid>
+</div>
+`;

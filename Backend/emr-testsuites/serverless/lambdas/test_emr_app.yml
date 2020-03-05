@@ -1,0 +1,79 @@
+handler: src/scripts/emr_test_app.lambda_handler
+name: emr-test-apps
+description: Lambda function to test EMR app like spark, hive and custom jar.
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: test-service/apps
+      method: post
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        template:
+          application/json: |
+            {
+            "api_request_id": "$context.requestId",
+            "cluster_name": "$input.path('clusterName')",
+            "cluster_id": "$input.path('$.clusterId')",
+            "app": "$input.path('$.app')"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 201,
+                "clusterName": "$input.path('$.cluster_name')",
+                "status": "$input.path('$.status')",
+                "clusterId": "$input.path('$.cluster_id')",
+                "app": "$input.path('$.app')",
+                "stepId": "$input.path('$.step_id')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "Run a self test on EMR"
+        description: "Run a self test on EMR"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+        requestModels:
+          "application/json": EMRClusterTestAppRequest
+      reqValidatorName: ${self:custom.RequestBodyValidator}
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": EMRClusterTestAppResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+
+package:
+  individually: true
+  exclude:
+    - ba_step_scripts/**
+    - docker/**
+    - jenkins/**
+    - node_modules/**
+    - serverless/**
+    - terraform/**
+    - src/**
+    - "*.json"
+    - "plugin_install.py"
+    - config.yml
+    - README.md
+  include:
+    - src/conf/**
+    - src/util/**
+    - src/__init__.py
+    - src/scripts/emr_test_app.py

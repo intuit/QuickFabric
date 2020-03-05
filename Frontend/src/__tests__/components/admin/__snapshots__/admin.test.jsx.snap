@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing for Admin Should render the component 1`] = `
+<Connect(Admin)
+  uiListArray={
+    Object {
+      "accounts": Array [],
+      "response": Object {
+        "segments": Array [],
+      },
+      "roles": Array [],
+    }
+  }
+/>
+`;

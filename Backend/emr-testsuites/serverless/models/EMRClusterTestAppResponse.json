@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "app": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "stepId": {
+      "type": "string"
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "terminationProtected": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "number"
+    }
+  }
+}

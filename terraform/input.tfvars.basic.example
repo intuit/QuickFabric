@@ -1,0 +1,10 @@
+
+# Account Ids for QuickFabric
+account_ids = {
+  "parent_account_id" : "",
+  "child_account_ids" : []
+}
+
+# AWS Region to deploy QuickFabric
+region = "us-east-1"
+

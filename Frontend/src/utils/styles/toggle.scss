@@ -1,0 +1,440 @@
+.react-switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.react-switch-label {
+  display: inline-block;
+  cursor: pointer;
+  width: 55px;
+  margin-bottom: 0px;
+  height: 22.5px;
+  background: #dadada;
+  border-radius: 100px;
+  margin-left: 17px;
+  position: relative;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.react-switch-label .react-switch-button {
+
+  position: absolute;
+  top: -0.5px;
+  left: -1px;
+  width: 24px;
+  height: 24px;
+  border-radius: 45px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+
+.react-switch-checkbox:checked + .react-switch-label .react-switch-button {
+  left: calc(100% + 0.5px);
+  transform: translateX(-100%);
+}
+
+.react-switch-label:active .react-switch-button {
+  width: 38px;
+}
+
+
+.toggle-on {
+  margin-left: 11.8px;
+  padding-top: 2.5px;
+  color: white;
+  font-size: 13px;
+}
+.toggle-off {
+  color: white;
+  margin-left: 28px;
+  padding-top: 3px;
+  font-size: 13px;
+}
+
+// Auto-Rotate Style
+
+.auto-rotate-switch-label {
+  background: '';
+  width: 170px;
+  display: inline-block;
+  cursor: pointer;
+  bottom: 8px;
+  height: 30px;
+  margin-top: 20px;
+  background: #dadada;
+  border-radius: 100px;
+  margin-left: 9px;
+  position: relative;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.auto-rotate-switch-label .react-switch-button {
+
+  position: absolute;
+  top: 0px;
+  left: -1px;
+  width: 30px;
+  height: 30px;
+  border-radius: 45px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+
+.react-switch-checkbox:checked + .auto-rotate-switch-label .react-switch-button {
+  left: calc(100% + 0.5px);
+  transform: translateX(-100%);
+}
+
+
+.auto-rotate-switch-label:active .react-switch-button {
+  width: 38px;
+}
+.auto-rotate-switch-label {
+  .toggle-on {
+    margin-top: 4.5px;
+    margin-left: 14.8px;
+    color: white;
+    font-size: 13px;
+  }
+  .toggle-off {
+    color: white;
+    margin-top: 4px;
+    margin-left: 34px;
+    font-size: 13px;
+  }
+}
+
+// Auto-rotate end
+
+// Terminate Cluster Style
+
+.terminate-cluster-switch-label {
+  background: '';
+  width: 170px;
+  display: inline-block;
+  cursor: pointer;
+  bottom: 8px;
+  height: 30px;
+  margin-top: 20px;
+  background: #dadada;
+  border-radius: 100px;
+  margin-left: 9px;
+  position: relative;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.terminate-cluster-switch-label .react-switch-button {
+
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 33px;
+  height: 33px;
+  border-radius: 45px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+
+.react-switch-checkbox:checked + .terminate-cluster-switch-label .react-switch-button {
+  left: calc(100% + 0.5px);
+  transform: translateX(-100%);
+}
+
+
+.terminate-cluster-switch-label:active .react-switch-button {
+  width: 38px;
+}
+.terminate-cluster-switch-label {
+  .toggle-on {
+    margin-top: 5.5px;
+    margin-left: 10.8px;
+    color: white;
+    font-size: 13px; 
+  }
+  .toggle-off {
+    float: right;
+    color: white;
+    margin-top: 5.5px;
+    margin-right: 13px;
+    font-size: 13px;
+  }
+}
+
+// terminate-cluster end
+.create-toggle-on {
+  margin-top: 3px;
+  float: left;
+  margin-left: 10px;
+  color: white;
+  font-size: 13px;
+}
+
+.create-toggle-off {
+  margin-top: 3px;
+  float: right;
+  color: white;
+  margin-right: 10px;
+  font-size: 13px;
+}
+
+.subscribe-toggle-on {
+    margin-top: 5px;
+    margin-left: 10.8px;
+    color: white;
+    font-size: 14px; 
+}
+
+.subscribe-toggle-off {
+  float: right;
+  color: white;
+  margin-top: 5.5px;
+  margin-right: 13px;
+  font-size: 14px;
+}
+
+// App Config
+
+.app-config-toggle .react-switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.app-config-toggle .react-switch-label {
+  display: inline-block;
+  cursor: pointer;
+  width: 55px;
+  margin-bottom: 0px;
+  height: 22.5px;
+  background: #dadada;
+  border-radius: 100px;
+  margin-left: 17px;
+  position: relative;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.app-config-toggle .react-switch-label .react-switch-button {
+
+  position: absolute;
+  top: -0.5px;
+  left: -1px;
+  width: 24px;
+  height: 24px;
+  border-radius: 45px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+
+
+.app-config-toggle .react-switch-label:checked + .app-config-toggle .react-switch-label .react-switch-button {
+  left: calc(100% + 0.5px);
+  transform: translateX(-100%);
+}
+
+.app-config-toggle .react-switch-label:active .app-config-toggle .react-switch-button {
+  width: 38px;
+}
+
+.app-config-toggle .toggle-on {
+  margin-left: 11px;
+  
+  padding-top: 3px;
+  color: white;
+  font-size: 13px;
+
+}
+.app-config-toggle .toggle-off {
+  color: white;
+  padding-top: 2.5px;
+  margin-right: 11px;
+  font-size: 13px;
+}
+
+// Config Management 
+.config-management-toggle {
+  display: inline-block;
+  width: 30%;
+  margin-top: 6px;
+
+}
+.config-management-toggle .react-switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.config-management-toggle .react-switch-label {
+  display: inline-block;
+  cursor: pointer;
+  width: 55px;
+  margin-bottom: 0px;
+  height: 22.5px;
+  background: #dadada;
+  border-radius: 100px;
+  margin-left: 17px;
+  position: relative;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.config-management-toggle .react-switch-label .react-switch-button {
+
+  position: absolute;
+  top: -0.5px;
+  left: -1px;
+  width: 24px;
+  height: 24px;
+  border-radius: 45px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+
+
+.config-management-toggle .react-switch-label:checked + .config-management-toggle .react-switch-label .react-switch-button {
+  left: calc(100% + 0.5px);
+  transform: translateX(-100%);
+}
+
+.config-management-toggle .react-switch-label:active .config-management-toggle .react-switch-button {
+  width: 38px;
+}
+
+.config-management-toggle .toggle-on {
+  padding-top: 2.5px;
+  margin-left: 11px;
+  color: white;
+  font-size: 13px;
+
+}
+.config-management-toggle .toggle-off {
+  color: white;
+  padding-top: 2.5px;
+  margin-left: 28px;
+  font-size: 13px;
+}
+
+//encrypt-toggle
+.encrypt-toggle {
+  display: inline-block;
+  width: 30%;
+  margin-top: 6px;
+
+}
+.encrypt-toggle .react-switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.encrypt-toggle .react-switch-label {
+  display: inline-block;
+  cursor: pointer;    
+  width: 65px;
+  margin-bottom: 0px;
+  height: 27.5px;
+  margin-left: 17px;
+  position: relative;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.encrypt-toggle .react-switch-label .react-switch-button {
+
+  position: absolute;
+  top: -0.5px;
+  left: -1px;
+  width: 28px;
+  height: 28px;
+  border-radius: 45px;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+
+
+.encrypt-toggle .react-switch-label:checked + .react-switch-label .react-switch-button {
+  left: calc(100% + 1px);
+  transform: translateX(-100%);
+}
+
+.encrypt-toggle .react-switch-label:active .react-switch-button {
+  width: 35px;
+}
+
+.encrypt-toggle .toggle-on {
+  margin-left: 12px;
+  // color: #2f1c79;
+  // color: #005fc5;
+  color: white;
+  padding-top: 4.5px;
+  font-size: 13px;
+}
+.encrypt-toggle .toggle-off {
+  color: white;
+  margin-left: 35px;
+  padding-top: 4.5px;
+  font-size: 13px;
+}
+// .encrypt-toggle .toggle-on {
+//   margin-left: 12px;
+//   color: white;
+//   font-size: 13px;
+// }
+
+
+//encrypt-toggle
+
+
+//app-config
+
+
+.toggle-off .MuiSvgIcon-root {
+  width: 18px;
+  height: 18px
+
+}
+
+.toggle-on .MuiSvgIcon-root {
+  color: '#2f1c79';
+  width: 18px;
+  height: 18px
+}
+.on-label {
+  background-color: #35dc97;
+  border-radius: 5px 
+}
+.off-label {
+  background-color: #ef275f;
+  border-radius: 5px
+}
+.encrypt-toggle .on-label:hover {
+  background-color: #2cce8a
+}
+.encrypt-toggle .off-label:hover {
+  background-color: #dd2459
+}
+.encrypt-toggle .disable-toggle {
+  color: white
+}

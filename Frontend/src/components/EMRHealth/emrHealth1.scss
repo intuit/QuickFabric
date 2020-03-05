@@ -1,0 +1,409 @@
+.uat-reporting-component {
+  padding: 20px;
+}
+
+.emr-benchmarking-component {
+  
+  padding-top: 20px;
+  margin-left: 90px;
+
+  .value {
+    margin-top: -4px;
+    margin-left: 20px;
+  }
+
+  .cell {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+    float: left;
+  }
+  
+  .positive {
+    background-color: #53B700;
+    border-color: #53B700;
+  }
+
+  .negative {
+    background-color: #DB3737;
+    border-color: #DB3737;
+  }
+
+  .neutral {
+    background-color: #FDF291;
+    border-color: #FDF291;
+  }
+
+  .line {
+    border-bottom: solid 1px #CED9E0;
+  }
+
+  .button-list {
+    padding: 10px 0px;
+  }
+
+  .pt-tab-list {
+    margin-top: 20px;
+  }
+
+}
+
+.success-grid-column{
+  background-color: #DB3737;
+}
+
+.pt-tab:focus {
+  outline: 0;
+}
+
+.tab-button {
+  background-color: none;
+}
+
+.query-scroll {
+  overflow-y: scroll;
+  height:40px;
+}
+
+.exportBtn {
+  width: 160px;
+  height: 40px;
+  font-size: 14px;
+  background-color: white;
+  border: solid #0097E6;
+  border-width: 2px;
+  border-radius: 20px;
+  font-weight: 500;
+  color: #0097E6;
+
+  span {
+    position: absolute;
+    margin-top: 7px;
+    margin-left: -47px;
+  }
+}
+
+.material-icons {
+  float: left
+}
+
+.graph-wrapper {
+  // margin-left: 20px;
+  margin-right: 30px;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loader-wrapper {
+  position: fixed;
+  display: block;
+  z-index: 1020;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  border: 5px solid #cbcbcb;
+  border-radius: 50%;
+  border-top: 5px solid #0097E6;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+}
+.loader-wrapper-mini {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  z-index: 1020;
+  padding: 25%;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+}
+
+.loader-mini {
+  position: relative;
+  margin: 0 auto;
+  border: 5px solid #cbcbcb;
+  border-radius: 50%;
+  border-top: 5px solid #0097E6;
+  width: 70px;
+  height: 70px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+}
+.popup {
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 12px;
+  background-color: rgba(0,0,0, 0.5);
+  transition: all 0.5s;
+
+  .popup-close {
+    position: fixed;
+    background-color: white;
+    height: 40px;
+    width: 3%;
+    left: 37%;
+    top: 5%;
+    animation-duration: 0.5s;
+    animation-name: slideleft;
+    z-index: 1020;
+  }
+
+  .close-popup {
+    background: none;
+    padding: 5px;
+    color: #000;
+  }
+
+  .popup-inner {
+    position: absolute;
+    overflow-y: auto;
+    left: 40%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    margin: auto;
+    background: white;
+    animation-duration: 0.5s;
+    animation-name: slideleft;
+  
+    h2 {
+      margin: 20px;
+    }
+  
+    // a {
+    //   color: blue;
+    // }
+
+    .popup-components {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.1), 1px 3px 3px 2px rgba(0, 0, 0, 0.1);
+
+      .duration-radio-buttons {
+        margin-left: 20px
+      }
+    }
+
+    .side-section {
+        float: right
+    }
+  }
+
+  .rowDataTitle {
+    font-weight: 600;
+  }
+
+  // div {
+  //   // border: 2px solid rgb(170, 220, 247);
+  //   margin: 10px;
+  //   padding: 5px;
+  // }
+
+  table {
+    margin: 10px;
+    width: 100%;
+
+    td, th {
+      border: 1px solid #f0f0f0;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f0f0f0;
+    }
+
+    tr:hover {
+      background-color: #FFFADD;
+    }
+  }
+
+}
+
+@keyframes slideleft {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%,0,0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cancelBtn {
+  width: 90px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 10px !important;
+  background-color: #0097E6 !important;
+}
+
+.legends {
+  position: absolute;
+  right: 100px;
+  text-align: left;
+  color: #303030;
+  font-weight: 500;
+  font-size: 15px;
+  z-index: 4;
+  margin-left: 20px;
+}
+
+.legend {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  .job {
+    float: left;
+    width: 12px;
+    height: 12px;
+    right: 95px;
+    margin-top: 3px;
+    border: 1px solid #303030;
+    border-radius: 24px;
+  }
+
+  .running {
+    background-color: #FDF291;
+    margin-right: 4px;
+  }
+
+  .terminated {
+    background-color: #F8A0A0;
+    margin-right: 4px;
+  }
+
+  .waiting {
+    background-color: #7FD000;
+    margin-right: 4px;
+  }
+
+  input {
+    margin-right: 5px;
+  }
+
+  .disabled-filter {
+    color: #949494;
+  }
+}
+
+.cost-option {
+  // position: absolute;
+  margin: 10px;
+}
+
+.toggle-styling {
+  top: 20px;
+}
+
+.tab-components {
+  margin: 20px
+}
+
+.outer {
+  display: flex
+}
+
+.Healthy {
+  margin-top: 2px;
+  margin-right: 5px;
+  background-color: #53B700;
+  border-color: #53B700 !important;
+}
+
+.Unhealthy {
+  margin-top: 2px;
+  margin-right: 5px;
+  background-color: #DB3737;
+  border-color: #DB3737 !important;
+}
+
+.Running {
+  margin-top: 2px;
+  margin-right: 5px;
+  background-color: rgb(222, 200, 6);
+  border-color: rgb(222, 200, 6) !important;
+}
+
+.customDatePicker {
+  margin-left: 20px;
+}
+
+.dateSubmitButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  height: 74%;
+  margin-left: 20px;
+  vertical-align: center;
+  border-radius: 6px;
+}
+.datePickerContainer {
+  height: 38px;
+  width: 100%;
+}
+.my-span-kendo {
+  width: 24%;
+  margin-left: 77%;
+  color:gray; 
+  z-index: 1;
+  display: inline-block;
+}
+.k-grid-running-apps .k-widget {
+  font-size: 10px;
+} 
+.k-grid-running-apps {
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+} 
+.k-cell-txtfield {
+  width: 100%;
+  height: 30px;
+  font-size: 12px;
+}
+.expert-grid table {
+  margin: 0;
+}
+.chart-container {
+  display: inline-block
+}
+.k-dialog-container .k-dialog-wrapper .k-dialog .k-content .k-window-content .k-dialog-content {
+  width: 40%
+}
+.k-dialog-container input {
+  width: 100%
+}
+.dialog-title {
+  font-weight: 600;
+  margin-bottom: 30px;
+
+}

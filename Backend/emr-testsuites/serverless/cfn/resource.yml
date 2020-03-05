@@ -1,0 +1,25 @@
+Resources:
+  ApiGatewayStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      MethodSettings:
+        - DataTraceEnabled: true
+          HttpMethod: "*"
+          LoggingLevel: INFO
+          ResourcePath: "/*"
+          MetricsEnabled: true
+      RestApiId: ${self:provider.apiGateway.restApiId}
+  EmrRequestValidatorParams:
+    Type: "AWS::ApiGateway::RequestValidator"
+    Properties:
+      Name: 'emr-req-validator-params'
+      RestApiId: ${self:provider.apiGateway.restApiId}
+      ValidateRequestBody: false
+      ValidateRequestParameters: true
+  EmrRequestValidatorBody:
+    Type: "AWS::ApiGateway::RequestValidator"
+    Properties:
+      Name: 'emr-req-validator-body'
+      RestApiId: ${self:provider.apiGateway.restApiId}
+      ValidateRequestBody: true
+      ValidateRequestParameters: true

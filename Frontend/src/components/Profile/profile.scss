@@ -1,0 +1,109 @@
+.profile-component {
+    padding-top: 20px;
+    margin-left: 90px;
+}
+
+.user-data {
+    font-size: 15px;
+    bottom: 5px;
+    position: relative;
+    margin: 10px;
+}
+
+.profile-section {
+    margin-top: 40px;
+}
+
+.side-section {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 70%;
+    border-radius: 5px;
+    padding: 20px;
+    position: absolute;
+    margin-left: 23%;
+    top: 7%;
+    margin-bottom: 20px;
+}
+
+.roles-table {
+    width: 100%;
+    margin: 10px;
+
+    td, th {
+        padding: 10px;
+    }
+
+    th {
+        left: 10px;
+    }
+
+    tr:nth-child(odd){
+        background-color: rgb(240, 240, 240);
+      }
+    tr:hover {
+        background-color: #ffffc6;
+      }
+}
+
+.pt-tab {
+    font-size: 18px
+}
+
+.tab-content {
+    padding: 20px;
+    padding-top: 30px;
+    border-top: 1px solid #c7c7c7; 
+}
+
+.cell-positive {
+    background-color: #53B700;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: #53B700;
+    float: left;
+  }
+
+  .cell-negative {
+    background-color: #DB3737;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: #DB3737;
+    float: left;
+  }
+
+  .cell-progress {
+    background-color: blue;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: blue;
+    float: left;
+  }
+
+  .cell-terminated {
+    background-color: lightcoral;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: lightcoral;
+    float: left;
+  }
+
+.value {
+    margin-top: -4px;
+    margin-left: 20px;
+}
+
+.subscribeBtn {
+  width: 90px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #0097E6;
+  margin: 20px;
+}

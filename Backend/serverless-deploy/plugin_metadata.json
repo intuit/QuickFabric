@@ -1,0 +1,13 @@
+{
+  "serverless-pseudo-parameters": "2.5.0",
+  "serverless-add-api-key": "4.0.2",
+  "serverless-aws-documentation": "1.1.0",
+  "serverless-deployment-bucket": "1.1.0",
+  "serverless-jetpack": "0.7.0",
+  "serverless-plugin-stage-variables": "1.9.5",
+  "serverless-reqvalidator-plugin": "1.0.3",
+  "serverless-plugin-parent": "latest",
+  "serverless-s3-sync": "latest",
+  "serverless-plugin-existing-s3": "latest",
+  "serverless-api-stage": "latest"
+}

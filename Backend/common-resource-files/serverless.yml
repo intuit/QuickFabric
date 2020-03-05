@@ -1,0 +1,54 @@
+package:
+  individually: true
+  excludeDevDependencies: true
+
+frameworkVersion: ">=1.60.4"
+
+provider:
+  name: aws
+  stackName: ${self:service.name}
+  stage: ${self:custom.config.env, self:custom.defaultStage}
+  region: ${self:custom.config.region, self:custom.defaultRegion}
+  logsubs: ${opt:logsubs, self:custom.defaultLogsubs}
+  runtime: python3.7
+  endpointType: REGIONAL
+  iamRoleStatements: ${file(../common-resource-files/role.yml)}
+  #resourcePolicy: ${file(../common-resource-files/whitelist_ips.yml)}
+  logRetentionInDays: 7 # Set the log RetentionInDays for a CloudWatch LogGroup
+  logs:
+    restApi: true
+  apiGateway:
+    description: EMR Cluster lifecycle management APIs
+
+custom:
+  config: ${file(../serverless-deploy/config.yml)}
+  defaultStage: test
+  defaultRegion: us-west-2
+  defaultLogsubs: false
+
+  tags:
+    app: "QuickFabric"
+    env: ${self:provider.stage}
+    team: "Data Platform"
+    costCenter: "DataAnalytics"
+
+  apiKeys:
+    - name: api_gw_key
+
+  serverless-jetpack:
+    mode: npm
+    concurrency: 2
+
+  commonModelSchemaFragments:
+    MethodResponse500Json:
+      statusCode: '500'
+      responseModels:
+        "application/json": 500ErrorResponse
+
+plugins:
+  - serverless-deployment-bucket
+  - serverless-pseudo-parameters
+  - serverless-add-api-key
+  - serverless-aws-documentation
+  - serverless-reqvalidator-plugin
+  - serverless-jetpack

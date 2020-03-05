@@ -1,0 +1,21 @@
+.DS_Store/
+.classpath/
+.project/
+
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+.vscode
+
+# Mac-specific
+.DS_Store
+emr/target
+schedulers/target
+/commons/commons.iml
+/dcc-application.iml
+/dcc-application.ipr
+/dcc-application.iws
+/emr/emr.iml
+/.ideaDataSources/
+/dataSources/
+/logs/
+/emr/logs/

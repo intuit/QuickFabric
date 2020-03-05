@@ -1,0 +1,71 @@
+handler: src/scripts/emr_test_bootstrap.lambda_handler
+name: emr-test-bootstrap
+description: Lambda function to fetch list of bootstraps executed on cluster
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: test-service/bootstrap
+      method: get
+      cors: true
+      private: true
+      integration: lambda
+      reqValidatorName: ${self:custom.RequestParameterValidator}
+      request:
+        parameters:
+          querystrings:
+            clusterId: false
+            clusterName: false
+        template:
+          application/json: |
+            {
+              "api_request_id": "$context.requestId",
+              "cluster_id": "$input.params('clusterId')",
+              "cluster_name": "$input.params('clusterName')"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 201,
+                "clusterId": "$input.path('$.cluster_id')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "bootstrapNames": $input.path('$.bootstrap_names'),
+                "bootstrapCount": $input.path('$.bootstrap_count'),
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: Fetch list of bootstraps attached to EMR cluster by cluster_id/cluster_name
+        description: Fetch list of bootstraps attached to EMR cluster by cluster_id/cluster_name
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": EMRTestSuiteResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - serverless/**
+    - src/**
+    - "*.json"
+    - "plugin_install.py"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/**
+    - src/__init__.py
+    - src/scripts/__init__.py
+    - src/scripts/emr_test_bootstrap.py

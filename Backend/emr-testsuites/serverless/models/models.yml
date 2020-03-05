@@ -1,0 +1,18 @@
+api:
+  info:
+    version: '1.0.0'
+    title: EMR cluster Ops APIs
+    description: APIs to perform EMR Test Suite operations
+models:
+  - name: EMRTestSuiteRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/EMRTestSuiteRequest.json)}
+  - name: EMRTestSuiteResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/EMRTestSuiteResponse.json)}
+  - name: EMRClusterTestAppRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/EMRClusterTestAppRequest.json)}
+  - name: EMRClusterTestAppResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/EMRClusterTestAppResponse.json)}

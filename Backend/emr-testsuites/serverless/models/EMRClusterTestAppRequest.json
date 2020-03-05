@@ -1,0 +1,18 @@
+{
+  "required": [
+    "clusterName",
+    "clusterId",
+    "app"
+  ],
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "app": {
+      "type": "string"
+    }
+  }
+}

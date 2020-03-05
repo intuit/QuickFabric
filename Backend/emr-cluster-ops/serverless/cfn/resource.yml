@@ -1,0 +1,60 @@
+Resources:
+  EmrRequestValidatorParams:
+    Type: "AWS::ApiGateway::RequestValidator"
+    Properties:
+      Name: 'emr-req-validator-params'
+      RestApiId:
+        Ref: ApiGatewayRestApi
+      ValidateRequestBody: false
+      ValidateRequestParameters: true
+  EmrRequestValidatorBody:
+    Type: "AWS::ApiGateway::RequestValidator"
+    Properties:
+      Name: 'emr-req-validator-body'
+      RestApiId:
+        Ref: ApiGatewayRestApi
+      ValidateRequestBody: true
+      ValidateRequestParameters: true
+  EMRArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: quickfabric-emr-artifact-${self:custom.config.account-id}-${self:provider.region}
+  EMRRMProxyLambdaSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Security group for lambda connecting from lambda to EMR for collecting metrics"
+      GroupName: "emr-rm-proxy-sg"
+      VpcId: ${self:custom.config.vpc_id}
+  EgressAllowAll:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !Ref EMRRMProxyLambdaSG
+      IpProtocol: -1
+      CidrIp: 0.0.0.0/0
+      Description: "Allow all outbound connection"
+
+Outputs:
+    ApiGatewayRestApiId:
+      Value:
+        Ref: ApiGatewayRestApi
+      Export:
+        Name: RestApiId
+
+    ApiGatewayRestApiRootResourceId:
+      Value:
+        Fn::GetAtt:
+          - ApiGatewayRestApi
+          - RootResourceId
+      Export:
+        Name: RootResourceId
+
+    EmrRequestValidatorParams:
+      Value:
+        Ref: EmrRequestValidatorParams
+      Export:
+        Name: EmrRequestValidatorParams
+    EmrRequestValidatorBody:
+      Value:
+        Ref: EmrRequestValidatorBody
+      Export:
+        Name: EmrRequestValidatorBody

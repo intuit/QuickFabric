@@ -1,0 +1,68 @@
+api:
+  info:
+    version: '1.0.0'
+    title: EMR cluster Ops APIs
+    description: APIs to perform EMR cluster operations
+models:
+  - name: CreateEMRClusterRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/CreateEMRClusterRequest.json)}
+  - name: CreateEMRClusterResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/CreateEMRClusterResponse.json)}
+
+  - name: ValidateEMRClusterRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/ValidateEMRClusterRequest.json)}
+  - name: ValidateEMRClusterResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/ValidateEMRClusterResponse.json)}
+
+  - name: EMRClusterAddStepRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRClusterAddStepRequest.json)}
+  - name: EMRClusterAddStepResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRClusterAddStepResponse.json)}
+
+  - name: EMRClusterAddCustomStepRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRClusterAddCustomStepRequest.json)}
+  - name: EMRClusterAddCustomStepResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRClusterAddCustomStepResponse.json)}
+
+  - name: EMRStepValidateRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRStepValidateRequest.json)}
+  - name: EMRStepValidateResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRStepValidateResponse.json)}
+
+  - name: 500ErrorResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/500ErrorResponse.json)}
+
+  - name: ProtectEMRClusterRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/ProtectEMRClusterRequest.json)}
+  - name: ProtectEMRClusterResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/ProtectEMRClusterResponse.json)}
+
+  - name: EMRDNSOperation
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRDNSOperation.json)}
+
+  - name: TerminateEMRClusterRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/TerminateEMRClusterRequest.json)}
+  - name: TerminateEMRClusterResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/TerminateEMRClusterResponse.json)}
+  - name: EMRRMProxyRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRRMProxyRequest.json)}
+  - name: EMRRMProxyResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/schemas/EMRRMProxyResponse.json)}

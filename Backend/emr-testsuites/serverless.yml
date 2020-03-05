@@ -1,0 +1,40 @@
+service: emr-testsuites
+
+provider:
+  name: aws
+  apiGateway:
+    restApiId:
+      'Fn::ImportValue': RestApiId
+    restApiRootResourceId:
+      'Fn::ImportValue': RootResourceId
+  deploymentBucket:
+    name: quickfabric-serverless-${self:custom.config.account-id}-${self:provider.region}-deploys
+  deploymentPrefix: ${self:service.name} # The S3 prefix under which deployed artifacts should be stored. Default is serverless
+
+custom:
+  parent:
+    path: "../common-resource-files/serverless.yml"
+
+  RequestParameterValidator:
+    'Fn::ImportValue': EmrRequestValidatorParams
+
+  RequestBodyValidator:
+    'Fn::ImportValue': EmrRequestValidatorBody
+
+  documentation: ${file(serverless/models/models.yml)}
+
+functions:
+  emr-test-autoscaling: ${file(serverless/lambdas/test_autoscaling.yml)}
+  emr-test-bootstraps: ${file(serverless/lambdas/test_bootstrap.yml)}
+  emr-test-steps: ${file(serverless/lambdas/test_steps.yml)}
+  emr-test-apps: ${file(serverless/lambdas/test_emr_app.yml)}
+
+
+plugins:
+  - serverless-deployment-bucket
+  - serverless-pseudo-parameters
+  - serverless-add-api-key
+  - serverless-aws-documentation
+  - serverless-reqvalidator-plugin
+  - serverless-jetpack
+  - serverless-plugin-parent

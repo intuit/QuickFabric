@@ -1,0 +1,281 @@
+.admin-component {
+    padding-top: 20px;
+    margin-left: 90px;
+}
+
+.tab-content {
+    border-top: 1px solid #c1c1c1;
+    font-size: 12px;
+}
+
+td {
+    padding: 10px
+}
+
+.labelTxt {
+    font-size: 15px;
+}
+
+.txtfield {
+    float: right;
+    width: 500px;
+    height: 25px;
+    border: 1px solid rgb(107, 195, 242);
+    border-radius: 3px;   
+}
+
+.addBtn {
+    float: right;
+    width: 110px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #0097E6;
+    margin: 10px;
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+.required::after{
+    content: "*";
+    color: red;
+}
+
+.account-onboard-container {
+  margin: 0
+}
+
+// Application Config
+
+.app-config-table { 
+    width: 665px;
+    margin: 0 auto;
+}
+.app-config-table .k-grid td {
+    height: 15px;
+}
+.app-config-txtField {
+    width: 90%;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+// .app-config-toggle .react-switch-label {
+//     display: inline-block;
+//     cursor: pointer;
+//     width: 55px;
+//     margin-top: 10px;
+//     margin-bottom: 0px;
+//     height: 22.5px;
+//     background: #dadada;
+//     border-radius: 100px;
+//     position: relative;
+//     -webkit-transition: background-color .2s;
+//     transition: background-color .2s;
+// }
+.lite-grey {
+    padding: 10px;
+    width: 100%;
+    background-color: #f5f5f5
+}
+.segment-detail-container {
+    background-color: #f3f3f3;
+    padding: 14px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.numeric-txt-kndo .k-numerictextbox {
+    width: 100%
+}
+.review hr {
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+ .reviewCluster {
+    margin: 20px;
+  }
+  .reviewTitles {
+    font-weight: 550
+  }
+  .reviewTitle {
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 35px;
+  }
+
+  .greybox {
+    border: solid 0.5px #8080801f
+  }
+  .whitebox {
+    border: solid 0.5px #8080801f
+  }
+  .combo-config {
+      margin-bottom: 25px;
+      display: block;
+  }
+  .combo-config p {
+      font-weight: 600
+  }
+  .chart-container {
+    display: inline-block
+  }
+  .clusterField .k-grid-conf .k-dialog-wrapper .k-dialog {
+    width: 40%
+  }
+  .clusterField .k-grid-conf .k-toggle-mode .k-dialog-wrapper .k-dialog {
+    width: 40%
+  }
+  .clusterField .k-grid-conf .k-dialog-wrapper .k-textbox {
+    width: 100%
+  }
+  .clusterField .k-window-content, .k-prompt-container  {
+    padding: 15px 20px;
+  }
+  .clusterField .k-toggle-mode .k-window-content, .k-prompt-container {
+    padding: 15px 10px;
+  }
+  .dialog-title {
+    font-weight: 600;
+    display: inline-block;
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 0px;
+    margin-top: 11px;
+  
+  }
+  .k-toggle-mode .dialog-title {
+    font-weight: 600;
+    display: inline-block;
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+    margin-top: 11px;
+  }
+  .dialog-description {
+    display: inline-block;
+    width: 97%;
+    font-size: 16px;
+    margin-bottom: 6px;
+    margin-top: 11px;
+    font-style: italic;
+    margin-top: 2px;
+  
+  }
+  .k-toggle-mode .dialog-description {
+    display: inline-block;
+    width: 97%;
+    font-size: 16px;
+    margin-left: 15px;
+    margin-bottom: 3px;
+    margin-top: 11px;
+    margin-bottom: 9px;
+    font-style: italic;
+    margin-top: 2px;
+  
+  }
+  .k-toggle-mode .dialog-action {
+    font-weight: 550;
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 1px;
+  
+  }
+  .k-grid .k-table-config-center  {
+    text-align: center;
+  }
+  .err-container {
+    display: block;
+    float: right;
+    width: 100%;
+  }
+  .err-container .errorField {
+    float: right;
+    font-size: 13px;
+  }
+  .k-toggle-mode .k-modal-button-cancel {
+    float: right;
+    margin-left: 5px;
+    margin-right: 20px;
+  }
+  .k-modal-button-cancel {
+    float: right;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .k-modal-button-save {
+    float: right;
+
+  }
+  .k-grid-conf {
+    font-size: 14px
+  }
+
+
+  .k-filtercell .k-filtercell-operator>.k-button:not(.k-clear-button-visible) {
+    display: none;
+  }
+ .k-filtercell .k-filtercell-operator>.k-button.k-clear-button-visible {
+    display: none;
+  }
+  .k-eye-btn {
+    border-color: rgb(53, 220, 151);
+    color: white;
+    background-color:rgb(53, 220, 151);
+  }
+  .k-eye-btn:hover {
+    border-color: rgb(50, 199, 137);
+    color: #005fc5;
+    background-color:rgb(50, 199, 137);
+  }
+  .k-eye-close-btn {
+    border-color: #bbbbbb;
+    color: white;
+    background-color: #bbbbbb;
+  }
+  .k-eye-close-btn:hover {
+    border-color: #acacac;
+    color: #005fc5;
+    background-color: #acacac;
+  }
+  .k-eye-close-btn:disabled {
+    border-color: #e4e7eb;
+    color: #a5a5a5;
+    background-color: #e4e7eb;
+  }
+  .k-eye-btn:disabled {
+    border-color: #e4e7eb;
+    color: #a5a5a5;
+    background-color: #e4e7eb;
+  }
+  .k-grid-null-val {
+    background: -webkit-linear-gradient(transparent, transparent), -webkit-linear-gradient(top, rgb(214, 214, 214) 0%, rgb(222, 222, 222) 26%, rgb(243, 243, 243) 35%, rgb(167, 167, 167) 45%, rgb(142, 141, 141) 61%, rgb(224, 224, 224) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .pwd-input {
+    width: 464px;
+    display: inline-block;
+    height: 25px;
+    border: 1px solid #6bc3f2;
+    border-radius: 3px;
+  }
+  .btn-pwd-input {
+    width: 36px;
+    display: inline-block;
+  }
+  .pwd-input-conf {
+    width: 414px;
+    display: inline-block;
+    height: 25px;
+    border: 1px solid #6bc3f2;
+    border-radius: 3px;
+  }
+  .btn-pwd-input button {
+    width: 36px;
+    background-color: transparent;
+    color: black;
+  }

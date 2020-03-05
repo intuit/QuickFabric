@@ -1,0 +1,15 @@
+INSERT INTO `workflow` (`id`, `workflow_name`, `workflow_step`, `lookup_table`)VALUES 
+(1,'CreateCluster','create_new_cluster','emr_cluster_metadata'),
+(2,'CreateCluster','cluster_bootstraps','cluster_step_request'),
+(3,'CreateCluster','cluster_custom_steps','cluster_step_request'),
+(4,'CreateCluster','health_check','emr_functional_testsuites_status'),
+(5,'RotateAMI-NonHA','terminate_current_cluster','emr_cluster_metadata'),
+(6,'RotateAMI-NonHA','create_new_cluster','emr_cluster_metadata'),
+(7,'RotateAMI-NonHA','cluster_bootstraps','cluster_step_request'),
+(8,'RotateAMI-NonHA','cluster_custom_steps','cluster_step_request'),
+(9,'RotateAMI-NonHA','health_check','emr_functional_testsuites_status'),
+(10,'RotateAMI-HA','create_new_cluster','emr_cluster_metadata'),
+(11,'RotateAMI-HA','cluster_bootstraps','cluster_step_request'),
+(12,'RotateAMI-HA','cluster_custom_steps','cluster_step_request'),
+(13,'RotateAMI-HA','health_check','emr_functional_testsuites_status'),
+(14,'RotateAMi-HA','mark_current_cluster_for_termination','emr_cluster_metadata');

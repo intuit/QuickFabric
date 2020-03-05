@@ -1,0 +1,12 @@
+api:
+  info:
+    version: '1.0.0'
+    title: EMR cluster Ops APIs
+    description: APIs to perform EMR autoscaling operations
+models:
+  - name: EMRAutoScalingRequest
+    contentType: "application/json"
+    schema: ${file(serverless/models/EMRAutoScalingRequest.json)}
+  - name: EMRAutoScalingResponse
+    contentType: "application/json"
+    schema: ${file(serverless/models/EMRAutoScalingResponse.json)}

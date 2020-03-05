@@ -1,0 +1,55 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+
+version: '3.7'
+
+# Define services
+services:
+
+  # Frontend
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - emr
+    ports:
+        - "80:80"
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - frontend_network
+      - emr_network
+
+  # EMR Configuration
+  emr:
+    build:
+      context: ./Middleware/emr
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+        - AES_SECRET_KEY=${AES_SECRET_KEY}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+        - "8080:8080"
+    networks:
+      - emr_network
+
+  # schedulers backend tasks
+  schedulers:
+    build:
+      context: ./Middleware/schedulers
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+        - AES_SECRET_KEY=${AES_SECRET_KEY}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - schedulers_network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  schedulers_network:
+    driver: bridge
+  frontend_network:
+    driver: bridge
+  emr_network:
+    driver: bridge

@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "stepId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "number"
+    }
+  }
+}

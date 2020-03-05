@@ -1,0 +1,64 @@
+handler: src/scripts/emr_validate_step.lambda_handler
+name: emr-add-steps-validate
+description: Lambda function to validate EMR cluster steps
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: emr-service/validate-steps
+      method: post
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        template:
+          application/json: ${file(serverless/models/mapping_templates/EMRStepValidateRequest)}
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: ${file(serverless/models/mapping_templates/EMRStepValidateResponse)}
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "EMR cluster add step validation"
+        description: "Validate EMR cluster add steps"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+        requestModels:
+          "application/json": EMRStepValidateRequest
+      reqValidatorName: EmrRequestValidatorBody
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": EMRStepValidateResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+
+package:
+  individually: true
+  exclude:
+    - ba_step_scripts/**
+    - docker/**
+    - tests/**
+    - node_modules/**
+    - serverless/**
+    - src/**
+    - "*.json"
+    - "plugin_install.py"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/common/**
+    - src/conf/${self:custom.config.account-id}/**
+    - src/__init__.py
+    - src/scripts/__init__.py
+    - src/scripts/emr_validate_step.py

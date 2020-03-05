@@ -1,0 +1,11 @@
+#set($inputRoot = $input.path('$'))
+{
+"api_request_id": "$context.requestId",
+"cluster_name": "$input.path('clusterName')",
+"cluster_id": "$input.path('$.clusterId')",
+"step_ids": [
+#foreach($elem in $inputRoot.stepIds)
+"$elem"#if($foreach.hasNext), #end
+#end
+]
+}

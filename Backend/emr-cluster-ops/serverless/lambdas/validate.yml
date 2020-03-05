@@ -1,0 +1,79 @@
+handler: src/scripts/emr_validate.lambda_handler
+name: emr-validate-cluster
+description: Lambda function to validate status of EMR cluster post launch
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: emr-service/validate
+      method: get
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        parameters:
+          querystrings:
+            clusterId: true
+        template:
+          application/json: |
+            {
+            "api_request_id": "$context.requestId",
+            "cluster_id": "$input.params("clusterId")"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 200,
+                "clusterName": "$input.path('$.cluster_name')",
+                "status": "$input.path('$.status')",
+                "clusterId": "$input.path('$.cluster_id')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')",
+                "masterIp": "$input.path('$.master_ip')",
+                "rmUrl": "$input.path('$.rm_url')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "EMR validate cluster creation"
+        description: "Validate EMR cluster post launch"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+        requestModels:
+          "application/json": ValidateEMRClusterRequest
+      reqValidatorName: EmrRequestValidatorParams
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": ValidateEMRClusterResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+environment:
+  ENV: ${self:provider.stage}
+package:
+  individually: true
+  exclude:
+    - ba_step_scripts/**
+    - node_modules/**
+    - serverless/**
+    - tests/**
+    - src/**
+    - "*.json"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/common/**
+    - src/conf/${self:custom.config.account-id}/**
+    - src/__init__.py
+    - src/scripts/emr_validate.py

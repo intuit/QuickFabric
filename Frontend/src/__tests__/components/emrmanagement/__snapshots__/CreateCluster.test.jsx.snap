@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Create cluster form Should render the component 1`] = `
+<Connect(CreateCluster)
+  uiListArray={
+    Object {
+      "accounts": Array [],
+      "segments": Array [],
+    }
+  }
+/>
+`;
