@@ -1,0 +1,76 @@
+handler: src/scripts/emr_test_autoscaling.lambda_handler
+name: emr-test-autoscaling
+description: Lambda function to fetch autoscaling state and instance min and max count lambda_handler.
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: test-service/autoscaling
+      method: get
+      cors: true
+      private: true
+      integration: lambda
+      reqValidatorName: ${self:custom.RequestParameterValidator}
+      request:
+        parameters:
+          querystrings:
+            clusterId: false
+            clusterName: false
+            instanceGroup: false
+        template:
+          application/json: |
+            {
+              "api_request_id": "$context.requestId",
+              "cluster_id": "$input.params('clusterId')",
+              "cluster_name": "$input.params('clusterName')",
+              "instance_group": "$input.params('instanceGroup')"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 201,
+                "state": "$input.path('$.state')",
+                "min": $input.path('$.min'),
+                "max": $input.path('$.max'),
+                "rules": $input.path('$.rules'),
+                "clusterId": "$input.path('$.cluster_id')",
+                "instanceGroup": "$input.path('$.instance_group')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: Verify if autoscaling is attached to a cluster
+        description: Verify if autoscaling is attached to a cluster
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": EMRTestSuiteResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - serverless/**
+    - src/**
+    - "*.json"
+    - "plugin_install.py"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/**
+    - src/__init__.py
+    - src/scripts/__init__.py
+    - src/scripts/emr_test_autoscaling.py

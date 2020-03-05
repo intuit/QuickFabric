@@ -1,0 +1,38 @@
+[
+    {
+        "Key": "intuit:billing:component",
+        "Value": "__role__"
+    },
+    {
+        "Key": "intuit:billing:user-app",
+        "Value": "__name__"
+    },
+    {
+        "Key": "intuit:billing:appenv",
+        "Value": "prd"
+    },
+    {
+        "Key": "bu",
+        "Value": "sbseg"
+    },
+    {
+        "Key": "env",
+        "Value": "prod"
+    },
+    {
+        "Key": "app",
+        "Value": "__name__"
+    },
+    {
+        "Key": "Name",
+        "Value": "__name__-EMR"
+    },
+    {
+        "Key": "type",
+        "Value": "__type__"
+    },
+    {
+        "Key": "ami:restack:date",
+        "Value": "__restack__"
+    }
+]

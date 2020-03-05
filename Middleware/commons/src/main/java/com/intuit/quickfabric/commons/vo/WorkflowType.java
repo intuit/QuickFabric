@@ -1,0 +1,10 @@
+package com.intuit.quickfabric.commons.vo;
+
+public enum WorkflowType {
+    CREATE_NEW_CLUSTER,
+    CLUSTER_BOOTSTRAPS,
+    CLUSTER_CUSTOM_STEPS,
+    HEALTH_CHECK,
+    TERMINATE_CURRENT_CLUSTER,
+    MARK_CURRENT_CLUSTER_FOR_TERMINATION
+}

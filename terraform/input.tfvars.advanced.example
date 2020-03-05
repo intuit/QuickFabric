@@ -1,0 +1,82 @@
+
+# Account Ids for QuickFabric
+# Parent account ID :  is where the UI gets installed. 
+# Keep it as empty string if UI in in local machine(refer terraform_local) 
+# or
+# provide a account ID as string if the UI is in AWS.
+# Child account ID : is a list of string. With all the AWS accounts to
+# integrate with Quickfabric
+account_ids = {
+  "parent_account_id" : "",
+  "child_account_ids" : []
+}
+
+# AWS Region to deploy QuickFabric
+region = "us-west-2"
+
+# < optional > if empty then quickfabric will pickup pick user’s default id_rsa.pub,
+#  otherwise create/provide AWS key_pair file name without .pem extension.
+key_pair = ""
+
+
+# Accepts lists of Subnet ranges in order to access Bastion/Jump server. 
+# This CIDR range will be added in EC2 SG inbound rule for port 22 (SSH).
+# Ex: cidr_admin_whitelist = [
+#  	"xxx.xx.xxx.xx/32",
+#  	"xxx.xx.xxx.xx/32"
+#     ]
+
+cidr_admin_whitelist = []
+
+# A list public subnets(Atleast 1) that it can be access via IGW (Internet Gateway).
+# Ex: public_subnet_id = {
+#  	"123456789101" : ["subnet-1234", "subnet-5678"]
+#  	"098765432110" : ["subnet-4321", "subnet-8765"]
+#     }
+
+public_subnet_id = {}
+
+# A list private subnets(Atleast 1) which is attached to a NAT Gateway.
+# Ex: private_subnet_id = {
+#  	"12345678910" : ["subnet-3421", "subnet-7856"]
+#  	"098765432110" : ["subnet-2143", "subnet-6578"]
+#     }
+
+private_subnet_id = {}
+
+# Provide route53 valid existing zone. This zone is required to access EMR Cluster. 
+# Incase of new hosted zones, set hosted_zone_name_exists to false
+quickfabric_zone_name = "quickfabric.intuit.com"
+
+# (Default is false) Does not creates a new hosted zone when set to true,
+#  Incase of new hosted zones, set to false.
+hosted_zone_name_exists = false
+
+# Provide appropriate name to create "A" record for QuickFabric UI URL. Example :
+# www_domain_name="quickfabric" so Quickfabric UI will be accessible via this url
+# http://<www_domain_name>.<quickfabric_zone_name> = http://qf.quickfabric.intuit.com
+www_domain_name = "qf"
+
+# Bastion server instance type. By default it used t2.xlarge
+instance_type = "m5.2xlarge"
+
+# AMI id to use while spinning up the bastion servers. Default is Ubuntu base image
+#
+#Ex: ami_ids = {
+#     "xxxxxxxxxxxx" : ""
+#     "xxxxxxxxxxxx" : ""
+#   }
+
+ami_ids = {}
+
+# Bastion security group if bastion server already exists.
+# default is emty string("") will create a new bastion instance.
+bastion_sg=""
+
+# Tags to uniquely identify QuickFabric resources
+tags = {
+  "app" : "quickfabric"
+  "env" : "prd"
+  "team" : "CloudOps"
+}
+

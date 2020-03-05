@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "metricType": {
+      "type": "string"
+    },
+    "metricStats": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "number"
+    }
+  }
+}

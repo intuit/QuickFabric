@@ -1,0 +1,18 @@
+{
+  "required": [
+    "subType",
+    "segment",
+    "account"
+  ],
+  "properties": {
+    "segment": {
+      "type": "string"
+    },
+    "subType": {
+      "type": "string"
+    },
+    "account": {
+      "type": "string"
+    }
+  }
+}

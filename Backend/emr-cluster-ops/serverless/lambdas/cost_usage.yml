@@ -1,0 +1,70 @@
+handler: src/scripts/emr_cost_usage.lambda_handler
+name: emr-cost-usage
+description: EMR Cost and Usage
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: emr-service/cost-usage
+      method: get
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        parameters:
+          querystrings:
+            clusterName: true
+        template:
+          application/json: |
+            {
+            "api_request_id": "$context.requestId",
+            "cluster_name": "$input.params("clusterName")"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 200,
+                "clusterName": "$input.path('$.cluster_name')",
+                "startDate": "$input.path('$.start_date')",
+                "endDate": "$input.path('$.end_date')",
+                "totalAmount": "$input.path('$.total_amount')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "Get EMR cost and usage"
+        description: "Get EMR cost and usage"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+      reqValidatorName: EmrRequestValidatorParams
+
+package:
+  individually: true
+  exclude:
+    - ba_step_scripts/**
+    - node_modules/**
+    - serverless/**
+    - tests/**
+    - src/**
+    - "*.json"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/common/**
+    - src/conf/${self:custom.config.account-id}/**
+    - src/__init__.py
+    - src/scripts/emr_cost_usage.py

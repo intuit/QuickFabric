@@ -1,0 +1,18 @@
+{
+  "required": [
+    "clusterName",
+    "clusterId",
+    "terminationProtected"
+  ],
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "terminationProtected": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+service: emr-cluster-ops
+
+provider:
+  name: aws
+  deploymentBucket:
+    name: quickfabric-serverless-${self:custom.config.account-id}-${self:provider.region}-deploys
+  deploymentPrefix: ${self:service.name} # The S3 prefix under which deployed artifacts should be stored. Default is serverless
+
+custom:
+  stage: ${self:provider.stage}
+  stageSettings:
+    MethodSettings:
+      LoggingLevel: INFO
+
+  parent:
+    path: "../common-resource-files/serverless.yml"
+
+  documentation: ${file(serverless/models/models.yml)}
+
+  s3Sync:
+    - bucketName: quickfabric-emr-data-${self:custom.config.account-id}-${self:provider.region}
+      bucketPrefix: scripts/ # optional
+      localDir: ba_step_scripts # required
+
+functions:
+  emr-pre-check: ${file(serverless/lambdas/precheck.yml)}
+  emr-create-cluster: ${file(serverless/lambdas/create.yml)}
+  emr-validate-cluster: ${file(serverless/lambdas/validate.yml)}
+  emr-add-steps: ${file(serverless/lambdas/steps.yml)}
+  emr-protect: ${file(serverless/lambdas/protect.yml)}
+  emr-terminate: ${file(serverless/lambdas/terminate.yml)}
+  emr-add-custom-steps: ${file(serverless/lambdas/custom_add_steps.yml)}
+  emr-add-custom-steps-validate: ${file(serverless/lambdas/validate_steps.yml)}
+  emr-status-check: ${file(serverless/lambdas/status.yml)}
+  emr-rm-proxy: ${file(serverless/lambdas/rm_proxy.yml)}
+  emr-dns-service: ${file(serverless/lambdas/dns_ops.yml)}
+  emr-cost-usage: ${file(serverless/lambdas/cost_usage.yml)}
+
+
+resources: ${file(serverless/cfn/resource.yml)}
+
+plugins:
+  - serverless-deployment-bucket
+  - serverless-pseudo-parameters
+  - serverless-add-api-key
+  - serverless-aws-documentation
+  - serverless-reqvalidator-plugin
+  - serverless-jetpack
+  - serverless-plugin-parent
+  - serverless-s3-sync
+  - serverless-api-stage

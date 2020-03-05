@@ -1,0 +1,26 @@
+{
+  "required": [
+    "clusterName",
+    "clusterId",
+    "account",
+    "step",
+    "subType"
+  ],
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "account": {
+      "type": "string"
+    },
+    "step": {
+      "type": "string"
+    },
+    "subType": {
+      "type": "string"
+    }
+  }
+}

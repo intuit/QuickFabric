@@ -1,0 +1,79 @@
+handler: src/scripts/emr_terminate.lambda_handler
+name: emr-terminate
+description: Lambda function to terminate an EMR cluster
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: emr-service/terminate
+      method: post
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        template:
+          application/json: |
+            {
+            "api_request_id": "$context.requestId",
+            "cluster_name": "$input.path('clusterName')",
+            "cluster_id": "$input.path('clusterId')",
+            "force": "$input.path('force')"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 201,
+                "clusterName": "$input.path('$.cluster_name')",
+                "clusterId": "$input.path('$.cluster_id')",
+                "status": "$input.path('$.status')",
+                "message": "$input.path('$.message')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "EMR terminate cluster"
+        description: "Terminate EMR cluster"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+        requestModels:
+          "application/json": TerminateEMRClusterRequest
+      reqValidatorName: EmrRequestValidatorBody
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": TerminateEMRClusterResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+
+package:
+  individually: true
+  exclude:
+    - ba_step_scripts/**
+    - docker/**
+    - node_modules/**
+    - serverless/**
+    - tests/**
+    - src/**
+    - "*.json"
+    - "plugin_install.py"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/common/**
+    - src/conf/${self:custom.config.account-id}/**
+    - src/__init__.py
+    - src/scripts/__init__.py
+    - src/scripts/emr_terminate.py

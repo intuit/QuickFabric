@@ -1,0 +1,76 @@
+handler: src/scripts/emr_protect.lambda_handler
+name: emr-protect
+description: Lambda function to lock an EMR cluster to prevent accidental termination
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: emr-service/protect
+      method: post
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        template:
+          application/json: |
+            {
+            "api_request_id": "$context.requestId",
+            "cluster_name": "$input.path('clusterName')",
+            "cluster_id": "$input.path('clusterId')",
+            "termination_protected": "$input.path('terminationProtected')"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 201,
+                "clusterName": "$input.path('$.cluster_name')",
+                "clusterId": "$input.path('$.cluster_id')",
+                "terminationProtected": "$input.path('$.terminationProtected')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "EMR cluster termination protection"
+        description: "Protect EMR cluster termination"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+        requestModels:
+          "application/json": ProtectEMRClusterRequest
+      reqValidatorName: EmrRequestValidatorBody
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": ProtectEMRClusterResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+
+package:
+  individually: true
+  exclude:
+    - ba_step_scripts/**
+    - docker/**
+    - node_modules/**
+    - serverless/**
+    - tests/**
+    - src/**
+    - "*.json"
+    - "plugin_install.py"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/__init__.py
+    - src/scripts/__init__.py
+    - src/scripts/emr_protect.py

@@ -1,0 +1,46 @@
+{
+  "required": [
+    "clusterName",
+    "clusterId",
+    "steps"
+  ],
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "actionOnFailure": {
+            "type": "string"
+          },
+          "hadoopJarStep": {
+            "type": "object",
+            "properties": {
+              "mainClass": {
+                "type": "string"
+              },
+              "jar": {
+                "type": "string"
+              },
+              "stepArgs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "subType": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "account": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "number"
+    },
+    "dnsName": {
+      "type": "string"
+    }
+  }
+}

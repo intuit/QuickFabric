@@ -1,0 +1,112 @@
+{
+    "Autoscaling_Profiles": {
+        "Heavy_Peak" : {
+        "min" : 10,
+        "max" : 40
+        },
+        "Moderate_Peak" : {
+        "min" : 5,
+        "max" : 30
+        },
+        "Low_Peak" : {
+        "min" : 3,
+        "max" : 30
+        },
+        "Heavy_Non_Peak" : {
+        "min" : 3,
+        "max" : 35
+        },
+        "Moderate_Non_Peak" : {
+        "min" : 1,
+        "max" : 30
+        },
+        "Low_Non_Peak" : {
+        "min" : 0,
+        "max" : 20
+        },
+	"coreetlhtap" : {
+        "min" : 4,
+        "max" : 8
+        }
+    },
+
+    "Autoscaling_Policy_Template" : {
+        "AutoScalingPolicy": {
+            "Constraints": {
+                "MinCapacity": 0,
+                "MaxCapacity": 10
+            },
+            "Rules": [
+                {
+                    "Name": "ScaleOutYARNLowMemory",
+                    "Description": "",
+                    "Action": {
+                        "SimpleScalingPolicyConfiguration": {
+                            "AdjustmentType": "CHANGE_IN_CAPACITY",
+                            "ScalingAdjustment": 2,
+                            "CoolDown": 300
+                        }
+                    },
+                    "Trigger": {
+                        "CloudWatchAlarmDefinition": {
+                            "ComparisonOperator": "LESS_THAN_OR_EQUAL",
+                            "EvaluationPeriods": 1,
+                            "MetricName": "YARNMemoryAvailablePercentage",
+                            "Namespace": "AWS/ElasticMapReduce",
+                            "Period": 300,
+                            "Statistic": "AVERAGE",
+                            "Threshold": 15.0,
+                            "Unit": "PERCENT"
+                        }
+                    }
+                },
+                {
+                    "Name": "ScaleOutAppsPending",
+                    "Description": "",
+                    "Action": {
+                        "SimpleScalingPolicyConfiguration": {
+                            "AdjustmentType": "CHANGE_IN_CAPACITY",
+                            "ScalingAdjustment": 2,
+                            "CoolDown": 300
+                        }
+                    },
+                    "Trigger": {
+                        "CloudWatchAlarmDefinition": {
+                            "ComparisonOperator": "GREATER_THAN",
+                            "EvaluationPeriods": 1,
+                            "MetricName": "AppsPending",
+                            "Namespace": "AWS/ElasticMapReduce",
+                            "Period": 300,
+                            "Statistic": "AVERAGE",
+                            "Threshold": 1,
+                            "Unit": "COUNT"
+                        }
+                    }
+                },
+                {
+                    "Name": "ScaleInYARNAvailableMemory",
+                    "Description": "",
+                    "Action": {
+                        "SimpleScalingPolicyConfiguration": {
+                            "AdjustmentType": "CHANGE_IN_CAPACITY",
+                            "ScalingAdjustment": -1,
+                            "CoolDown": 300
+                        }
+                    },
+                    "Trigger": {
+                        "CloudWatchAlarmDefinition": {
+                            "ComparisonOperator": "GREATER_THAN_OR_EQUAL",
+                            "EvaluationPeriods": 1,
+                            "MetricName": "YARNMemoryAvailablePercentage",
+                            "Namespace": "AWS/ElasticMapReduce",
+                            "Period": 300,
+                            "Statistic": "AVERAGE",
+                            "Threshold": 75.0,
+                            "Unit": "PERCENT"
+                        }
+                    }
+                }
+           ]
+        }
+    }
+}

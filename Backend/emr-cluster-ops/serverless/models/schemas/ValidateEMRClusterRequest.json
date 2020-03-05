@@ -1,0 +1,10 @@
+{
+  "required": [
+    "clusterId"
+  ],
+  "properties": {
+    "clusterId": {
+      "type": "string"
+    }
+  }
+}

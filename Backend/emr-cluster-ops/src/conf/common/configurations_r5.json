@@ -1,0 +1,87 @@
+[
+  {
+    "Classification": "hive-site",
+    "ConfigurationProperties":
+    {
+      "hive.tez.container.size": "7168",
+      "hive.exec.reducers.max": "10009",
+      "hive.tez.auto.reducer.parallelism" : "true",
+      "hive.driver.parallel.compilation": "true",
+      "hive.exec.reducers.bytes.per.reducer": "1073741824",
+      "hive.blobstore.optimizations.enabled": "true",
+      "hive.security.authorization.createtable.role.grants": "public:select", 
+      "hive.cbo.enable": "true",
+      "hive.compute.query.using.stats": "true",
+      "hive.exec.dynamic.partition ": " true",
+      "hive.exec.dynamic.partition.mode": "nonstrict",
+      "hive.exec.parallel": "true",
+      "hive.exec.stagingdir": "/tmp/hive/.staging",
+      "hive.execution.engine": "tez",
+      "hive.optimize.ppd": "true",
+      "hive.server2.logging.operation.level": "VERBOSE",
+      "hive.stats.dbclass": "fs",
+      "hive.stats.fetch.column.stats": "true",
+      "hive.stats.fetch.partition.stats": "true",
+      "hive.default.fileformat": "Parquet",
+      "hive.default.fileformat.managed": "Parquet",
+      "hive.exec.parallel" : "true",
+      "hive.optimize.ppd" : "true"
+
+    }
+  },
+  {
+    "Classification": "tez-site",
+    "ConfigurationProperties":
+    {
+      "tez.am.resource.memory.mb": "6144",
+      "tez.container.max.java.heap.fraction": "0.8",
+      "tez.grouping.max-size": "21447483648",
+      "tez.grouping.min-size": "33554432",
+      "tez.runtime.io.sort.mb": "1024",
+      "tez.runtime.unordered.output.buffer.size-mb": "716",
+      "tez.am.container.session.delay-allocation-millis" : "1000"
+    }
+  },
+  {
+    "Classification": "yarn-site",
+    "ConfigurationProperties":
+    {
+      "yarn.timeline-service.http-authentication.type": "simple",
+      "yarn.nodemanager.localizer.cache.target-size-mb": "4096",
+      "yarn.nodemanager.localizer.cache.cleanup.interval-ms": "300000",
+      "yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage":"99.99"
+    }
+  },
+  {
+    "Classification": "hiveserver2-site",
+    "ConfigurationProperties":
+    {
+      "hive.security.authorization.sqlstd.confwhitelist.append": "tez\\.grouping\\..*|hive\\..*|parquet\\..*",
+      "hive.async.log.enabled" : "false",
+      "hive.server2.in.place.progress" : "true"
+    }
+  },
+  {
+    "Classification": "emrfs-site",
+    "ConfigurationProperties":
+    {
+      "fs.s3.maxConnections": "50000"
+    }
+  },
+  {
+    "Classification": "yarn-env",
+    "Properties": {
+    },
+    "Configurations": [
+      {
+        "Classification": "export",
+        "Properties": {
+          "YARN_RESOURCEMANAGER_HEAPSIZE": "20480"
+        },
+        "Configurations": [
+          
+        ]
+      }
+    ]
+  }
+]

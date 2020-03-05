@@ -1,0 +1,16 @@
+#set($inputRoot = $input.path('$'))
+{
+"statusCode": 201,
+"clusterName": "$input.path('$.cluster_name')",
+"clusterId": "$input.path('$.cluster_id')",
+"steps": [
+#foreach($elem in $inputRoot.steps)
+{
+"name": "$elem.step_name",
+"stepId": "$elem.step_id"
+}#if($foreach.hasNext), #end
+#end
+],
+"apiRequestId": "$input.path('$.api_request_id')",
+"lambdaRequestId": "$input.path('$.lambda_request_id')"
+}

@@ -1,0 +1,89 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+
+version: '3.7'
+
+volumes:
+    mysql_data:
+      driver_opts:
+        type: none
+        device: /data/quickfabric/mysql
+        o: bind
+
+# Define services
+services:
+
+  # Frontend
+  frontend:
+    container_name: quickfabric_frontend
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - emr
+    ports:
+        - "80:80"
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - frontend_network
+      - emr_network
+
+  # EMR Configuration
+  emr:
+    container_name: quickfabric_emr
+    build:
+      context: ./Middleware/emr
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+        - AES_SECRET_KEY=${AES_SECRET_KEY}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      - db
+    ports:
+        - "8080:8080"
+    networks:
+      - db_network
+      - emr_network
+
+  # schedulers backend tasks
+  schedulers:
+    container_name: quickfabric_scheduler
+    build:
+      context: ./Middleware/schedulers
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+        - AES_SECRET_KEY=${AES_SECRET_KEY}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - db_network
+      - schedulers_network
+
+  # Database (Mysql)
+  db:
+    container_name: quickfabric_db
+    build:
+      context: ./DB
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+        - "3306:3306"
+    networks:
+      - db_network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  db_network:
+    driver: bridge
+  schedulers_network:
+    driver: bridge
+  frontend_network:
+    driver: bridge
+  emr_network:
+    driver: bridge

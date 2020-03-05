@@ -1,0 +1,78 @@
+- Effect: "Allow"
+  Action:
+    - elasticmapreduce:*
+    - logs:CreateLogGroup
+    - logs:DeleteLogGroup
+    - logs:CreateLogStream
+    - logs:PutLogEvents
+    - logs:DescribeLogStreams
+    - logs:DescribeLogGroups
+    - logs:GetLogEvents
+    - logs:PutMetricFilter
+    - logs:DeleteMetricFilter
+    - logs:PutSubscriptionFilter
+    - s3:ListAllMyBuckets
+    - s3:CreateBucket
+    - s3:PutObject
+    - s3:GetObject
+    - s3:HeadBucket
+    - s3:ListBucket
+    - s3:DeleteObject
+    - s3:DeleteBucket
+    - s3:DeleteObjectVersion
+    - iam:CreateRole
+    - iam:DeleteRole
+    - iam:GetRole
+    - iam:PutRolePolicy
+    - iam:PassRole
+    - iam:DeleteRolePolicy
+    - cloudwatch:GetDashboard
+    - cloudwatch:PutDashboard
+    - cloudwatch:PutMetricAlarm
+    - cloudwatch:DeleteAlarms
+    - ec2:DescribeSecurityGroups
+    - ec2:DescribeVpcs
+    - ec2:CreateSecurityGroup
+    - ec2:DeleteSecurityGroup
+    - ec2:RevokeSecurityGroupEgress
+    - ec2:RevokeSecurityGroupIngress
+    - ec2:AuthorizeSecurityGroupIngress
+    - ec2:DescribeImages
+    - lambda:InvokeFunction
+    - lambda:CreateFunction
+    - lambda:UpdateFunctionCode
+    - lambda:ListVersionsByFunction
+    - lambda:GetFunction
+    - lambda:PublishVersion
+    - lambda:DeleteFunction
+    - lambda:PutFunctionConcurrency
+    - lambda:AddPermission
+    - lambda:RemovePermission
+    - lambda:GetFunctionConfiguration
+    - lambda:UpdateFunctionConfiguration
+    - lambda:ListTags
+    - lambda:TagResource
+    - lambda:UntagResource
+    - logs:FilterLogEvents
+    - apigateway:*
+    - execute-api:Invoke
+    - route53:ListHostedZones
+    - route53:ChangeResourceRecordSets
+    - route53:ListResourceRecordSets
+    - ce:GetCostAndUsage
+  Resource: "*"
+
+- Effect: "Allow"
+  Action:
+    - iam:CreateServiceLinkedRole
+    - iam:PutRolePolicy
+    - iam:UpdateRoleDescription
+    - iam:DeleteServiceLinkedRole
+    - iam:GetServiceLinkedRoleDeletionStatus
+  Resource: "arn:aws:iam::*:role/aws-service-role/elasticmapreduce.amazonaws.com*/AWSServiceRoleForEMRCleanup*"
+  Condition:
+    StringLike:
+      iam:AWSServiceName:
+        - elasticmapreduce.amazonaws.com
+        - elasticmapreduce.amazonaws.com.cn
+

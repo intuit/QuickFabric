@@ -1,0 +1,74 @@
+handler: src/scripts/emr_delete_autoscaling.lambda_handler
+name: emr-delete-autoscaling
+description: Lambda function to remove auto-scaling policies to instance groups in an EMR cluster
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: autoscaling/delete
+      method: post
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        template:
+          application/json: |
+            {
+            "api_request_id": "$context.requestId",
+            "cluster_id": "$input.path('clusterId')",
+            "instance_group": "$input.path('instanceGroup')"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 201,
+                "status": "$input.path('$.status')",
+                "clusterId": "$input.path('$.cluster_id')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "Delete auto-scaling for EMR cluster"
+        description: "Delete auto-scaling policies to EMR clusters"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+        requestModels:
+          "application/json": EMRAutoScalingRequest
+      reqValidatorName: ${self:custom.RequestBodyValidator}
+      methodResponses:
+        - statusCode: '201'
+          responseModels:
+            "application/json": EMRAutoScalingResponse
+        - ${self:custom.commonModelSchemaFragments.MethodResponse500Json}
+environment:
+  ENV: ${self:provider.stage}
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - serverless/**
+    - src/**
+    - "*.json"
+    - "plugin_install.py"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/**
+    - src/__init__.py
+    - src/scripts/__init__.py
+    - src/scripts/emr_delete_autoscaling.py

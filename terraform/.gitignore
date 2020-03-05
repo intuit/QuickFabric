@@ -1,0 +1,13 @@
+**/.terraform/*
+backend.tpl
+*.lock.info
+*.tf.bk
+*.tfstate
+*.tfstate.*
+.DS_Store
+crash.log
+input.tfvars
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfstate.d
+terraform_wrapper_*

@@ -1,0 +1,70 @@
+.emr-cost-component {
+  padding-top: 20px;
+  margin-left: 90px;
+
+  .button-list {
+    padding: 10px 0px;
+  }
+
+  .pt-tab-list {
+    margin-top: 20px;
+  }
+
+  .line {
+    border-bottom: solid 1px #CED9E0;
+  }
+
+  .value {
+    margin-top: -4px;
+    margin-left: 20px;
+  }
+
+  .cell {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+    float: left;
+  }
+  
+  .positive {
+    background-color: #53B700;
+    border-color: #53B700;
+  }
+
+  .negative {
+    background-color: #DB3737;
+    border-color: #DB3737;
+  }
+
+}
+
+.pt-tab:focus {
+  outline: 0;
+}
+
+.tab-button {
+  background-color: none;
+}
+
+.exportBtn {
+  width: 160px;
+  height: 40px;
+  font-size: 14px;
+  background-color: white;
+  border: solid #0097E6;
+  border-width: 2px;
+  border-radius: 20px;
+  font-weight: 500;
+  color: #0097E6;
+
+  span {
+    position: absolute;
+    margin-top: 7px;
+    margin-left: -47px;
+  }
+}
+
+.material-icons {
+  float: left
+}

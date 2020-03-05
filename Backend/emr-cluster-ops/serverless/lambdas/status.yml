@@ -1,0 +1,71 @@
+handler: src/scripts/emr_status.lambda_handler
+name: emr-status-check
+description: EMR cluster status check
+memorySize: 128
+timeout: 30
+events:
+  - http:
+      path: emr-service/status
+      method: get
+      cors: true
+      private: true
+      integration: lambda
+      request:
+        parameters:
+          querystrings:
+            clusterId: true
+        template:
+          application/json: |
+            {
+            "api_request_id": "$context.requestId",
+            "cluster_id": "$input.params("clusterId")"
+            }
+      response:
+        headers:
+          Content-Type: "'application/json'"
+        template: $input.path('$')
+        statusCodes:
+          200:
+            pattern: ''
+            template:
+              application/json: |
+                {
+                "statusCode": 200,
+                "clusterName": "$input.path('$.cluster_name')",
+                "clusterId": "$input.path('$.cluster_id')",
+                "status": "$input.path('$.status')",
+                "message": "$input.path('$.message')",
+                "apiRequestId": "$input.path('$.api_request_id')",
+                "lambdaRequestId": "$input.path('$.lambda_request_id')"
+                }
+          500:
+            pattern: '.*"statusCode": 500.*'
+            template:
+              'application/json': $input.path('$.errorMessage')
+      documentation:
+        summary: "EMR cluster status check"
+        description: "Check the status of EMR cluster"
+        requestHeaders:
+          - name: x-api-key
+            description: API key
+            required: true
+      reqValidatorName: EmrRequestValidatorParams
+environment:
+  ENV: ${self:provider.stage}
+package:
+  individually: true
+  exclude:
+    - ba_step_scripts/**
+    - node_modules/**
+    - serverless/**
+    - tests/**
+    - src/**
+    - "*.json"
+    - config.yml
+    - README.md
+  include:
+    - src/util/**
+    - src/conf/common/**
+    - src/conf/${self:custom.config.account-id}/**
+    - src/__init__.py
+    - src/scripts/emr_status.py

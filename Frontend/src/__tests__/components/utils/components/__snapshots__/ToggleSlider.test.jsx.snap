@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Toggle Slider Should render the component 1`] = `
+<div>
+  <div>
+    <input
+      checked={false}
+      className="react-switch-checkbox"
+      id={0}
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      className="react-switch-label"
+      htmlFor={0}
+      style={
+        Object {
+          "background": "#ff0100",
+        }
+      }
+    >
+      <span
+        className="react-switch-button"
+      />
+      <p
+        className="toggle-off"
+      >
+        off
+      </p>
+    </label>
+  </div>
+</div>
+`;

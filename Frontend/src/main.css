@@ -1,0 +1,24 @@
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+
+/* Global Styles */
+html, body {
+  margin: 0;
+  height: 0;
+}
+
+body {
+  min-width: 1280px;
+  font-family: "Avenir", serif;
+  font-size: 62.5%;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+/* App Container View */
+.app-container-view-dash {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  margin-top: 50px; /* Same as the height of the navbar */
+}

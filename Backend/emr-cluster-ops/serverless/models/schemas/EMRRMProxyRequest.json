@@ -1,0 +1,14 @@
+{
+  "required": [
+    "rmUrl",
+    "metricType"
+  ],
+  "properties": {
+    "rmUrl": {
+      "type": "string"
+    },
+     "metricType": {
+      "type": "string"
+    }
+  }
+}

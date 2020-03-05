@@ -1,0 +1,518 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing EMR Management Table Should render the component 1`] = `
+<div
+  className="emr-management-component"
+>
+  <h2
+    style={
+      Object {
+        "marginLeft": "35px",
+      }
+    }
+  >
+    EMR 
+    <i
+      className="material-icon title-arrow"
+    >
+      double_arrow
+    </i>
+     
+    <span
+      style={
+        Object {
+          "color": "#0097E4",
+        }
+      }
+    >
+      Orchestration 
+    </span>
+    <i
+      className="material-icon title-arrow"
+    >
+      double_arrow
+    </i>
+    <span
+      style={
+        Object {
+          "color": "#7a7a7a",
+        }
+      }
+    >
+       
+      View All Clusters
+    </span>
+  </h2>
+  <div
+    className="actions"
+  >
+    <ul>
+      <li>
+        <button
+          className="actionBtn active1"
+          onClick={[Function]}
+        >
+          <span>
+            View Workflows
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          className="actionBtn "
+          onClick={[Function]}
+        >
+          <span>
+            Create Cluster
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          className="actionBtn "
+          onClick={[Function]}
+        >
+          <span>
+            Clone Cluster
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          className="actionBtn "
+          onClick={[Function]}
+        >
+          <span>
+            Terminate Cluster
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          className="actionBtn "
+          onClick={[Function]}
+        >
+          <span>
+            Add Step
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          className="actionBtn "
+          onClick={[Function]}
+        >
+          <span>
+            Rotate AMI
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          className="actionBtn "
+          onClick={[Function]}
+        >
+          <span>
+            Test Suites
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          className="actionBtn "
+          onClick={[Function]}
+        >
+          <span>
+            Flip To Production
+          </span>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="actionContent "
+  >
+    <div
+      className="tabContent"
+    >
+      <Blueprint2.Tabs
+        animate={true}
+        className="line"
+        id="primary-tab"
+        large={false}
+        onChange={[Function]}
+        renderActiveTabPanelOnly={false}
+        selectedTabId="all"
+        vertical={false}
+      >
+        <Blueprint2.Tab
+          disabled={false}
+          id="all"
+          title="All Clusters"
+        />
+        <Blueprint2.Tab
+          disabled={false}
+          id="exploratory"
+          title="Exploratory Clusters"
+        />
+        <Blueprint2.Tab
+          disabled={false}
+          id="scheduled"
+          title="Schedule Clusters"
+        />
+        <Blueprint2.Tab
+          disabled={false}
+          id="transient"
+          title="Transient Clusters"
+        />
+        <Blueprint2.Tab
+          disabled={false}
+          id="accounts"
+        >
+          <Blueprint2.Popover
+            content={<Blueprint2.Menu />}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            position="bottom"
+            rootElementTag="span"
+            targetElementTag="div"
+            transitionDuration={300}
+            usePortal={true}
+          >
+            <li
+              aria-selected="true"
+              className="bp3-tab"
+              role="tab"
+            >
+              Select an Account
+            </li>
+          </Blueprint2.Popover>
+        </Blueprint2.Tab>
+      </Blueprint2.Tabs>
+      <div>
+        <ExcelExport
+          data={
+            Array [
+              Object {
+                "account": "200000000000",
+                "amiRotationSlaDays": 50,
+                "autoAmiRotation": false,
+                "autopilotWindowEnd": 22,
+                "autopilotWindowStart": 6,
+                "clusterId": "j-456QWE3JQWEZ3",
+                "clusterName": "exploratory-sales-test1",
+                "createdBy": "QuickFabric User",
+                "creationTimestamp": "2020-01-03 16:00:17.0",
+                "dnsFlip": false,
+                "dnsFlipCompleted": false,
+                "dnsName": "exploratory-sales-test1.company.com",
+                "doTerminate": true,
+                "isProd": false,
+                "metadataId": 3,
+                "name": "test1",
+                "requestTicket": "DATA-23096",
+                "role": "sales",
+                "rotationDaysToGo": "Days Left: 11",
+                "status": "HEALTHY",
+                "type": "exploratory",
+              },
+            ]
+          }
+          fileName="Export.xlsx"
+          forceProxy={false}
+        >
+          <div>
+            <hr />
+            <div>
+              <div>
+                <button
+                  className="exportBtn"
+                  onClick={[Function]}
+                  title="Download data into an excelsheet"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    cloud_download
+                  </i>
+                  <span>
+                    Export to Excel
+                  </span>
+                </button>
+                <button
+                  className="exportBtn refresh"
+                  onClick={[Function]}
+                  title="Refresh to get the latest data"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    refresh
+                  </i>
+                  <span>
+                    Refresh Table
+                  </span>
+                </button>
+              </div>
+            </div>
+            <StatefulGrid
+              data={
+                Array [
+                  Object {
+                    "account": "200000000000",
+                    "amiRotationSlaDays": 50,
+                    "autoAmiRotation": false,
+                    "autopilotWindowEnd": 22,
+                    "autopilotWindowStart": 6,
+                    "clusterId": "j-456QWE3JQWEZ3",
+                    "clusterName": "exploratory-sales-test1",
+                    "createdBy": "QuickFabric User",
+                    "creationTimestamp": "2020-01-03 16:00:17.0",
+                    "dnsFlip": false,
+                    "dnsFlipCompleted": false,
+                    "dnsName": "exploratory-sales-test1.company.com",
+                    "doTerminate": true,
+                    "isProd": false,
+                    "metadataId": 3,
+                    "name": "test1",
+                    "requestTicket": "DATA-23096",
+                    "role": "sales",
+                    "rotationDaysToGo": "Days Left: 11",
+                    "status": "HEALTHY",
+                    "type": "exploratory",
+                  },
+                ]
+              }
+              detail={[Function]}
+              expandField="expanded"
+              group={Array []}
+              groupable={true}
+              onDataStateChange={[Function]}
+              onExpandChange={[Function]}
+              resizable={true}
+              skip={0}
+              style={
+                Object {
+                  "fontSize": "13px",
+                  "height": "70vh",
+                  "marginTop": 20,
+                }
+              }
+              take={100}
+            >
+              <Component
+                editable={true}
+                field="clusterId"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    EMR ID
+                  </span>
+                }
+                width="150px"
+              />
+              <Component
+                editable={true}
+                field="clusterName"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    EMR Name
+                  </span>
+                }
+                width="180px"
+              />
+              <Component
+                cell={[Function]}
+                editable={true}
+                field="status"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    Cluster Status
+                  </span>
+                }
+                width="125px"
+              />
+              <Component
+                editable={true}
+                field="account"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    Account ID
+                  </span>
+                }
+                width="120px"
+              />
+              <Component
+                editable={true}
+                field="dnsName"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    DNS Name
+                  </span>
+                }
+                width="200px"
+              />
+              <Component
+                editable={true}
+                field="requestTicket"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    JIRA ID
+                  </span>
+                }
+                width="110px"
+              />
+              <Component
+                editable={true}
+                field="createdBy"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    Created By
+                  </span>
+                }
+                width="140px"
+              />
+              <Component
+                editable={true}
+                field="creationTimestamp"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    Created At
+                  </span>
+                }
+                width="115px"
+              />
+              <Component
+                cell={[Function]}
+                editable={true}
+                field="actions"
+                filterable={true}
+                groupable={true}
+                reorderable={true}
+                resizable={true}
+                sortable={true}
+                title={
+                  <span
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    Workflows
+                  </span>
+                }
+                width="auto"
+              />
+            </StatefulGrid>
+          </div>
+        </ExcelExport>
+      </div>
+    </div>
+  </div>
+</div>
+`;

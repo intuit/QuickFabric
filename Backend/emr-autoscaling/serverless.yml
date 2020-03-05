@@ -1,0 +1,38 @@
+service: emr-autoscaling-ops
+
+provider:
+  name: aws
+  apiGateway:
+    restApiId:
+      'Fn::ImportValue': RestApiId
+    restApiRootResourceId:
+      'Fn::ImportValue': RootResourceId
+  deploymentBucket:
+    name: quickfabric-serverless-${self:custom.config.account-id}-${self:provider.region}-deploys
+  deploymentPrefix: ${self:service.name} # The S3 prefix under which deployed artifacts should be stored. Default is serverless
+
+custom:
+  parent:
+    path: "../common-resource-files/serverless.yml"
+
+  RequestParameterValidator:
+    'Fn::ImportValue': EmrRequestValidatorParams
+
+  RequestBodyValidator:
+    'Fn::ImportValue': EmrRequestValidatorBody
+
+  documentation: ${file(serverless/models/models.yml)}
+
+functions:
+  emr-add-autoscaling: ${file(serverless/lambdas/add_autoscaling.yml)}
+  emr-list-autoscaling: ${file(serverless/lambdas/list_autoscaling.yml)}
+  emr-delete-autoscaling: ${file(serverless/lambdas/delete_autoscaling.yml)}
+
+plugins:
+  - serverless-deployment-bucket
+  - serverless-pseudo-parameters
+  - serverless-add-api-key
+  - serverless-aws-documentation
+  - serverless-reqvalidator-plugin
+  - serverless-jetpack
+  - serverless-plugin-parent

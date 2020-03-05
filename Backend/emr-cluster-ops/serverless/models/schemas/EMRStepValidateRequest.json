@@ -1,0 +1,21 @@
+{
+  "required": [
+    "clusterName",
+    "clusterId",
+    "stepIds"
+  ],
+  "properties": {
+    "clusterName": {
+      "type": "string"
+    },
+    "clusterId": {
+      "type": "string"
+    },
+    "stepIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

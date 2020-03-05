@@ -1,0 +1,19 @@
+#set($inputRoot = $input.path('$'))
+{
+"api_request_id": "$context.requestId",
+"cluster_name": "$inputRoot.clusterName",
+"cluster_id": "$inputRoot.clusterId",
+"steps": [
+#foreach($elem in $inputRoot.steps)
+{
+"Name": "$elem.name",
+"ActionOnFailure": "$elem.actionOnFailure",
+"HadoopJarStep": {
+"MainClass": "$elem.hadoopJarStep.mainClass",
+"Jar": "$elem.hadoopJarStep.jar",
+"Args": $elem.hadoopJarStep.stepArgs
+}
+}#if($foreach.hasNext), #end
+#end
+]
+}
