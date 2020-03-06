@@ -75,6 +75,7 @@
   border-width: 2px;
   border-radius: 20px;
   font-weight: 500;
+  margin-right: 5px;
   color: #0097E6;
 
   span {
@@ -406,4 +407,30 @@
   font-weight: 600;
   margin-bottom: 30px;
 
+}
+.export-container-emrHealth {
+  right: 3px;
+  position: absolute;
+  z-index: 100;
+  bottom: 5px;
+}
+
+.export-container-emrHealth .exportBtn  {
+  height: 30px
+}
+
+
+.exportBtn span {
+  position: absolute;
+  margin-top: 3px;
+  margin-left: -47px;
+  margin-right: 4px;
+}
+
+.export-container-emrHealth .material-icons {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  display: inline-block;
+  line-height: 1; 
 }

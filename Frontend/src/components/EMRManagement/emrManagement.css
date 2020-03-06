@@ -1,1353 +1,599 @@
-.emr-management-component {
-  padding-top: 20px;
-  margin-left: 60px;
-}
-
-.emr-management-component .value {
-  margin-top: -4px;
-  margin-left: 20px;
-}
-
-.emr-management-component .cell-positive {
-  background-color: #53B700;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: #53B700;
-  float: left;
-}
-
-.emr-management-component .cell-negative {
-  background-color: #DB3737;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: #DB3737;
-  float: left;
-}
-
-.emr-management-component .cell-progress {
-  background-color: blue;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: blue;
-  float: left;
-}
-
-.emr-management-component .cell-terminated {
-  background-color: lightcoral;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: lightcoral;
-  float: left;
-}
-
-.emr-management-component .cell-terminating {
-  background-color: orange;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: orange;
-  float: left;
-}
-
-.emr-management-component .cell-created {
-  background-color: lightblue;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: lightblue;
-  float: left;
-}
-
-.emr-management-component .cell-running {
-  background-color: lightseagreen;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: lightseagreen;
-  float: left;
-}
-
-.emr-management-component .cell-boot {
-  background-color: yellowgreen;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: yellowgreen;
-  float: left;
-}
-
-.a{
-  color:#106ba3;
-}
-
-.mytooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
-
-/* Tooltip text */
-.mytooltip .mytooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  margin-top: 10px;
-  margin-left: 100px;
-
-  /* Position the tooltip text - see examples below! */
-  position: center;
-  z-index: 1;
-  display: inline-block;
-}
-
-.my-span {
-  width: 40px;
-  margin-left: 100px;
-  color:gray;
-  /* Position the tooltip text - see examples below! */
-  position: center;
-  z-index: 1;
-  display: inline-block;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.mytooltip:hover .mytooltiptext {
-  visibility: visible;
-  display: inline-block;
-}
-
-.pt-progress-bar{
-  height: 15px !important;
-}
-.bp3-no-stripes{
-background-image: none !important;
-}
-.bp3-progress-meter{
-  background-image: none !important;
-}
-/* .pt-progress-meter{
-  -webkit-animation : none !important;
-  animation : none !important;
-} */
-.emremoji-text {
-  margin-top: 10px;
-  margin: 2px;
-  padding: 0;
-  font-size: 20px;
-  display: inline-block;
-}
-
-.emremoji-green {
-  margin-top: 10px;
-  width: 25px;
-  height: 30px;
-  background-color: #7ED321;
-  border-radius: 1px;
-  display: inline-block;
-}
-
-.emremoji-red {
-  margin-top: 10px;
-  width: 25px;
-  height: 30px;
-  background-color: #FF4D4D;
-  border-radius: 1px;
-  display: inline-block;
-}
-
-
-/* .deni-react-treeview-container {
-  background-color:transparent;
-  border-color:transparent;
-  font-size: 14px;
-  border:none;
-  padding-left: 0px;
-  width: auto;
-  height: auto;
-  color:#106ba3;
-} */
-.deni-react-treeview-item-container.classic {
-  color:#106ba3;
-}
-
-.deni-react-treeview-item-container.classic {
-  color:#106ba3;
-}
-
-.displayTimer{
-  margin-top: 10px;
-  height: 30px;
-  color:orangered;
-  border-radius: 1px;
-  margin-right: 20px;
-  float:right ;
-  display: flex;
-  font-weight: bold;
-
-}
-
-.pt-button {
-  background-color: #0097E6;
-}
-
-.txt-field-100-e {
-  float: right;
-  margin-right: 0%;
-  width: 500px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-
-.txt-field-100-f {
-  float: right;
-  margin-right: 0%;
-  width: 450px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-.combobox-container {
-  border-bottom: 1px solid #ccc;
-  border-radius: 4px;
-  /* padding: 5px; */
-  width: 400px;
-  height: 30px;
-  float: right;
-  margin-top: -10px;
-  margin-right: 24%;
-}
-
-.toggle-container {
-  border-radius: 4px;
-  /* padding: 5px; */
-  width: 400px;
-  float: right;
-  margin-top: -10px;
-  margin-right: 24%;
-}
-
-
-.combobox-dropdown {
-  font-size: 15px;
-  border: 0px;
-  width: 100%;
-  color: #212529;
-  background-color: #fff;
-}
-
-.required::after{
-  content: "*";
-  color: red;
-}
-
-.separate-pop {
-  width: 60%;
-  height: 75%;
-  position: 'absolute';
-  padding: '5px';
-  left: '300px';
-  top:'150px';
-  bottom: '50px';
-}
-
-.exportButton {
-  background-color: #0097E6;
-}
-
-.actionContent {
-  margin-left: 200px;
-  margin-top: 50px;
-  margin-right: 15px;
-  border: 1px solid #d0d0d0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.actionContentCluster {
-  margin-left: 300px;
-  margin-right: 100px;
-  padding-bottom: 100px;
-  border: 1px solid #d0d0d0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.tabContent {
-  margin: 10px;
-  font-size: 15px;
-}
-
-.pageTitle {
-  margin-left: 30px;
-}
-
-.actions {
-  float: left;
-  margin: 0;
-  padding: 0;
-  margin-left: -80px;
-  margin-top: 20px;
-  height: 100%;
-  /* background-color: rgb(211, 211, 211); */
-}
-
-.actions li {
-  list-style-type: none;
-  padding: 0;
-  margin: 20px;
-  margin-bottom: 20px;
-  margin-left: 50px;
-  height: 100%;
-}
-
-.actions li ul {
-  display: flex;
-  flex-direction: row;
-}
-
-.actionBtn {
-  width: 170px;
-  height: 40px;
-  font-size: 15px;
-  background: none;
-  color: #212529;
-  font-weight: 500;
-  font-family: "Avenir", serif;
-}
-
-.active1, .actionBtn:hover{
-  border-color: #0097E6;
-  color: black;
-  font-size: 16px;
-  border-width: 1px;
-  border-radius: 5px;
-  background-color: rgb(200, 236, 255);
-  cursor: pointer;
-}
-
-.exportBtn {
-  width: 160px;
-  height: 40px;
-  font-size: 14px;
-  background-color: white;
-  border: solid #0097E6;
-  border-width: 2px;
-  border-radius: 20px;
-  font-weight: 500;
-  color: #0097E6;
-}
-
-.exportBtn span {
-  position: absolute;
-  margin-top: 7px;
-  margin-left: -47px;
-}
-
-.material-icons {
-  float: left
-}
-
-.m-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 1rem;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  color: #353535;
-  margin-left: 3px;
-}
-
-.helpField {
-  position: absolute;
-  margin-top: -3%;
-  margin-left: 6%;
-}
-
-.help-content {
-  position: absolute;
-  width: 200px;
-  font-size: 12px;
-  margin-left: 7.5%;
-  padding: 5px;
-  margin-top: -3%;
-  display: none;
-  background-color: rgb(252, 242, 209);
-}
-
-.help-content1 {
-  position: absolute;
-  width: 200px;
-  font-size: 12px;
-  margin-left: 9%;
-  padding: 5px;
-  margin-top: -3%;
-  display: none;
-  background-color: rgb(252, 242, 209);
-}
-
-.help-content2 {
-  position: absolute;
-  width: 200px;
-  font-size: 12px;
-  margin-left: 13%;
-  padding: 5px;
-  margin-top: -3%;
-  display: none;
-  background-color: rgb(252, 242, 209);
-}
-
-.help-content3 {
-  position: absolute;
-  width: 200px;
-  font-size: 12px;
-  margin-left: 16%;
-  padding: 5px;
-  margin-top: -3%;
-  display: none;
-  background-color: rgb(252, 242, 209);
-}
-
-.m-icons:hover ~ .help-content {
-  display: block;
-}
-
-.m-icons:hover ~ .help-content1 {
-  display: block;
-}
-
-.m-icons:hover ~ .help-content2 {
-  display: block;
-}
-
-.m-icons:hover ~ .help-content3 {
-  display: block;
-}
-
-.button-div{
-  margin-left: 50px;
-  background-color: #0097E6;
-  color: white;
-  float: right;
-  height: 40px;
-  width: 130px;
-  border-radius: 20px;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.cluster {
-  display: flex;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.k-form {
-  margin-bottom: 20px;
-}
-
-.k-form-field1, .k-form-field2, .k-form-field3 {
-  /* flex-basis: 100%; */
-  margin: 2px;
-}
-
-.contents {
-  border: 1px solid #d0d0d0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.auto-rotation-actions {
-  margin: 0;
-  position: relative;
-  bottom: 10px;
-  right: 10px;
-  top: 5px;
-}
-
-.breadcrumbBtn{
-  margin-right: 20px;
-  background: none;
-  color: #106ba3;
-  /* font-weight: 500; */
-  font-size: 15px;
-}
-
-.disabledBtn {
-  color: #777778;
-}
-
-.activeBtn {
-  color: darkblue;
-  text-decoration: underline;
-}
-
-.formStyling {
-  margin: 20px;
-}
-
-.nextBtn {
-  float: right;
-  width: 90px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: #0097E6;
-  margin: 10px;
-  margin-right: 20px;
-}
-
-.submitBtn {
-  float: right;
-  width: 90px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: #0097E6;
-  margin-bottom: 10px;
-}
-
-.reviewTitles {
-  font-weight: 500;
-}
-
-.checkbox-field {
-  float: right;
-  margin-right: 70%;
-}
-
-.grey {
-  padding: 10px;
-  width: 100%;
-  background-color: #f4f4f4;
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.1), 1px 3px 3px 2px rgba(0, 0, 0, 0.1);
-
-}
-
-.material-icon {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 3rem;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-}
-
-.white {
-  padding: 10px;
-  background-color: inherit;
-}
-
-.reviewValue {
-  position: relative;
-  float: right;
-  margin-right: 1%;
-}
-reviewValue-action {
-  position: relative;
-  text-align: right;
-}
-.clusterField, .hardware, .addStep, .review {
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.config {
-  margin-left: 100px;
-  margin-right: 10px;
-}
-
-.k-form-field {
-  margin: 10px;
-}
-
-.reviewSubtitles {
-  font-weight: 500;
-  margin-left: 25px;
-}
-
-.errorField {
-  color: red;
-  font-size: 12px;
-}
-
-.AddRemoveStep {
-  width: 150px;
-  height: 30px;
-  margin: 10px;
-  background-color: #0097E6;
-  border-radius: 20px;
-}
-
-.AddRemoveStep span {
-  padding-top: 10px;
-}
-
-.textField {
-  float: right;
-  margin-right: 12%;
-  width: 500px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-
-.textField-1 {
-  width: 350px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-
-.timeField {
-  float: right;
-  display: flex;
-  margin-right: 40%;
-  position: relative;
-  height: 25px;
-  bottom: 35px;
-}
-
-.numericField {
-  float: right;
-  margin-right: 48%;
-}
-
-.autopilotwindow {
-  font-size: 14px;
-  margin: 10px;
-  position: relative;
-}
-
-.customTimePicker {
-  margin: 5px;
-  width: 80px !important
-}
-
-.autopilotbtn {
-  width: 35px !important;
-  height: 30px !important;
-}
-
-.formField {
-  margin: 30px;
-}
-
-.formField-1 {
-  margin: 30px;
-
-}
-.formField-0 {
-  margin: 30px;
-  margin-bottom: 0px;
-}
-.formField-2 {
-  margin: 40px;
-  margin-bottom: 0px;
-}
-
-.textFieldHardware {
-  float: right;
-  margin-right: 24%;
-  width: 400px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-
-.customslafield {
-  margin-top: 2%;
-  margin-left: 2%;
-  /* margin-right: 5%; */
-  font-size: 14px;
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-
-.customslafield1 {
-  margin-top: 2%;
-  margin-left: 2%;
-  margin-right: 5%;
-  font-size: 14px;
-  width: 50px;
-  height: 30px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-
-.reviewCluster {
-  margin: 20px;
-}
-
-.reviewTitle {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.stepTitle {
-  font-weight: 600;
-}
-.grey-detail {
-  background-color: #f5f5f5;
-  padding: 11px 15px;
-  width: 100%;
-}
-.grey-detail-outer {
-  background-color: #f5f5f5;
-  width: 100%;
-  padding: 5px 15px;
-}
-.grey-detail .reviewTitles  {
-  font-size: 14px;
-  font-weight: 600;
-}
-.grey-detail .reviewValue  {
-  font-size: 14px
-}
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-size: 12px;
-  color: #989898;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  font-size: 12px;
-  color: #989898;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  font-size: 12px;
-  color: #989898;
-}
-:-moz-placeholder { /* Firefox 18- */
-  font-size: 12px;
-  color: #989898;
-}
-
-.workflow {
-  color: #53B700;
-}
-.confirm-cluster-rotation-err {
-  font-size: 10px;
-  color: red;
-}
-.popup {
-  position: fixed;
-  /* z-index: 100; */
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: rgba(0,0,0, 0.5);
-  transition: all 0.5s;
-}
-
-.popup_inner {
-  position: absolute;
-  overflow-y: auto;
-  left: 50%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  margin: auto;
-  background: white;
-  animation-duration: 0.5s;
-  animation-name: slideleft;
-}
-.popup-details {
-  position: relative;
-  margin-left: 25px;
-  margin-top: 20px;
-  width: 91%;
-}
-.popup-details h3 {
-  color: black;
-  font-weight: 600;
-  margin: 0 0 10px;
-  padding: 0;
-  line-height: 25px;
-  font-size: 23px;
-  margin-bottom: 21px;
-}
-.popup-details h4 {
-  font-size: 17px;
-}
-.popup-details span {
-  color: rgb(0, 151, 228);
-}
-.popup-details p {
-  display: inline-block;
-  font-size: 14px;
-  word-break: break-all;
-}
-.dialog-box {
-  z-index: 1020;
-}
-
-.workflow-content {
-  position: absolute;
-  overflow-y: auto;
-  width: 900px;
-  height: 350px;
-  left:0; right:0;
-  top:0; bottom:0;
-  min-height: 200px;
-  max-width:100%;
-  max-height:100%;
-  overflow:auto;
-  border-radius: 5px;
-  margin: auto;
-  background: white;
-  animation-duration: 0.5s;
-  animation-name: slideleft;
-}
-
-.alert-content {
-  position: absolute;
-  overflow-y: auto;
-  width: 550px;
-  height: 200px;
-  left:0; right:0;
-  top:0; bottom:0;
-  min-height: 100px;
-  max-width:100%;
-  max-height:100%;
-  overflow:auto;
-  border-radius: 5px;
-  margin: auto;
-  background: white;
-  animation-duration: 0.5s;
-  animation-name: slideleft;
-}
-
-.alert-content1 {
-  position: absolute;
-  overflow-y: auto;
-  width: 550px;
-  height: 320px;
-  left:0; right:0;
-  top:0; bottom:0;
-  min-height: 100px;
-  max-width:100%;
-  max-height:100%;
-  overflow:auto;
-  border-radius: 5px;
-  margin: auto;
-  background: white;
-  animation-duration: 0.5s;
-  animation-name: slideleft;
-}
-
-.alert-content2 {
-  position: absolute;
-  overflow-y: hidden;
-  width: 550px;
-  height: 380px;
-  left:0; right:0;
-  top:0; bottom:0;
-  min-height: 100px;
-  max-width:100%;
-  max-height:100%;
-  overflow:auto;
-  border-radius: 5px;
-  margin: auto;
-  background: white;
-  animation-duration: 0.5s;
-  animation-name: slideleft;
-}
-
-.popup_close {
-  position: fixed;
-  background-color: white;
-  height: 40px;
-  width: 3%;
-  left: 47%;
-  top: 5%;
-  animation-duration: 0.5s;
-  animation-name: slideleft;
-  z-index: 1020;
-}
-
-.close_popup {
-  background: none;
-  padding: 5px;
-  color: #000;
-}
-
-@keyframes slideleft {
-  0% {
-    opacity: 0;
-    transform: translate3d(100%,0,0);
+import React, { Component } from 'react'
+import { Grid, GridColumn as Column, GridDetailRow, GridToolbar, GridCell } from '@progress/kendo-react-grid'
+import { process } from '@progress/kendo-data-query'
+import { ExcelExport } from '@progress/kendo-react-excel-export'
+import { Tab, Tabs, Menu, MenuItem, Popover, Position} from '@blueprintjs/core'
+import { debounce } from 'lodash';
+import emrStatusCell from './emrStatusCell'
+import emrStepStatusCell from './emrStepStatusCell'
+import amirotationStatus from './AMIRotationDays'
+import './emrManagement.css'
+import SubmitActionButtonCell from './SubmitActionButtonCell'
+import CreateCluster from './CreateCluster'
+import { withState } from '../../utils/components/with-state.jsx';
+
+import '@progress/kendo-theme-bootstrap/scss/all.scss';
+
+const CLUSTER_REFRESH_TIME = 1000 * 60 * 5;
+
+const StatefulGrid = withState(Grid);
+
+/**
+ * Component to show extra information about the cluster and creation process in the expanded version of the kendo table.
+ */
+export class StepsStatus extends GridDetailRow {
+  constructor(props){
+    super(props)
   }
 
-  100% {
-    opacity: 1;
-    transform: none;
+  render() {
+    const stepsStatusData = this.props.stepsStatusData[this.props.dataItem.clusterId]
+    if(stepsStatusData && stepsStatusData.length) {
+      return (
+        <div className='step-status-component'>
+          <Grid
+            data={stepsStatusData}
+            resizable={true}
+            reorderable={true}
+            style={{ fontSize: '13px' }}
+          >
+            <Column field="stepId" title="Step ID" width="auto" />
+            <Column field="name" title="Step Name" width="auto" />
+            <Column field="status" title="Step Status" width="auto" cell={emrStepStatusCell} />
+            <Column field="stepType" title="Step Type" width="auto" />
+            <Column field="creationTimestamp" title="Creation Timestamp" width="auto" />
+          </Grid>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Grid
+            resizable={true}
+            reorderable={true}
+            style={{ fontSize: '13px' }}
+          >
+            <Column field="stepId" title="Step ID" width="auto" />
+            <Column field="name" title="Step Name" width="auto" />
+            <Column field="status" title="Step Status" width="auto" cell={emrStepStatusCell} />
+            <Column field="stepType" title="Step Type" width="auto" />
+            <Column field="creationTimestamp" title="Creation Timestamp" width="auto" />
+          </Grid></div>
+      )
+    }
   }
 }
 
-.finalName {
-  float: right;
-  margin-right: 35%;
-  font-size: 15px;
-  width: 300px;
-  color: #795e5e;
-  margin-bottom: 5px;
-}
+/**
+ * EMR Management Component
+ */
+export default class EMRManagement extends Component {
+  showCreateTab = false;
+  showTerminateTab = false;
+  showAddTab = false;
+  showRotateTab = false;
+  showTestSuitesTab = false;
+  account_range = '';
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: this.props.data,
+      show: false,
+      primaryTab: 'all',
+      primaryAction: 'allClusters',
+      tabHeading: 'View All Clusters',
+      uiListData: this.props.uiListData,
+      clusterId: ''
+    }
 
-.loader-wrapper {
-  position: fixed;
-  display: block;
-  z-index: 1020;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  border: 5px solid #cbcbcb;
-  border-radius: 50%;
-  border-top: 5px solid #0097E6;
-  width: 100px;
-  height: 100px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 1s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
+    this.createGroupState = this.createGroupState.bind(this)
+    this.dataStateChange = this.dataStateChange.bind(this)
+    this.expandChange = this.expandChange.bind(this)
+    this.export = this.export.bind(this)
+    this.handlePrimaryTabChange = this.handlePrimaryTabChange.bind(this)
+    this.renderEMRTable = this.renderEMRTable.bind(this)
+    GridCell.role = this.props.role
+    GridCell.fullName= this.props.fullName
+    GridCell.postAddSteps = this.postAddSteps.bind(this)
+    GridCell.postTerminateCluster = this.postTerminateCluster.bind(this)
+    GridCell.postRotateAMI = this.postRotateAMI.bind(this)
+    GridCell.postDNSFlip = this.postDNSFlip.bind(this);
+    this.postCreateCluster= this.props.postCreateCluster
+    this.handleActionBtnClick = this.handleActionBtnClick.bind(this);
+    this.fetchAllClusterMetaData = this.fetchAllClusterMetaData.bind(this);
+    this.fetchClusterWiseMetaData = this.fetchClusterWiseMetaData.bind(this);
+    this.handleTabs = this.handleTabs.bind(this);
+    this.getUIDropdownData = debounce(this.getUIDropdownData.bind(this), 2500, false);
+    this.getRefreshButton = this.getRefreshButton.bind(this);
   }
-  100% {
-    -webkit-transform: rotate(360deg);
+
+  render() {
+    const dropdownContent = (
+      this.props.uiListData.accounts && <Menu>
+        {
+          this.props.uiListData.accounts.map(n => {
+            return <MenuItem text={n} key={n} onClick={() => {
+              this.account_range = n;
+              this.props.handleRangeChange('accounts',n)
+            }
+          }/>
+          })
+        }
+      </Menu>
+    );
+    this.handleTabs();
+    return (
+    <div className='emr-management-component'>
+        {this.props.activeSpinner ? <div active={this.props} className='loader-wrapper'>
+          <div className='loader' />
+        </div>
+        : null}
+        <h2 style={{ marginLeft: '35px' }}>EMR <i className='material-icon title-arrow'>double_arrow</i> <span style={{ color: '#0097E4' }}>Orchestration </span><i className='material-icon title-arrow'>double_arrow</i><span style={{ color: '#7a7a7a' }}> {this.state.tabHeading}</span></h2>
+        {/* Primary Tabs */}
+          <div className='actions'>
+            <ul>
+              <li><button className={`actionBtn ${this.state.primaryAction == 'allClusters' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('allClusters')}><span>View Workflows</span></button></li>
+              {this.showCreateTab ? <li><button className={`actionBtn ${this.state.primaryAction == 'createCluster' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('createCluster')}><span>Create Cluster</span></button></li> : null}
+              {this.showCreateTab ? <li><button className={`actionBtn ${this.state.primaryAction == 'cloneCluster' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('cloneCluster')}><span>Clone Cluster</span></button></li> : null}
+              {this.showTerminateTab ? <li><button className={`actionBtn ${this.state.primaryAction == 'terminateCluster' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('terminateCluster')}><span>Terminate Cluster</span></button></li> : null}
+              {this.showAddTab ? <li><button className={`actionBtn ${this.state.primaryAction == 'addStep' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('addStep')}><span>Add Step</span></button></li> : null }
+              {this.showRotateTab ? <li><button className={`actionBtn ${this.state.primaryAction == 'rotateAMI' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('rotateAMI')}><span>Rotate AMI</span></button></li> : null}
+              {this.showTestSuitesTab ? <li><button className={`actionBtn ${this.state.primaryAction == 'testSuites' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('testSuites')}><span>Test Suites</span></button></li> : null }
+              {this.showRotateTab ? <li><button className={`actionBtn ${this.state.primaryAction == 'dnsFlip' ? 'active1' : ''}`} onClick={() => this.handleActionBtnClick('dnsFlip')}><span>Flip To Production</span></button></li> : null }
+            </ul>
+          </div>
+          <div className={`actionContent ${this.state.primaryAction == 'createCluster' ? 'actionContentCluster' : ''}`}>
+            {this.state.primaryAction == 'createCluster' && !this.props.uiListFetching && this.props.uiListSuccess ?
+              <div>
+                {!this.props.globalJiraFetching && <CreateCluster 
+                  {...this.props} 
+                  clusterId={this.state.clusterId}
+                /> }
+
+              </div> :
+              <div className='tabContent'>
+                <Tabs className='line' id="primary-tab" selectedTabId={this.state.primaryTab} onChange={this.handlePrimaryTabChange}>
+                  <Tab id="all" title="All Clusters" />
+                  <Tab id="exploratory" title="Exploratory Clusters" />
+                  <Tab id="scheduled" title="Schedule Clusters"/>
+                  <Tab id="transient" title="Transient Clusters"/>
+                  <Tab id="accounts">
+                    <Popover content={dropdownContent} position={Position.BOTTOM}>
+                      <li className="bp3-tab" role="tab" aria-selected="true">Select an Account</li>
+                    </Popover>
+                  </Tab>
+            </Tabs>
+            {
+              this.props.fetching || this.props.uiListFetching ?
+              <div className='loader-wrapper'>
+                <div className='loader' />
+              </div>
+                :
+                <div>
+                  <ExcelExport
+                  data={this.props.data}
+                  ref={(exporter) => { this._export = exporter; }}
+                >
+                  {
+                    this.renderEMRTable(this.state.primaryTab, this.shortlistData(this.props.data))
+                  }
+                </ExcelExport>
+              </div>
+
+            }
+              </div>
+            }
+
+          </div>
+        </div>
+    )
   }
-}
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
+  renderEMRTable = (primaryTab, tableData) => {
+    return (
+      <div>
+        <div>
+          {
+            this.props.role !== 'readonly' ?
+            <div className="export-container">
+              <button title='Download data into an excelsheet' className='exportBtn' onClick={this.export}>
+                <i className='material-icons'>cloud_download</i>
+                <span>Export to Excel</span>
+              </button>
+              {
+                this.getRefreshButton(primaryTab)
+              }
+            </div>:
+            <div/>
+          }
+        </div>
+        {
+          this.showTable(tableData)
+        }
+      </div>
+    )
   }
-  100% {
-    transform: rotate(360deg);
+
+  getRefreshButton = primaryTab => {
+    switch (primaryTab) {
+      case 'all':
+        return (
+          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={this.fetchAllClusterMetaData}>
+              <i className='material-icons'>refresh</i>
+              <span>Refresh Table</span>
+          </button>
+        )
+      case 'exploratory':
+        return (
+          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.fetchClusterWiseMetaData('exploratory')}>
+              <i className='material-icons'>refresh</i>
+              <span>Refresh Table</span>
+          </button>
+        )
+      case 'scheduled':
+        return (
+          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.fetchClusterWiseMetaData('scheduled')}>
+              <i className='material-icons'>refresh</i>
+              <span>Refresh Table</span>
+          </button>
+        )
+      case 'transient':
+        return (
+          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.fetchClusterWiseMetaData('transient')}>
+              <i className='material-icons'>refresh</i>
+              <span>Refresh Table</span>
+          </button>
+        )
+      case 'accounts':
+        return (
+          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.props.handleRangeChange('accounts', this.account_range)}>
+              <i className='material-icons'>refresh</i>
+              <span>Refresh Table</span>
+          </button>
+        )
+    }
   }
-}
 
-.refresh {
-  float: right;
-}
+  showTable = tableData => {
+    let EMR_ID = <span style={{ fontSize: '15px', fontWeight: '600' }}>EMR ID</span>
+    let EMR_Name = <span style={{ fontSize: '15px', fontWeight: '600' }}>EMR Name</span>
+    let Cluster_Status = <span style={{ fontSize: '15px', fontWeight: '600' }}>Cluster Status</span>
+    let Account_ID = <span style={{ fontSize: '15px', fontWeight: '600' }}>Account ID</span>
+    let Created_by = <span style={{ fontSize: '15px', fontWeight: '600' }}>Created By</span>
+    let Creation_Timestamp = <span style={{ fontSize: '15px', fontWeight: '600' }}>Created At</span>
+    let Actions = <span style={{ fontSize: '15px', fontWeight: '600' }}>Actions</span>
+    let Workflows = <span style={{ fontSize: '15px', fontWeight: '600' }}>Workflows</span>
+    let AMIRotationDays = <span style={{ fontSize: '15px', fontWeight: '600' }}>AMI Rotation Days</span>
+    let AutoPilot = <span style={{ fontSize: '15px', fontWeight: '600' }}>Auto Pilot Window & Days</span>
+    let DNS_Name = <span style={{ fontSize: '15px', fontWeight: '600' }}>DNS Name</span>
+    let JIRA_ID = <span style={{ fontSize: '15px', fontWeight: '600' }}>JIRA ID</span>
+     
+    let allClusters_id_WIDTH = "200px"
+    let rotateAMI_id_WIDTH = "145px"
+    let default_id_WIDTH = "260px"
 
-.terminateRotateSubmitBtn {
-  width: 90px;
-  height: 40px;
-  font-size: 15px;
-  border-radius: 20px;
-  background-color: #0097E6;
-  margin-bottom: 10px;
-}
+    let allClusters_name_WIDTH = "325px"
+    let rotateAMI_name_WIDTH = "190px"
+    let default_name_WIDTH = "440px"
 
-.cancelBtn {
-  width: 90px;
-  height: 40px;
-  font-size: 15px;
-  border-radius: 20px;
-  background-color: #989898;
-  margin: 10px;
-}
-.confirm-button {
-  width: 90px;
-  height: 40px;
-  font-size: 15px;
-  border-radius: 20px;
-  background-color: #989898;
-  margin-bottom: 10px;
-  margin-left: 7px;
-}
-.confirm-button-container {
-  display: flex;
-  flex-direction: row-reverse;
-}
-.confirm-button-container .cancelBtn button {
-  margin-left: 0px !important;
-  margin-right: 4px;
-}
-.workflow-component {
-  display: flex;
-  position: relative;
-}
 
-.create-cluster {
-  margin-top: 30px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
+    let allClusters_status_WIDTH = "145px"
+    let rotateAMI_status_WIDTH = "224px"
+    let default_status_WIDTH = "150px"
+    
+    let rotateAMI_account_WIDTH = "120px"
+    let default_account_WIDTH = "160px"
 
-.workflow-line {
-  width: 150px;
-  height: 47px;
-  border-bottom: 2px solid #53B700;
-  position: relative;
-  bottom: 35px;
-}
+    let default_createdBy_WIDTH = "140px"
+    let rotateAMI_createdBy_WIDTH = "120px"
 
-.workflow-line-tabular {
-  width: 340px;
-  height: 47px;
-  border-bottom: 2px solid #53B700;
-  position: relative;
-  bottom: 35px;
-}
+    let default_createdAt_WIDTH = "115px"
+    let rotateAMI_createdAt_WIDTH = "115px"
+    let default_RotationDays_WIDTH = '130px'
+    return (
+      <StatefulGrid
+              data={tableData}
+              detail={(props) => <StepsStatus {...props} stepsStatusData={this.props.stepsStatusData} />}
+              resizable
+              groupable={true}
+              onDataStateChange={this.dataStateChange}
+              {...this.state.dataState}
+              onExpandChange={this.expandChange}
+              expandField="expanded"
+              style={{ height: '80vh', fontSize: '13px' }}
+          >
+          {this.state.primaryAction === 'terminateCluster' ? <Column field="clusterId" title={EMR_ID} width={allClusters_id_WIDTH} /> : 
+            this.state.primaryAction === 'rotateAMI' || this.state.primaryAction === 'allClusters' ? <Column field="clusterId" title={EMR_ID} width={rotateAMI_id_WIDTH} /> : 
+             <Column field="clusterId" title={EMR_ID} width={default_id_WIDTH} />
+          }
+          {
+            this.state.primaryAction === 'allClusters' ? <Column field="clusterName" title={EMR_Name} width='170px' /> :
+          this.state.primaryAction === 'terminateCluster' ?  <Column field="clusterName" title={EMR_Name} width={allClusters_name_WIDTH} />  : 
+            this.state.primaryAction === 'rotateAMI' ?  <Column field="clusterName" title={EMR_Name} width={rotateAMI_name_WIDTH} />  : 
+            this.state.primaryAction === 'dnsFlip' ? <Column field="clusterName" title={EMR_Name} width="240px" />  :
+            <Column field="clusterName" title={EMR_Name} width={default_name_WIDTH} /> 
+          }
 
-.workflow-line-rotateami {
-  width: 200px;
-  height: 47px;
-  border-bottom: 2px solid #53B700;
-  position: relative;
-  bottom: 35px;
-}
+          {
+            this.state.primaryAction === "rotateAMI" || this.state.primaryAction === 'allClusters' ? <Column field="status" title={Cluster_Status} width={allClusters_status_WIDTH} cell={emrStatusCell} /> : 
+            <Column field="status" title={Cluster_Status} width={default_status_WIDTH} cell={emrStatusCell} />
+          }     
 
-.gray {
-  color: #ababab;
-  border-color: #ababab;
-}
+          {this.state.primaryAction === 'rotateAMI' || this.state.primaryAction === 'allClusters' ?  <Column field="account" title={Account_ID} width={rotateAMI_account_WIDTH}/> : <Column field="account" title={Account_ID} width={default_account_WIDTH}/>}
 
-.blink {
-  color: rgb(237, 214, 40);
-  animation: blinker 1s linear infinite;
-}
+          {(this.state.primaryAction === 'allClusters' || this.state.primaryAction === 'dnsFlip') && <Column field="dnsName" title={DNS_Name} width='200px' /> }
+          
+          {this.state.primaryAction === 'allClusters' && <Column field="requestTicket" title={JIRA_ID} width='110px' /> }
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
+          {this.state.primaryAction === 'rotateAMI' ? <Column field="createdBy" title={Created_by} width={rotateAMI_createdBy_WIDTH} /> :
+          <Column field="createdBy" title={Created_by} width={default_createdBy_WIDTH} /> }
+
+          {this.state.primaryAction === 'rotateAMI' ? <Column field="creationTimestamp" title={Creation_Timestamp} width={rotateAMI_createdAt_WIDTH} /> :
+          <Column field="creationTimestamp" title={Creation_Timestamp} width={default_createdAt_WIDTH} /> }
+
+          {this.state.primaryAction === "rotateAMI" ? <Column field='rotationDaysToGo' title={AMIRotationDays} width={default_RotationDays_WIDTH} cell={amirotationStatus}/> : null}
+
+          {this.state.primaryAction === 'rotateAMI' ? <Column field="actions" title={AutoPilot} width="230px" cell={(props) => <SubmitActionButtonCell {...props} {...this.props} action='autopilot' tab={this.state.primaryTab} handleActionBtnClick={this.handleActionBtnClick} />}/> : null }
+
+          {this.state.primaryAction === "allClusters" ? <Column field="actions" title={Workflows} width="auto" cell={(props) => <SubmitActionButtonCell {...props} {...this.props} action={this.state.primaryAction} tab={this.state.primaryTab} handleActionBtnClick={this.handleActionBtnClick} />}/> :
+          <Column field="actions" title={Actions} width="auto" cell={(props) => <SubmitActionButtonCell {...props} {...this.props} action={this.state.primaryAction} tab={this.state.primaryTab} handleActionBtnClick={this.handleActionBtnClick} />}/> }
+        </StatefulGrid>
+    )
   }
-}
 
-.red {
-  color: red;
-}
-
-.label {
-  font-size: 12px;
-  max-width: 150px;
-  min-width: 80px;
-  margin-right: 115px;
-  text-align: center;
-  bottom: 0;
-  height: 50px;
-}
-
-.wf-label {
-  font-size: 12px;
-  /* text-align: center; */
-  /* bottom: 0; */
-}
-
-.new {
-  margin-right: 140px;
-}
-
-.initiated {
-  margin-right: 110px;
-}
-
-.inprogress {
-  margin-right: 110px;
-}
-
-.createnewcluster {
-  margin-right: 180px;
-}
-
-.executingsteps {
-  margin-right: 250px;
-}
-
-.steps-btn {
-  color: blue;
-  margin-right: 250px;
-}
-
-.fliptoproddns {
-  margin-right: 70px;
-}
-
-.marktermination {
-  width: 100px;
-  text-align: center;
-}
-
-.popup_components {
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.1), 1px 3px 3px 2px rgba(0, 0, 0, 0.1);
-}
-
-.test-table {
-  position: relative;
-  right: 10px;
-}
-
-.test-options {
-  display: flex;
-  font-size: 13px;
-}
-
-.test-option {
-  margin-right: 15px;
-}
-
-.tab-data {
-  margin-top: 60px;
-  border: 1px solid #cecece;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.k-grid-toolbar {
-  background-color: rgb(181, 181, 181) !important;
-  color: black
-}
-
-.k-header {
-  background-color: rgb(160, 211, 237) !important;
-  color: #353535;
-}
-
-.workflow-body {
-  position: relative;
-  width: 500px;
-}
-
-.servicenow-field {
-  font-size: 15px;
-  width: 100%;
-}
-
-.textField-servicenow {
-  margin-left: 30px;
-  width: 200px;
-  margin-bottom: 20px;
-}
-
-.workflow-action-btn {
-  width: 70px;
-  height: 40px;
-  font-size: 15px;
-  border-radius: 20px;
-  background-color: #0097E6;
-  margin: 5px;
-}
-
-.workflowbtn {
-  float: right;
-  position: absolute;
-  width: 90px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: #0097E6;
-  margin: 10px;
-  bottom: 10px;
-  right: 10px;;
-}
-
-.loading{
-  color:black;
-  position:fixed;
-  width: 180px;
-  height:100px;
-  font-size:20px;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  transition: 1s ease-out;
-  opacity:1;
-}
-
-.loading:after {
-  overflow: hidden;
-  display: inline-block;
-  position: absolute;
-  left: 100%;
-  vertical-align: bottom;
-  animation: ellipsis steps(4,end) 900ms infinite;
-  content: "\2026"; /* ascii code for the ellipsis character */
-  width: 0px;
-}
-@keyframes ellipsis {
-  to {
-    width: 20px;
+  handleTabs = () => {
+    if (this.props.superAdmin) {
+      this.showCreateTab = true;
+      this.showAddTab = true;
+      this.showTerminateTab = true;
+      this.showRotateTab = true;
+      this.showTestSuitesTab = true;
+      return;
+    }
+    let emrRoles = this.props.dccRoles.filter(x => x.serviceType === 'EMR')[0];
+    if (emrRoles !== undefined) {
+      emrRoles.roles.forEach( x => {
+        switch(x.name) {
+          case 'createcluster':
+            this.showCreateTab = true;
+            break;
+          case 'addstep':
+            this.showAddTab = true;
+            break;
+          case 'terminatecluster':
+            this.showTerminateTab = true;
+            break;
+          case 'rotateami':
+            this.showRotateTab = true;
+            break;
+          case 'runclusterhealthchecks':
+            this.showTestSuitesTab = true;
+            break;
+        }
+      })
+    }
   }
-}
-@-webkit-keyframes ellipsis {
-  to {
-    width: 20px;
+
+  shortlistData = data => {
+    if (this.props.superAdmin) return data;
+    let emrRoles = this.props.dccRoles.filter(x => x.serviceType === 'EMR')[0];
+
+    if (emrRoles === undefined) return [];
+
+    let roleSegments = [];
+    emrRoles.roles.forEach((value) => {
+      if (this.state.primaryAction === 'terminateCluster') {
+        if (value.name === 'terminatecluster') {
+          roleSegments = value.segments;
+        }
+      } else if (this.state.primaryAction == 'rotateAMI' || this.state.primaryAction == 'dnsFlip') {
+        if (value.name == 'rotateami') {
+          roleSegments = value.segments;
+        }
+      } else if (this.state.primaryAction === 'addStep') {
+        if (value.name === 'addstep') {
+           roleSegments = value.segments;
+        }
+      } else if (this.state.primaryAction === 'testSuites') {
+        if (value.name === 'runclusterhealthchecks') {
+          roleSegments = value.segments;
+        }
+      } else if (this.state.primaryAction === 'cloneCluster') {
+        if (value.name === 'createcluster') {
+          roleSegments = value.segments;
+        }
+      } else {
+        value.segments.forEach(x => {
+          roleSegments.push(x);
+        })
+      }
+    });
+
+    let roleMap = {};
+    roleSegments.forEach((value, index) => {
+      let accounts = [];
+      value.accounts.forEach((act, index) => {
+        accounts.push(act.accountId);
+      })
+      roleMap[value["segmentName"].toLowerCase()] = accounts;
+    })
+    let newData = data;
+    
+    newData = newData.filter((value) => {
+      if (value.segment in roleMap) {
+        if (roleMap[value.segment].includes(value.account)) {
+          return value;
+        }
+      }
+    });
+    return newData;
   }
-}
 
-.centered{
-  vertical-align:middle;
-  text-align:center;
-  align-items: center;
-  justify-content: center;
-}
+  fetchAllClusterMetaData() {
+    console.log("Refresh all data");
+    this.props.fetchAllClusterMetaData(this.props.token);
+  }
 
-.alert-text {
-  margin: 20px;
-  font-size: 15px;
-}
+  fetchClusterWiseMetaData(type) {
+    console.log("Refreshing " + type + " data");
+    this.props.fetchClusterWiseMetaData(type, this.props.token);
+  }
 
-.alert-btns {
-  margin-right: 20px;
-  float: right;
-}
+  postAddSteps(data,token) {
+    // this.props.postAddSteps(data,token)
+    this.props.handleSpinnerActivity(data, token, 'add')
+  }
 
-.DIALOG_BODY {
-  padding-top: 7px;
-}
+  postTerminateCluster(data,token) {
+    // this.props.postTerminateCluster(data,token)
+    this.props.handleSpinnerActivity(data, token, 'terminate')
+  }
 
-.toggle-title {
-  margin: 0px;
-  padding: 0;
-  margin-bottom: 4px;
-  text-align: center;
-}
-.EMRManagement-grid .k-filtercell .k-filtercell-operator>.k-button:not(.k-clear-button-visible) {
-  display: none;
-}
-.EMRManagement-grid .k-filtercell .k-filtercell-operator>.k-button.k-clear-button-visible {
-  display: none;
-}
-.create-cluster-toggle {
-  float: right;
-  margin-right: 60%;
-}
+  postRotateAMI(data,token) {
+    // this.props.postRotateAMI(data,token)
+    this.props.handleSpinnerActivity(data, token, 'rotate')
+  }
 
-.cluster-toggle {
-  float: right;
-  margin-right: 20%;
-}
+  postCreateCluster(data,token) {
+    // this.props.postCreateCluster(data,token)
+    this.props.handleSpinnerActivity(data, token, 'create');
+  }
 
-.cluster-toggle1 {
-  float: right;
-  margin-left: 36%;
-}
+  postDNSFlip(data, token) {
+    this.props.handleSpinnerActivity(data, token, 'dnsFlip');
+  }
 
-.auto-rotation-action .toggle-title {
-  display: none;
-}
+  _export
+  export() {
+    this._export.save()
+  }
 
-.k-animation-container {
-  z-index: 1020;
-}
+  handlePrimaryTabChange(newTabId, prevTabId) {
+    this.setState({
+      ...this.state,
+      primaryTab: newTabId
+    })
+    if (newTabId !== 'accounts')
+      this.props.handleRangeChange(newTabId,'');
+
+  }
+
+  handleActionBtnClick(action, type, cluster_id) {
+    let heading = '';
+    if (action === 'allClusters') {
+      heading = 'View All Clusters'
+    } else if (action === 'createCluster') {
+      heading = 'Create Cluster'
+    } else if (action === 'addStep') {
+      heading = 'Add Step'
+    } else if (action === 'terminateCluster') {
+      heading = 'Terminate Cluster'
+    } else if (action === 'rotateAMI') {
+      heading = 'Rotate AMI'
+    } else if (action === 'testSuites') {
+      heading = 'Run Test Suites'
+    } else if (action === 'dnsFlip') {
+      heading = 'DNS Flip'
+    } else if (action === 'cloneCluster') {
+      heading = 'Clone Cluster'
+    }
+
+    if (type == 'clone') {
+      this.setState({
+        ...this.state,
+        primaryAction: action,
+        tabHeading: heading,
+        clusterId: cluster_id
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        primaryAction: action,
+        tabHeading: heading
+      })
+    }
+  }
+
+  createGroupState(dataState) {
+    //console.log('inside createGroup', this.props);
+    return {
+      result: process(this.props.data, dataState),
+      dataState: dataState
+    }
+  }
+
+  dataStateChange(event) {
+    this.setState({
+      ...this.state,
+      ...this.createGroupState(event.data)
+    })
+  }
+
+  expandChange(event) {
+    event.dataItem.expanded = event.value;
+    let cluster = event.dataItem.clusterName
+    let clusterId = event.dataItem.clusterId
+    this.setState({
+      ...this.state,
+      result: Object.assign({}, this.state.result),
+      dataState: this.state.dataState
+    });
+    event.value && this.props.handleStepsStatus(cluster,clusterId);
+
+    if (!event.value || event.dataItem.stepsStatusData) {
+      return;
+    }
+  }
+  getUIDropdownData() {
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.data && this.props.data && prevProps.data !== this.props.data) {
+      this.setState({
+        ...this.state,
+        ...this.createGroupState({
+          take: 100,
+          group: Array(0),
+          sort: undefined,
+          filter: undefined,
+          skip: 0
+        })
+      })
+    }
+
+    clearInterval(this.interval)
+
+    if (this.state.primaryTab === "all") {
+      this.interval = setInterval(this.fetchAllClusterMetaData, CLUSTER_REFRESH_TIME)
+    } else if (this.state.primaryTab === "exploratory") {
+      this.interval = setInterval(() => this.fetchClusterWiseMetaData('exploratory'), CLUSTER_REFRESH_TIME)
+    } else if (this.state.primaryTab === "scheduled") {
+      this.interval = setInterval(() => this.fetchClusterWiseMetaData('scheduled'), CLUSTER_REFRESH_TIME)
+    } else if (this.state.primaryTab === "transient") {
+      this.interval = setInterval(() => this.fetchClusterWiseMetaData('transient'), CLUSTER_REFRESH_TIME)
+    } else if (this.state.primaryTab === "accounts") {
+      this.interval = setInterval(() => this.props.handleRangeChange('accounts', this.account_range), CLUSTER_REFRESH_TIME)
+    }
 
 
-.combobox-dropdown-admin-50 {
-  font-size: 15px;
-  border: 0px;
-  width: 200px;
-  margin-left: 15px;
+  }
 
-  color: #7c7e80;
-  background-color: #fff;
-  border: 1px solid #dcdbdb;
-}
-.txt-field-container {
-  float: right;
-  margin-right: 14%;
-  position: relative;
+  componentDidMount(prevProps) {
+    this.setState({
+      ...this.state,
+      ...this.createGroupState({
+        take: 100,
+        group: Array(0),
+        sort: undefined,
+        filter: undefined,
+        skip: 0
+      })
+    })
+    this.props.fetchUIDropdownList(this.props.token)
+    console.log('Comp EMR Managemnent', this)
+  }
 
-}
-.txt-field-container select option[disabled] {
-  color: black
-}
-.txt-field-container-multi {
-  float: right;
-  margin-right: 14%;
-  position: relative;
-  width: 500px;
-}
-.txt-field-container-multi select option[disabled] {
-  color: black
-}
-.txt-field-50 {
-  width: 285px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-.txt-field-100 {
-  float: right;
-  margin-right: 14%;
-  width: 500px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-.txt-field-100-b{
-  float: right;
-  margin-right: 0%;
-  width: 500px;
-  height: 25px;
-  border: 1px solid rgb(107, 195, 242);
-  border-radius: 3px;
-}
-.formField-inline {
-  margin: 30px;
-  margin-left: 0px
-}
-.k-form .formField-inline input {
-  display: inline-block;
-}
-.combobox-dropdown-admin-segments select options:disabled {
-  color: black;
-}
-.combobox-dropdown-admin {
-  font-size: 15px;
-  border: 0px;
-  width: 500px;
-  margin-top: 5px;
-  margin-right: 14%;
-  float: right;
-  color: #212529;
-  background-color: #fff;
-  border: 1px solid #dcdbdb;
-}
-
-.combobox-dropdown-admin-env {
-  font-size: 15px;
-  border: 0px;
-  width: 500px;
-  float: right;
-  color: #212529;
-  background-color: #fff;
-  border: 1px solid #dcdbdb;
+  componentWillReceiveProps(props, state) {
+    this.forceUpdate();
+  }
 }

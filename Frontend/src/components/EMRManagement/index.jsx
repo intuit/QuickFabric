@@ -192,11 +192,10 @@ export default class EMRManagement extends Component {
   renderEMRTable = (primaryTab, tableData) => {
     return (
       <div>
-        <hr />
         <div>
           {
             this.props.role !== 'readonly' ?
-            <div>
+            <div className="export-container">
               <button title='Download data into an excelsheet' className='exportBtn' onClick={this.export}>
                 <i className='material-icons'>cloud_download</i>
                 <span>Export to Excel</span>
@@ -301,7 +300,7 @@ export default class EMRManagement extends Component {
               {...this.state.dataState}
               onExpandChange={this.expandChange}
               expandField="expanded"
-              style={{ 'marginTop': 20 , height: '70vh', fontSize: '13px' }}
+              style={{ height: '80vh', fontSize: '13px' }}
           >
           {this.state.primaryAction === 'terminateCluster' ? <Column field="clusterId" title={EMR_ID} width={allClusters_id_WIDTH} /> : 
             this.state.primaryAction === 'rotateAMI' || this.state.primaryAction === 'allClusters' ? <Column field="clusterId" title={EMR_ID} width={rotateAMI_id_WIDTH} /> : 

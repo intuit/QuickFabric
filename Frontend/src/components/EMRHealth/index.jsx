@@ -31,8 +31,9 @@ export default class EMRHealth extends Component {
       graphView: true,
       updateDate: '',
       updated: false,
-      refreshTimer: 120,
-      refreshInterval: {}
+      refreshTimer: 5 * 60,
+      refreshInterval: {}, 
+      refreshDate: ''
     }
 
     this.createGroupState = this.createGroupState.bind(this)
@@ -83,10 +84,9 @@ export default class EMRHealth extends Component {
           </label>
           <div className="empty-container"></div>
           <label className="refresh-container">
-            <div className="l-1"><p>Next refresh</p></div><div className="l-2">:</div><div className="l-3"><span>{this.state.refreshTimer} <span className="seconds-span">sec</span></span></div>
             <div className="last-refreshed">
-              <div className="l-1"> <span>Last refreshed</span> </div><div className="l-2">:</div><div className="l-3">{this.state.updateDate}</div>
-                
+              <div>Last refreshed: <span className="date-span">{this.state.updateDate}</span> | Next refresh: <span className="date-span">{this.state.refreshDate}</span></div>
+
               </div>
           </label>
         </div>
@@ -136,182 +136,6 @@ export default class EMRHealth extends Component {
     )
   }
 
-  getRefreshButton = primaryTab => {
-    switch(primaryTab) {
-      case 'all': 
-        return (
-          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.props.handleRangeChange('all')}>
-                <i className='material-icons'>refresh</i>
-                <span>Refresh Table</span>
-          </button>
-        )
-      case 'exploratory':
-        return (
-          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.props.handleRangeChange('exploratory')}>
-                <i className='material-icons'>refresh</i>
-                <span>Refresh Table</span>
-              </button>
-        )
-      case 'schedule':
-        return (
-          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.props.handleRangeChange('schedule')}>
-                  <i className='material-icons'>refresh</i>
-                  <span>Refresh Table</span>
-                </button>
-        )
-      case 'accounts':
-        return (
-          <button title='Refresh to get the latest data' className='exportBtn refresh' onClick={() => this.props.handleRangeChange('accounts', this.account_range)}>
-                  <i className='material-icons'>refresh</i>
-                  <span>Refresh Table</span>
-                </button>
-        )
-    }
-  }
-
-  renderEMRTable = primaryTab => {
-    return (
-      <div>
-        <div style={{ position: 'relative', top: '10px' }}>
-            {
-            this.props.role !== 'readonly' ?
-            <div>
-              <button title='Download data into an excelsheet' className='exportBtn' onClick={this.export}>
-                <i className='material-icons'>cloud_download</i>
-                <span>Export to Excel</span>
-              </button>
-              {
-                this.getRefreshButton(primaryTab)
-              }
-            </div>:
-            <div/>
-          }
-        </div>
-        {
-
-        }
-      </div>
-    )
-  }
-
-  showTable = () => {
-    let EMR_ID = <span style={{ fontSize: '15px', fontWeight: '600' }}>EMR #</span>
-    let EMR_Name = <span style={{ fontSize: '15px', fontWeight: '600' }}>EMR Name</span>
-    let RM_Url = <span style={{ fontSize: '15px', fontWeight: '600' }}>RM URL</span>
-    let EMR_Status = <span style={{ fontSize: '15px', fontWeight: '600' }}>EMR Status</span>
-    let Account_ID = <span style={{ fontSize: '15px', fontWeight: '600' }}>Account ID</span>
-    let Active_Nodes = <span style={{ fontSize: '15px', fontWeight: '600' }}>Active # Nodes</span>
-    let Res_Avail_Mem = <span style={{ fontSize: '15px', fontWeight: '600' }}>Resources Available Memory %</span>
-    let Res_Avail_Cores = <span style={{ fontSize: '15px', fontWeight: '600' }}>Resources Available Cores %</span>
-    let Creation_Timestamp = <span style={{ fontSize: '15px', fontWeight: '600' }}>Creation Timestamp</span>
-    let Refresh_Timestamp = <span style={{ fontSize: '15px', fontWeight: '600' }}>Refresh Timestamp</span>
-    let Cost = <span style={{ fontSize: '15px', fontWeight: '600' }}>Cost(Current Month)</span>
-    let Wavefront_Url = <span style={{ fontSize: '15px', fontWeight: '600' }}>Wavefront URL</span>
-    let Apps_Failed = <span style={{ fontSize: '15px', fontWeight: '600' }}>Apps Failed #</span>
-    let Apps_Pending = <span style={{ fontSize: '15px', fontWeight: '600' }}>Apps Pending #</span>
-    let Apps_Running = <span style={{ fontSize: '15px', fontWeight: '600' }}>Apps Running #</span>
-    let Apps_Succeeded = <span style={{ fontSize: '15px', fontWeight: '600' }}>Apps Succeeded #</span>
-
-    return (
-      <StatefulGrid
-          style={{ 'marginTop': 20 , height: '75vh', fontSize: '13px' }}
-          resizable={true}
-          reorderable={true}
-          filterable={true}
-          sortable={true}
-          pageable={{ pageSizes: true }}
-          groupable={true}
-
-          data={this.state.result !== undefined ? this.shortlistData(this.state.result.data) : this.state.result}
-          onDataStateChange={this.dataStateChange}
-          {...this.state.dataState}
-
-          onExpandChange={this.expandChange}
-          expandField="expanded"
-          
-        >
-          <Column field="emrId" title={EMR_ID} width="180px" />
-          <Column field="emrName" title={EMR_Name} width="180px" />
-                <Column field="rmUrl" title={RM_Url} width="200px"  cell={ (props) => 
-                          <td>
-                            <a href={props.dataItem.rmUrl} target="_blank" style={{color: "#106ba3"}}>
-                            {props.dataItem.rmUrl}
-                            </a>
-                          </td>} 
-                />
-                
-               
-                <Column field="emrStatus" title={EMR_Status} width="180px" cell={emrHealthCell} />
-                <Column field="account" title={Account_ID} width="180px" />
-                <Column field="activeNodes" title={Active_Nodes} width="180px" filter="numeric" />
-                <Column  field="availableMemoryPercentage" title={Res_Avail_Mem} width="250px" filter="numeric" 
-                
-                cell={ (props) => 
-                  <td>
-              
-                    <ProgressBar   animate="false" stripes="false"  intent= 
-                    {
-                      
-                    props.dataItem.availableMemoryPercentage/100 > 0.5 ?
-                    "SUCCESS" : (props.dataItem.availableMemoryPercentage/100 < 0.5 && props.dataItem.availableMemoryPercentage/100 > 0.3) ? 
-                    "WARNING" : 
-                    "DANGER"     
-                    } 
-                    value={props.dataItem.availableMemoryPercentage/100} />
-                
-                    <span className="my-span"  > {props.dataItem.availableMemoryPercentage}%
-                 
-
-                    </span>
-                  </td>} 
-
-                />
-                <Column field="availableCoresPercentage" title={Res_Avail_Cores} width="250px" filter="numeric" 
-                
-                cell={ (props) => 
-                  <td>
-                    <ProgressBar animate="true" stripes="true" 
-                    intent= 
-                    {props.dataItem.availableCoresPercentage/100 > 0.5 ?
-                    "SUCCESS" : (props.dataItem.availableCoresPercentage/100 < 0.5 && props.dataItem.availableCoresPercentage/100 > 0.3) ? 
-                    "WARNING" : 
-                    "DANGER" }   
-                    value={props.dataItem.availableCoresPercentage/100} 
-                    />
-                    <span className="my-span">{Math.round(props.dataItem.availableCoresPercentage , 3) }% 
-                    
-                    </span>
-                  </td>} 
-
-                />
-               
-               
-               <Column field="clusterCreateTimestamp" title={Creation_Timestamp} width="180px" />
-                <Column field="refreshTimestamp" title={Refresh_Timestamp} width="300px"  cell={ (props) =>
-                   <td><div>{props.dataItem.refreshTimestamp}</div></td>
-                }/>
-                  <Column field="cost" title={Cost}  width="150px" 
-                cell={ (props) => 
-                  <td>
-                    <span >$ {props.dataItem.cost} </span>
-                  </td>} 
-                />
-
-                <Column field="emrWfUrl" title={Wavefront_Url} width="200px"  cell={ (props) => 
-                          <td>
-                            <a href={props.dataItem.emrWfUrl} target="_blank" style={{color: "#106ba3"}}>
-                            Wavefront URL
-                            </a>
-                          </td>} 
-                />
-                <Column field="appsFailed" title={Apps_Failed} width="180px" filter="numeric" />
-                <Column field="appsPending" title={Apps_Pending} width="180px" filter="numeric" />
-                <Column field="appsRunning" title={Apps_Running} width="180px" filter="numeric" />
-                <Column field="appsSucceeded" title={Apps_Succeeded} width="180px" filter="numeric" />
-            </StatefulGrid>
-    )
-  }
-
    renderTable(primaryTab) {
     let EMR_ID = <span style={{ fontSize: '15px', fontWeight: '600' }}>EMR #</span>
     let EMR_Name = <span style={{ fontSize: '15px', fontWeight: '600' }}>EMR Name</span>
@@ -336,10 +160,10 @@ export default class EMRHealth extends Component {
           
         return (
           <div>
-            <div style={{ position: 'relative', top: '10px' }}>
+            <div style={{ position: 'relative'}}>
             {
             this.props.role !== 'readonly' ?
-            <div>
+            <div className='export-container-emrHealth'>
               <button title='Download data into an excelsheet' className='exportBtn' onClick={this.export}>
                 <i className='material-icons'>cloud_download</i>
                 <span>Export to Excel</span>
@@ -352,8 +176,8 @@ export default class EMRHealth extends Component {
             <div/>
           }
             </div>
-          <Grid
-          style={{ 'marginTop': 20 , height: '75vh', fontSize: '13px' }}
+          <StatefulGrid
+          style={{ height: '75vh', fontSize: '13px' }}
           resizable={true}
           reorderable={true}
           filterable={true}
@@ -446,17 +270,17 @@ export default class EMRHealth extends Component {
                 <Column field="appsPending" title={Apps_Pending} width="180px" filter="numeric" />
                 <Column field="appsRunning" title={Apps_Running} width="180px" filter="numeric" />
                 <Column field="appsSucceeded" title={Apps_Succeeded} width="180px" filter="numeric" />
-            </Grid>
+            </StatefulGrid>
             </div>
         )
 
       case 'exploratory':
       return (
         <div>
-          <div style={{ position: 'relative', top: '10px' }}>
+          <div style={{ position: 'relative', }}>
             {
             this.props.role !== 'readonly' ?
-            <div>
+            <div className='export-container-emrHealth'>
               <button title='Download data into an excelsheet' className='exportBtn' onClick={this.export}>
                 <i className='material-icons'>cloud_download</i>
                 <span>Export to Excel</span>
@@ -469,8 +293,8 @@ export default class EMRHealth extends Component {
             <div/>
           }
           </div>
-        <Grid
-        style={{ 'marginTop': 20 , height: '75vh'  }}
+        <StatefulGrid
+        style={{   height: '75vh', fontSize: '13px'  }}
         resizable={true}
         reorderable={true}
         filterable={true}
@@ -563,17 +387,17 @@ export default class EMRHealth extends Component {
                 <Column field="appsPending" title={Apps_Pending} width="180px" filter="numeric" />
                 <Column field="appsRunning" title={Apps_Running} width="180px" filter="numeric" />
                 <Column field="appsSucceeded" title={Apps_Succeeded} width="180px" filter="numeric" />
-      </Grid>
+      </StatefulGrid>
       </div>
       )
 
         case 'schedule':
         return (
           <div>
-            <div style={{ position: 'relative', top: '10px' }}>
+            <div style={{ position: 'relative', }}>
               {
               this.props.role !== 'readonly' ?
-              <div>
+              <div className='export-container-emrHealth'>
                 <button title='Download data into an excelsheet' className='exportBtn' onClick={this.export}>
                   <i className='material-icons'>cloud_download</i>
                   <span>Export to Excel</span>
@@ -586,8 +410,8 @@ export default class EMRHealth extends Component {
               <div/>
             }
             </div>
-          <Grid
-          style={{ 'marginTop': 20 , height: '75vh' }}
+          <StatefulGrid
+          style={{   height: '75vh', fontSize: '13px' }}
           resizable={true}
           reorderable={true}
           filterable={true}
@@ -681,7 +505,7 @@ export default class EMRHealth extends Component {
                 <Column field="appsPending" title={Apps_Pending} width="180px" filter="numeric" />
                 <Column field="appsRunning" title={Apps_Running} width="180px" filter="numeric" />
                 <Column field="appsSucceeded" title={Apps_Succeeded} width="180px" filter="numeric" />
-        </Grid>
+        </StatefulGrid>
         </div>
         )
 
@@ -689,10 +513,10 @@ export default class EMRHealth extends Component {
           
         return (
           <div>
-            <div style={{ position: 'relative', top: '10px' }}>
+            <div style={{ position: 'relative', }}>
               {
               this.props.role !== 'readonly' ?
-              <div>
+              <div className='export-container-emrHealth'>
                 <button title='Download data into an excelsheet' className='exportBtn' onClick={this.export}>
                   <i className='material-icons'>cloud_download</i>
                   <span>Export to Excel</span>
@@ -705,8 +529,8 @@ export default class EMRHealth extends Component {
               <div/>
             }
             </div>
-          <Grid
-          style={{ 'marginTop': 20 , height: '75vh'  }}
+          <StatefulGrid
+          style={{   height: '75vh', fontSize: '13px'  }}
           resizable={true}
           reorderable={true}
           filterable={true}
@@ -799,15 +623,11 @@ export default class EMRHealth extends Component {
                 <Column field="appsPending" title={Apps_Pending} width="180px" filter="numeric" />
                 <Column field="appsRunning" title={Apps_Running} width="180px" filter="numeric" />
                 <Column field="appsSucceeded" title={Apps_Succeeded} width="180px" filter="numeric" />
-        </Grid>
+        </StatefulGrid>
         </div>
         )
 
     }
-  }
-
-  showTable = tableData => {
-
   }
 
   _export
@@ -1032,16 +852,21 @@ shortlistData = data => {
   formatDate() {
     if(!this.state.updated) {
       let date = new Date()
+      let refreshDate = new Date(date.getTime() + 5 * 60000);
       let hour = date.getHours()
       let minutes = date.getMinutes()
       let seconds = date.getSeconds()
-      let year = date.getFullYear()
-      let day = date.getDate()
-      let month = date.getMonth()
-      let ampm = (hour < 12 || hour === 24) ? "AM" : "PM";
+
+      let h = refreshDate.getHours()
+      let m = refreshDate.getMinutes()
+      let s = refreshDate.getSeconds()
+      let ampm = (hour < 12 || hour === 24) ? 'AM' : 'PM';
+
       let updateObj = `${hour}:${minutes}:${seconds}${ampm}`
+      let refreshObj = `${h}:${m}:${s}${ampm}`
       this.setState({
         updateDate: updateObj,
+        refreshDate: refreshObj,
         updated: true
       })
     }
