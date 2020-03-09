@@ -23,6 +23,7 @@ def get_dns_records(record, zone_name):
     route53 = session.client('route53')
 
     zone_id = get_dns_hostedid(zone_name)
+    record = record + '.' if not record.endswith('.') else record
 
     logger.info("Retrieved Zone ID: ", zone_id)
 
