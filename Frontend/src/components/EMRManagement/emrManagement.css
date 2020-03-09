@@ -231,7 +231,7 @@ background-image: none !important;
   height: 30px;
   float: right;
   margin-top: -10px;
-  margin-right: 24%;
+  margin-right: 23%;
 }
 
 .toggle-container {
@@ -393,6 +393,7 @@ background-image: none !important;
   line-height: 1;
   color: #353535;
   margin-left: 3px;
+  margin-right: 10px;
 }
 
 .helpField {
@@ -414,6 +415,7 @@ background-image: none !important;
 
 .help-content1 {
   position: absolute;
+  z-index: 1000;
   width: 200px;
   font-size: 12px;
   margin-left: 9%;
@@ -630,7 +632,7 @@ reviewValue-action {
 }
 
 .textField-1 {
-  width: 350px;
+  width: 300px;
   height: 25px;
   border: 1px solid rgb(107, 195, 242);
   border-radius: 3px;
@@ -647,7 +649,7 @@ reviewValue-action {
 
 .numericField {
   float: right;
-  margin-right: 48%;
+  margin-right: 47%;
 }
 
 .autopilotwindow {
@@ -673,6 +675,21 @@ reviewValue-action {
 .formField-1 {
   margin: 30px;
 
+}
+.user-detail-container .txt-field-container-multi{
+  width: 600px;
+  margin-right: 1%;
+}
+.user-detail-container .txt-field-100-e{
+  width: 600px;
+  margin-right: 0%;
+}
+.user-detail-container .txt-field-100-e{
+  width: 600px;
+  margin-right: 0%;
+}
+.user-detail-container .txt-field-container {
+  margin-right: 1%;
 }
 .formField-0 {
   margin: 30px;

@@ -2522,7 +2522,13 @@ class Admin extends React.Component {
                                         <div className='grey'><span className='reviewTitles'>Config Name: </span><span className='reviewValue'>{c.configName}</span></div>
                                         <div className='grey'><span className='reviewTitles'>Config Type: </span><span className='reviewValue'>{c.configValue !== configObj ? 'Account' : c.configType}</span></div>
                                         <div className='grey'><span className='reviewTitles'>Config Value: </span><span className='reviewValue'>{c.configName === 'servicenow_password'  || c.configName === 'jira_password' ? `**************${configObj.substr(configObj.length - 1)}` : configObj}</span></div>
-                                        <div className='grey'><span className='reviewTitles'>Encryption Enabled: </span><span className='reviewValue'>{c.configDataType !== 'Boolean' && 'True'}</span></div>
+                                        <div className='grey'><span className='reviewTitles'>Encryption Enabled: </span>
+                                            {   
+                                                c.configName === 'servicenow_enabled_account' || c.configName === 'jira_enabled_account' ?
+                                                <span className='reviewValue'>False</span> :
+                                                <span className='reviewValue'>{c.configDataType !== 'Boolean' && 'True'}</span>
+                                            }
+                                        </div>
                                     </div>
                                 )
                             }
@@ -2651,7 +2657,7 @@ class Admin extends React.Component {
         return (
             this.state.newUserData.map((u, i) => {
                 return (
-                    <div className="segment-detail-container">
+                    <div className="user-detail-container">
                         <h3>New User #{i + 1}</h3>
                         <label className='formField'>
                             <span className="required">E-mail:</span>
@@ -2679,17 +2685,17 @@ class Admin extends React.Component {
                             </div>
                         </label> 
                         <label className='formField formField-1'>
+                        <span className="required">Segments:</span>
+                        <i className='m-icons'>help</i>
+                        <Select isMulti name="actions" options={this.state.segmentsListUser} className="basic-multi-select txt-field-container-multi" classNamePrefix="select" onChange={(e) => this.handleUserChange(e, i, 'newUserSegments', 'add')} />
+                        </label>    
+                        <label className='formField formField-1'>
                         <span className="required">Actions:</span>
                         <i className='m-icons'>help</i>
                         <Select isMulti name="actions"  value={this.state.newUserData[i].newUserActions} options={this.state.actions} className="basic-multi-select txt-field-container-multi" classNamePrefix="select" onChange={(e) => this.handleUserChange(e, i, 'newUserActions', 'add')} />
 
                         </label>
-                        <label className='formField formField-1'>
-                        <span className="required">Segments:</span>
-                        <i className='m-icons'>help</i>
-                        <Select isMulti name="actions" options={this.state.segmentsListUser} className="basic-multi-select txt-field-container-multi" classNamePrefix="select" onChange={(e) => this.handleUserChange(e, i, 'newUserSegments', 'add')} />
-
-                        </label>                          
+                      
                     </div>
                 )
             })

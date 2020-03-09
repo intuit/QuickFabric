@@ -312,7 +312,7 @@ class ConfigManagement extends React.Component {
         }
     }
     handleChange = (event) => {
-        if(this.state.selectedAccount !== event.target.value) {
+        if(this.state.selectedAccount !== event.target.value && event.target.value !== null) {
             this.setState({
                 selectedAccount: event.target.value,
                 dataLoaded: false
@@ -419,9 +419,9 @@ class ConfigManagement extends React.Component {
                 pageable={true}
                 {...this.state}
             >
-                <Column width={'267px'} height={'25px'} field="configName"  title={TITLE_NAME_A} cell={(props) => <td><span style={{fontWeight: 600, fontSize: '14px', wordBreak: 'break-all'}}>{props.dataItem.configName}</span></td>} />
-                <Column width={'327px'} height={'20px'} field="configDescription"  title={TITLE_DESCRIPTION_A} cell={(props) => <td><span style={{fontSize: '14px'}}>{props.dataItem.configDescription}</span></td>} />
-                <Column width={'250px'} height={'25px'} field="configValue" title={TITLE_VALUE_A} cell={(props) => <td className="k-table-config-center">
+                <Column width={'240px'} height={'25px'} field="configName"  title={TITLE_NAME_A} cell={(props) => <td><span style={{fontWeight: 600, fontSize: '14px', wordBreak: 'break-all'}}>{props.dataItem.configName}</span></td>} />
+                <Column width={'280px'} height={'20px'} field="configDescription"  title={TITLE_DESCRIPTION_A} cell={(props) => <td><span style={{fontSize: '14px'}}>{props.dataItem.configDescription}</span></td>} />
+                <Column width={'330px'} height={'25px'} field="configValue" title={TITLE_VALUE_A} cell={(props) => <td className="k-table-config-center">
                     {props.dataItem.isNull ? <span style={{color: 'rgb(224, 224, 224)', fontStyle: 'italic'}}>null</span> : 
                         props.dataItem.configDataType === 'Boolean' && props.dataItem.configValue == true ? <span>true</span> :
                         props.dataItem.configDataType === 'Boolean' && props.dataItem.configValue == false ? <span>false</span> :
