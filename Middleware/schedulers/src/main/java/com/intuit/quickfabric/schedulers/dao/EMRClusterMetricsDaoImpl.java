@@ -45,69 +45,65 @@ public class EMRClusterMetricsDaoImpl implements EMRClusterMetricsDao {
     @Override
     @Transactional
     public void updateEMRClusterMetricsCost(List<EMRClusterMetricsVO> costs) {
-    	//TODO add table name
-    	String insertCostQuery = "INSERT INTO emr_billing_component_cost (emr_name,emr_cost) VALUES "
-    			+ "(?, ?)";
+        //TODO add table name
+        String insertCostQuery = "INSERT INTO emr_billing_component_cost (emr_name,emr_cost) VALUES "
+                + "(?, ?)";
 
-    	String deleteCostQuery = "DELETE FROM emr_billing_component_cost";
+        String deleteCostQuery = "DELETE FROM emr_billing_component_cost";
 
-    	String insertCostHistQuery = "INSERT INTO emr_billing_component_cost_hist (emr_name,emr_cost) VALUES "
-    			+ "(?, ?)";
+        String insertCostHistQuery = "INSERT INTO emr_billing_component_cost_hist (emr_name,emr_cost) VALUES "
+                + "(?, ?)";
 
+        try {
 
-    	LocalDate localDate = LocalDate.now();
-    	boolean isTodayLastDayOfMon = localDate.equals(localDate.with(TemporalAdjusters.lastDayOfMonth()));
+            jdbcTemplateObject.execute(deleteCostQuery);
 
-    	try {
+            jdbcTemplateObject.batchUpdate(insertCostQuery,
+                    new BatchPreparedStatementSetter() {
 
-    		jdbcTemplateObject.execute(deleteCostQuery);
+                public void setValues(PreparedStatement preparedStmt, int i) throws SQLException {
 
-    		jdbcTemplateObject.batchUpdate(insertCostQuery,
-    				new BatchPreparedStatementSetter() {
+                    EMRClusterMetricsVO vo = costs.get(i);
+                    preparedStmt.setString(1, vo.getEmrName());
+                    preparedStmt.setDouble(2, vo.getCost());
 
-    			public void setValues(PreparedStatement preparedStmt, int i) throws SQLException {
+                }
 
-    				EMRClusterMetricsVO vo = costs.get(i);
-    				preparedStmt.setString(1, vo.getEmrName());
-    				preparedStmt.setDouble(2, vo.getCost());
-
-    			}
-
-    			@Override
-    			public int getBatchSize() {
-    				return costs.size();
-    			}
+                @Override
+                public int getBatchSize() {
+                    return costs.size();
+                }
 
 
-    		});
-    		if (isTodayLastDayOfMon) {
-    			jdbcTemplateObject.batchUpdate(insertCostHistQuery,
-    					new BatchPreparedStatementSetter() {
+            });
 
-    				public void setValues(PreparedStatement preparedStmt, int i) throws SQLException {
+            jdbcTemplateObject.batchUpdate(insertCostHistQuery,
+                    new BatchPreparedStatementSetter() {
 
-    					EMRClusterMetricsVO vo = costs.get(i);
-    					preparedStmt.setString(1, vo.getEmrName());
-    					preparedStmt.setDouble(2, vo.getCost());
+                public void setValues(PreparedStatement preparedStmt, int i) throws SQLException {
 
-    				}
+                    EMRClusterMetricsVO vo = costs.get(i);
+                    preparedStmt.setString(1, vo.getEmrName());
+                    preparedStmt.setDouble(2, vo.getCost());
 
-    				@Override
-    				public int getBatchSize() {
-    					return costs.size();
-    				}
+                }
+
+                @Override
+                public int getBatchSize() {
+                    return costs.size();
+                }
 
 
-    			});
+            });
 
-    		}
-    	} catch (Exception e) {
-    		//System.out.println("update failed , please check the logs or reach to administrator! \n" + e);
-    		logger.error("update failed , please check the logs or reach to administrator! \n" + e.getMessage());
-    		throw new QuickFabricSQLException("DB error during EMR Cluster cost update", e);
-    	}
-    	//System.out.println("EMR Cluster Metrics cost inserted succussfully to table");
-    	logger.info("EMR Cluster Metrics cost inserted succussfully to table");
+
+        } catch (Exception e) {
+            //System.out.println("update failed , please check the logs or reach to administrator! \n" + e);
+            logger.error("update failed , please check the logs or reach to administrator! \n" + e.getMessage());
+            throw new QuickFabricSQLException("DB error during EMR Cluster cost update", e);
+        }
+        //System.out.println("EMR Cluster Metrics cost inserted succussfully to table");
+        logger.info("EMR Cluster Metrics cost inserted succussfully to table");
 
     }
 
