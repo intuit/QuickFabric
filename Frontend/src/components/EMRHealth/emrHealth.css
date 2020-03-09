@@ -180,12 +180,12 @@ background-image: none !important;
   display: inline-block;
 }
 .header-row .empty-container {
-  width: 75%;
+  width: 70%;
   height: 100%;
   display: inline-block;
 }
 .header-row .refresh-container {
-  width: 20%;
+  width: 25%;
   
   display: inline-block;
   text-align: right;

@@ -992,7 +992,7 @@ LOCK TABLES `application_configurations` WRITE;
 LOCK TABLES `application_configurations` WRITE;
 /*!40000 ALTER TABLE `application_configurations` DISABLE KEYS */;
 INSERT INTO `application_configurations` (`id`, `config_id`, `config_value`, `is_encrypted`) VALUES
-(1,39,'noreply@intuit.com',0),
+(1,39,'noreply@company.com',0),
 (2,34,'true',0),
 (3,1,'true',0),
 (4,4,'true',0),
@@ -1020,8 +1020,8 @@ INSERT INTO `application_configurations` (`id`, `config_id`, `config_value`, `is
 (28,40,'true',0),
 (29,52,'false',0),
 (30,23,'true',0),
-(31,33,'noreply@intuit.com',0),
-(32,51,'noreply@intuit.com',0);
+(31,33,'noreply@company.com',0),
+(32,51,'noreply@company.com',0);
 /*!40000 ALTER TABLE `application_configurations` ENABLE KEYS */;
 UNLOCK TABLES;
 

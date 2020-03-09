@@ -1,0 +1,37 @@
+{
+  "vpc_id": "vpc-1234abcd",
+  "private_subnet_ids": ["subnet-xxxxx", "subnet-xxxxxx", "subnet-xxxx"],
+  "emr_version": "emr-5.26.0",
+  "keypair": "emr-test-quickfabric-key",
+  "artifacts_bucket": "s3://quickfabric-emr-artifact-example_account-us-west-2",
+  "emr_s3_log_path": "s3://emr-logging-quickfabric-test",
+  "bootstrap_actions": [
+      {
+        "bootstrapScript": "scripts/install-gradle-bootstrap.sh",
+        "bootstrapName": "Install Gradle"
+      }
+  ],
+  "steps": [
+      {
+        "Name": "InstllDrElephant",
+        "OnBoot": true,
+        "Type": "shell",
+        "ActionOnFailure": "CONTINUE",
+        "Script": "scripts/install-dr-elephant.sh",
+        "Jar": "s3://elasticmapreduce/libs/script-runner/script-runner.jar",
+        "Args": []
+      },
+    {
+            "Name": "Setup Syslog",
+            "OnBoot": true,
+            "Type": "shell",
+            "ActionOnFailure": "CONTINUE",
+            "Script": "scripts/syslog-setup.sh",
+            "Jar": "",
+            "Args": ["-s s3://emr-logging-quickfabric-e2e/logs"]
+          }
+  ],
+  "env": "e2e",
+  "region": "us-west-2",
+  "r53_hosted_zone": "test.quickfabric.intuit.com"
+}

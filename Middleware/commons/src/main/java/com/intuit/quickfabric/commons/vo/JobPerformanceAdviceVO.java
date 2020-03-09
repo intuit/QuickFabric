@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @Component
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class JobPerformanceAdviceVO {
     private String advice;
     private List<EMRAppVO> criticalApps;

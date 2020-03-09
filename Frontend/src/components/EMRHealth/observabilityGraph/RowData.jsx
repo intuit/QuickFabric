@@ -134,7 +134,7 @@ class AdviceDetail extends GridDetailRow {
         case 'all':
           return (
             <StatefulGrid
-            data={[...this.props.adviceData[1].adviceObj.critical_apps, ...this.props.adviceData[1].adviceObj.severe_apps, ...this.props.adviceData[1].adviceObj.moderate_apps]}
+            data={[...this.props.adviceData[1].adviceObj.criticalApps, ...this.props.adviceData[1].adviceObj.severeApps, ...this.props.adviceData[1].adviceObj.moderateApps]}
             filterable={true}
             resizable
             reorderable={true}
@@ -153,7 +153,7 @@ class AdviceDetail extends GridDetailRow {
         case 'moderate':
           return (
             <StatefulGrid
-            data={this.props.adviceData[1].adviceObj.moderate_apps}
+            data={this.props.adviceData[1].adviceObj.moderateApps !== undefined ? this.props.adviceData[1].adviceObj.moderateApps : []}
             filterable={true}
             resizable
             reorderable={true}
@@ -172,7 +172,7 @@ class AdviceDetail extends GridDetailRow {
         case 'severe':
           return (
             <StatefulGrid
-            data={this.props.adviceData[1].adviceObj.severe_apps}
+            data={this.props.adviceData[1].adviceObj.severeApps != undefined ? this.props.adviceData[1].adviceObj.severeApps : []}
             filterable={true}
             resizable
             reorderable={true}
@@ -191,7 +191,7 @@ class AdviceDetail extends GridDetailRow {
         case 'critical':
           return (
             <StatefulGrid
-            data={this.props.adviceData[1].adviceObj.critical_apps}
+            data={this.props.adviceData[1].adviceObj.criticalApps != undefined ? this.props.adviceData[1].adviceObj.criticalApps : []}
             filterable={true}
             resizable
             reorderable={true}
@@ -254,7 +254,7 @@ class RowData extends React.Component {
             elephantObj: {_id: 2, advice_title: "Dr. Elepnant's Advice", advice_data: {}, adviceObj: {advice: ''}},
             adviceArray: [
               {_id: 1, advice_type: "advice", advice_title: "Job Scheduling Window", advice_data: "", adviceObj: {advice: ''}},
-              {_id: 2, advice_type: "elephant", advice_title: "Dr. Elephant's Advice", advice_data: "", adviceObj: {advice: '', critical_apps: [], severe_apps: [], moderate_apps: []}},
+              {_id: 2, advice_type: "elephant", advice_title: "Dr. Elephant's Advice", advice_data: "", adviceObj: {advice: '', criticalApps: [], severeApps: [], moderateApps: []}},
             ],
             value: new Date(),
             formattedDate: '',
@@ -278,7 +278,6 @@ class RowData extends React.Component {
 
     render() {
         let complete_data = {};
-        console.log("Row Data props", this.props )
         if (this.state.duration_type == 'hourly') {
             complete_data = this.props.clusterMetricsHourlyData
         } else if (this.state.duration_type == 'daily') {
@@ -294,15 +293,15 @@ class RowData extends React.Component {
         let advice_data = {};
         if (this.state.duration_type == 'daily' && this.props.allEmrHealthData.allClusterMetricsDailySuccess) {
           this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsDailyError ? this.props.allEmrHealthData.allClusterMetricsDailyData.jobSchedulingAdvice : {advice: ''};
-          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsDailyError ? this.props.allEmrHealthData.allClusterMetricsDailyData.jobPerformanceAdvice : {advice: '', leastUsed: [], mostUsed: []};
+          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsDailyError ? this.props.allEmrHealthData.allClusterMetricsDailyData.jobPerformanceAdvice : {advice: '',  criticalApps: [], severeApps: [], moderateApps: []};
         }
         if (this.state.duration_type == 'weekly' && this.props.allEmrHealthData.allClusterMetricsWeeklySuccess) {
           this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsWeeklyError ? this.props.allEmrHealthData.allClusterMetricsWeeklyData.jobSchedulingAdvice : {advice: ''};
-          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsWeeklyError ? this.props.allEmrHealthData.allClusterMetricsWeeklyData.jobPerformanceAdvice : {advice: '', leastUsed: [], mostUsed: []};
+          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsWeeklyError ? this.props.allEmrHealthData.allClusterMetricsWeeklyData.jobPerformanceAdvice : {advice: '', criticalApps: [], severeApps: [], moderateApps: []};
         }
         if (this.state.duration_type == 'monthly' && this.props.allEmrHealthData.allClusterMetricsMonthlySuccess) {
           this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsMonthlyError ? this.props.allEmrHealthData.allClusterMetricsMonthlyData.jobSchedulingAdvice : {advice: ''};
-          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsMonthlyError ? this.props.allEmrHealthData.allClusterMetricsMonthlyData.jobPerformanceAdvice : {advice: '', leastUsed: [], mostUsed: []};
+          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsMonthlyError ? this.props.allEmrHealthData.allClusterMetricsMonthlyData.jobPerformanceAdvice : {advice: '',  criticalApps: [], severeApps: [], moderateApps: []};
         }
         
 
@@ -479,7 +478,6 @@ class RowData extends React.Component {
     }
 
     renderRowData = (primaryTab, complete_data, adviceObj) => {
-        console.log('let the render begin!', this.props)
         let emr_status = 'Healthy';
         if (this.props.active_nodes == 0) {
             emr_status = 'Unhealthy';
@@ -737,60 +735,57 @@ class RowData extends React.Component {
                             <div className='loader-mini' />
                         </div> 
                     )
-                } else if(this.state.adviceArray[1].adviceObj !== undefined && this.state.adviceArray[1].adviceObj.advice != 'All of your jobs have great job performance. Way to go!'){
-                    return (
-                        <div className='tab-components expert-grid'>
+                } else {
+                    let data = this.state.adviceArray;
+                    if (data[0].adviceObj === undefined) {
+                        data[0].adviceObj = {
+                            advice: "No data to show."
+                        }
+                    }
+
+                    if (data[1].adviceObj === undefined) {
+                        data[1].adviceObj = {
+                            advice: "No data to show."
+                        }
+                    }
+
+                    if(data[1].adviceObj !== undefined && data[1].adviceObj.advice != 'All of your jobs have great job performance. Way to go!' && data[1].adviceObj.advice != 'No data to show.'){
+                        return (
+                            <div className='tab-components expert-grid'>
+                                <StatefulGrid
+                                  data={data}
+                                  resizable
+                                  reorderable={true}
+                                  detail={(props) => <AdviceDetail {...props} adviceData={data} />}
+                                  expandField="expanded"
+                                  onExpandChange={this.expandChange}
+                                  pageable={false}
+                                  {...this.state}
+                                >
+                                  <Column field="advice_title" title={'Title'} />
+                                  <Column field="adviceObj.advice" title={'Advice'} cell={(props) => 
+                                        <td><span>{props.dataItem.adviceObj.advice}</span></td>}/>
+                                </StatefulGrid>
+                            </div>
+        
+                        )                    
+                    } else if(data[1].adviceObj !== undefined && (data[1].adviceObj.advice === 'All of your jobs have great job performance. Way to go!' || data[1].adviceObj.advice === 'No data to show.')){
+                        return (
+                            <div className='tab-components expert-grid'>
                             <StatefulGrid
-                              data={this.state.adviceArray}
+                              data={data}
                               resizable
                               reorderable={true}
-                              detail={(props) => <AdviceDetail {...props} adviceData={this.state.adviceArray} />}
-                              expandField="expanded"
-                              onExpandChange={this.expandChange}
                               pageable={false}
                               {...this.state}
                             >
                               <Column field="advice_title" title={'Title'} />
                               <Column field="adviceObj.advice" title={'Advice'} cell={(props) => 
-                                    <td><span>{props.dataItem.adviceObj.advice}</span></td>}/>
+                                <td><span>{props.dataItem.adviceObj.advice}</span></td>}/>
                             </StatefulGrid>
                         </div>
-    
-                    )                    
-                } else if(this.state.adviceArray[1].adviceObj !== undefined && this.state.adviceArray[1].adviceObj.advice === 'All of your jobs have great job performance. Way to go!'){
-                    return (
-                        <div className='tab-components expert-grid'>
-                        <StatefulGrid
-                          data={this.state.adviceArray}
-                          resizable
-                          reorderable={true}
-                          pageable={false}
-                          {...this.state}
-                        >
-                          <Column field="advice_title" title={'Title'} />
-                          <Column field="adviceObj.advice" title={'Advice'} cell={(props) => 
-                            <td><span>{props.dataItem.adviceObj.advice}</span></td>}/>
-                        </StatefulGrid>
-                    </div>
-                    )
-                } else if (this.state.adviceArray[0].adviceObj !== undefined) {
-                    let data = this.state.adviceArray;
-                    data[1].advice = "No data to show."
-                    return (
-                        <div className='tab-components expert-grid'>
-                        <StatefulGrid
-                          data={data}
-                          resizable
-                          reorderable={true}
-                          pageable={false}
-                          {...this.state}
-                        >
-                          <Column field="advice_title" title={'Title'} />
-                          <Column field="adviceObj.advice" title={'Advice'} cell={(props) => 
-                            <td><span>{props.dataItem.adviceObj.advice}</span></td>}/>
-                        </StatefulGrid>
-                    </div>
-                    )
+                        )
+                    }
                 }
         }
     }
