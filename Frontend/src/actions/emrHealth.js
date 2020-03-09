@@ -240,7 +240,7 @@ export const fetchAllAdvice = (emr_id, time, token) => {
   return (dispatch) => {
     if(time === 'day') {
       dispatch({ type: EMRHealthActionTypes.CLUSTER_METRICS_GET_DAILY_FETCHING, payload: {} })
-      fetch(baseURL + `/emr/advice/all/${emr_id}/${time}`, {
+      fetch(baseURL + `/emr/advice/job-performance/${emr_id}/${time}`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -262,7 +262,7 @@ export const fetchAllAdvice = (emr_id, time, token) => {
       })
     } else if(time === 'week') {
       dispatch({ type: EMRHealthActionTypes.CLUSTER_METRICS_GET_WEEKLY_FETCHING, payload: {} })
-      fetch(baseURL + `/emr/advice/all/${emr_id}/${time}`, {
+      fetch(baseURL + `/emr/advice/job-performance/${emr_id}/${time}`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -284,7 +284,7 @@ export const fetchAllAdvice = (emr_id, time, token) => {
       })
     } else if(time === 'month') {
       dispatch({ type: EMRHealthActionTypes.CLUSTER_METRICS_GET_MONTHLY_FETCHING, payload: {} })
-      fetch(baseURL + `/emr/advice/all/${emr_id}/${time}`, {
+      fetch(baseURL + `/emr/advice/job-performance/${emr_id}/${time}`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
