@@ -1,5 +1,3 @@
-
-
 # Specify the compatible terraform version
 terraform {
   required_version = ">= 0.12.0"
@@ -163,20 +161,6 @@ module "s3" {
   tags = var.tags
 }
 
-# Uploads the files and contents to S3 location
-//module "serverless_s3_uploads" {
-//  source = "./modules/s3_uploads"
-//
-//  bucket_name = module.s3.bucket_name
-//  content_uploads = {
-//    "${local.serverless_conf_path}" : data.template_file.metadata.rendered
-//  }
-//
-//  tags = var.tags
-//}
-
-
-
 
 # Loads the existing yaml file and add the new account
 locals {
@@ -241,8 +225,8 @@ data "archive_file" "backend" {
 locals {
 
   local_serverless_docker_path = "../Backend/docker/serverless-deploy"
-  python_command_deploy        = "python3 /serverless/serverless-deploy/quickfabric_setup.py deploy"
-  python_command_remove        = "python3 /serverless/serverless-deploy/quickfabric_setup.py remove"
+  python_command_deploy        = "python3 /serverless/Backend/serverless-deploy/quickfabric_setup.py deploy"
+  python_command_remove        = "python3 /serverless/Backend/serverless-deploy/quickfabric_setup.py remove"
 }
 
 resource "null_resource" "serverless_container" {
@@ -267,8 +251,7 @@ resource "null_resource" "run_serverless" {
   }
 
   provisioner "local-exec" {
-    #command     = "python3 quickfabric_setup.py deploy"
-    command     = "docker run --rm -t -v ${path.cwd}/../Backend:/serverless -v ${lookup(data.external.get_env_variables.result, "HOME")}/.aws:/root/.aws  -e AWS_PROFILE=${lookup(data.external.get_env_variables.result, "AWS_PROFILE")} -e AWS_ACCESS_KEY_ID=${lookup(data.external.get_env_variables.result, "AWS_ACCESS_KEY_ID")} -e AWS_SECRET_ACCESS_KEY=${lookup(data.external.get_env_variables.result, "AWS_SECRET_ACCESS_KEY")} -e AWS_SESSION_TOKEN=${lookup(data.external.get_env_variables.result, "AWS_SESSION_TOKEN")}  serverless_qf \"${local.python_command_deploy}\""
+    command     = "docker run --rm -t -v /tmp:/tmp -v ${path.cwd}/../:/serverless -v ${lookup(data.external.get_env_variables.result, "HOME")}/.aws:/root/.aws  -e AWS_PROFILE=${lookup(data.external.get_env_variables.result, "AWS_PROFILE")} -e AWS_ACCESS_KEY_ID=${lookup(data.external.get_env_variables.result, "AWS_ACCESS_KEY_ID")} -e AWS_SECRET_ACCESS_KEY=${lookup(data.external.get_env_variables.result, "AWS_SECRET_ACCESS_KEY")} -e AWS_SESSION_TOKEN=${lookup(data.external.get_env_variables.result, "AWS_SESSION_TOKEN")}  serverless_qf \"${local.python_command_deploy}\""
     working_dir = "../Backend/serverless-deploy/"
     environment = {
       depends_deploy_yaml         = local_file.deploy_yml.filename
@@ -279,10 +262,19 @@ resource "null_resource" "run_serverless" {
   }
 }
 
+data "external" "api" {
+        program = ["echo","{\"file_path\":\"/tmp/apigateway-output.json\", \"depends_on\" : \"${null_resource.run_serverless.id}\" }"]
+}
+
+locals {
+  api_creds = fileexists(lookup(data.external.api.result,"file_path")) ? jsondecode(file(lookup(data.external.api.result,"file_path"))) : jsondecode("None")
+}
+
+
 resource "null_resource" "remove_serverless" {
   provisioner "local-exec" {
     when        = destroy
-    command     = "docker run --rm -t -v ${path.cwd}/../Backend:/serverless -v ${lookup(data.external.get_env_variables.result, "HOME")}/.aws:/root/.aws  -e AWS_PROFILE=${lookup(data.external.get_env_variables.result, "AWS_PROFILE")} -e AWS_ACCESS_KEY_ID=${lookup(data.external.get_env_variables.result, "AWS_ACCESS_KEY_ID")} -e AWS_SECRET_ACCESS_KEY=${lookup(data.external.get_env_variables.result, "AWS_SECRET_ACCESS_KEY")} -e AWS_SESSION_TOKEN=${lookup(data.external.get_env_variables.result, "AWS_SESSION_TOKEN")}  serverless_qf \"${local.python_command_remove}\""
+    command     = "docker run --rm -t -v /tmp:/tmp -v ${path.cwd}/../:/serverless -v ${lookup(data.external.get_env_variables.result, "HOME")}/.aws:/root/.aws  -e AWS_PROFILE=${lookup(data.external.get_env_variables.result, "AWS_PROFILE")} -e AWS_ACCESS_KEY_ID=${lookup(data.external.get_env_variables.result, "AWS_ACCESS_KEY_ID")} -e AWS_SECRET_ACCESS_KEY=${lookup(data.external.get_env_variables.result, "AWS_SECRET_ACCESS_KEY")} -e AWS_SESSION_TOKEN=${lookup(data.external.get_env_variables.result, "AWS_SESSION_TOKEN")}  serverless_qf \"${local.python_command_remove}\""
     working_dir = "../Backend/serverless-deploy/"
     environment = {
       depends_deploy_yaml         = local_file.deploy_yml.filename
@@ -341,23 +333,7 @@ resource "aws_iam_role_policy" "emr_service_role_policy" {
             "Effect" : "Allow",
             "Action" : ["s3:*"],
             "Resource" : ["*"]
-        },
-	{
-    "Effect": "Allow",
-    "Action": [
-        "iam:CreateServiceLinkedRole",
-        "iam:PutRolePolicy"
-    ],
-    "Resource": "arn:aws:iam::*:role/aws-service-role/elasticmapreduce.amazonaws.com*/AWSServiceRoleForEMRCleanup*",
-    "Condition": {
-        "StringLike": {
-            "iam:AWSServiceName": [
-                "elasticmapreduce.amazonaws.com",
-                "elasticmapreduce.amazonaws.com.cn"
-            ]
         }
-    }
-}
     ]
 }
 EOF
@@ -422,10 +398,13 @@ resource "aws_iam_role_policy_attachment" "emr_ec2_instance_profile" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceforEC2Role"
 }
 
+resource "aws_iam_role_policy_attachment" "emr_ec2_instance_profile_autoscaling" {
+  role       = aws_iam_role.emr_ec2_instance_profile_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceforAutoScalingRole"
+}
 resource "aws_iam_instance_profile" "instance_profile" {
 
   name = "emr-ec2-profile-quickfabric"
   role = aws_iam_role.emr_ec2_instance_profile_role.name
 }
-
 
