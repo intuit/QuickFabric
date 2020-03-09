@@ -41,12 +41,14 @@ class DNSFlip extends React.Component {
                     <div className={Classes.DIALOG_BODY}>
                         <div>
                           {this.state.confirmFail && <p className="confirm-cluster-rotation-err">{this.state.confirmErrMessage}</p>}
-                            <span style={{ fontSize: '15px', marginRight: '15px' }}>Cluster Name</span>
+                            <span style={{ fontSize: '15px', marginRight: '60px' }}>Cluster Name:</span>
                             <input className="textField-1" type="text" placeholder='Please type in exact Cluster Name' onChange={this.handleClusterCheck} />
                         </div>
                         <div style={{ marginTop: '10px' }}>
-                          <span style={{ fontSize: '15px', marginRight: '30px' }}>DNS Name</span>
+                          <span style={{ fontSize: '15px'}}>Target DNS Name:</span>
+                          <i className='m-icons'>help</i>
                           <input className="textField-1" placeholder='Provide a DNS Name to switch to' value={this.state.fullDNSName} onChange={this.handleFullDNSName} type="text" />
+                          <div className='help-content1'>Provided Target DNS Name should exist in Route 53. Please provide complete DNS Name.</div>
                         </div>
                     </div>
                     <div className={Classes.DIALOG_FOOTER}>

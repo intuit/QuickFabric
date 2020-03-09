@@ -121,7 +121,7 @@ export default class ObservabilityGraph extends React.Component {
                             selectNode: this.handleNodeChange
                         }} 
                         getNetwork={network => this.setState({ network })}
-                        style={{ height: "80vh", width: "82vw" }} 
+                        style={{ height: "79vh", width: "82vw" }} 
                         />
                 </div>
             </div>

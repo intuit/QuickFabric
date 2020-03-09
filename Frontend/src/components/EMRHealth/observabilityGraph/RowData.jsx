@@ -143,9 +143,9 @@ class AdviceDetail extends GridDetailRow {
             onExpandChange={this.expandChange}
             {...this.state}
             >
-              <Column field="applicationId" title={'ID'}  />
-              <Column field="applicationName" title={'Application Name'} />
-              <Column field="applicationType" title={'Type'} />
+              <Column field="id" title={'ID'}  />
+              <Column field="name" title={'Application Name'} />
+              <Column field="jobType" title={'Type'} />
               <Column field="startTimestamp" title={'Start'} />
               <Column field="elapsedTime" title={'Elapsed Time'} />
             </StatefulGrid>
@@ -162,9 +162,9 @@ class AdviceDetail extends GridDetailRow {
             onExpandChange={this.expandChange}
             {...this.state}
             >
-              <Column field="applicationId" title={'ID'}  />
-              <Column field="applicationName" title={'Application Name'} />
-              <Column field="applicationType" title={'Type'} />
+              <Column field="id" title={'ID'}  />
+              <Column field="name" title={'Application Name'} />
+              <Column field="jobType" title={'Type'} />
               <Column field="startTimestamp" title={'Start'} />
               <Column field="elapsedTime" title={'Elapsed Time'} />
             </StatefulGrid>
@@ -181,9 +181,9 @@ class AdviceDetail extends GridDetailRow {
             onExpandChange={this.expandChange}
             {...this.state}
             >
-              <Column field="applicationId" title={'ID'}  />
-              <Column field="applicationName" title={'Application Name'} />
-              <Column field="applicationType" title={'Type'} />
+              <Column field="id" title={'ID'}  />
+              <Column field="name" title={'Application Name'} />
+              <Column field="jobType" title={'Type'} />
               <Column field="startTimestamp" title={'Start'} />
               <Column field="elapsedTime" title={'Elapsed Time'} />
             </StatefulGrid>
@@ -200,9 +200,9 @@ class AdviceDetail extends GridDetailRow {
             onExpandChange={this.expandChange}
             {...this.state}
             >
-              <Column field="applicationId" title={'ID'}  />
-              <Column field="applicationName" title={'Application Name'} />
-              <Column field="applicationType" title={'Type'} />
+              <Column field="id" title={'ID'}  />
+              <Column field="name" title={'Application Name'} />
+              <Column field="jobType" title={'Type'} />
               <Column field="startTimestamp" title={'Start'} />
               <Column field="elapsedTime" title={'Elapsed Time'} />
             </StatefulGrid>
@@ -278,6 +278,7 @@ class RowData extends React.Component {
 
     render() {
         let complete_data = {};
+        console.log("Row Data props", this.props )
         if (this.state.duration_type == 'hourly') {
             complete_data = this.props.clusterMetricsHourlyData
         } else if (this.state.duration_type == 'daily') {
@@ -292,16 +293,16 @@ class RowData extends React.Component {
 
         let advice_data = {};
         if (this.state.duration_type == 'daily' && this.props.allEmrHealthData.allClusterMetricsDailySuccess) {
-          this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsDailyError ? this.props.allEmrHealthData.allClusterMetricsDailyData.jobSchedulingAdvice : {advice: ''};
-          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsDailyError ? this.props.allEmrHealthData.allClusterMetricsDailyData.jobPerformanceAdvice : {advice: '',  criticalApps: [], severeApps: [], moderateApps: []};
+          this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsDailyError ? this.props.allEmrHealthData.clusterMetricsAdviceDailyData : {advice: ''};
+          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsDailyError ? this.props.allEmrHealthData.allClusterMetricsDailyData : {advice: '',  criticalApps: [], severeApps: [], moderateApps: []};
         }
         if (this.state.duration_type == 'weekly' && this.props.allEmrHealthData.allClusterMetricsWeeklySuccess) {
-          this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsWeeklyError ? this.props.allEmrHealthData.allClusterMetricsWeeklyData.jobSchedulingAdvice : {advice: ''};
-          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsWeeklyError ? this.props.allEmrHealthData.allClusterMetricsWeeklyData.jobPerformanceAdvice : {advice: '', criticalApps: [], severeApps: [], moderateApps: []};
+          this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsWeeklyError ? this.props.allEmrHealthData.clusterMetricsAdviceWeeklyData : {advice: ''};
+          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsWeeklyError ? this.props.allEmrHealthData.allClusterMetricsWeeklyData : {advice: '', criticalApps: [], severeApps: [], moderateApps: []};
         }
         if (this.state.duration_type == 'monthly' && this.props.allEmrHealthData.allClusterMetricsMonthlySuccess) {
-          this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsMonthlyError ? this.props.allEmrHealthData.allClusterMetricsMonthlyData.jobSchedulingAdvice : {advice: ''};
-          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsMonthlyError ? this.props.allEmrHealthData.allClusterMetricsMonthlyData.jobPerformanceAdvice : {advice: '',  criticalApps: [], severeApps: [], moderateApps: []};
+          this.state.adviceArray[0].adviceObj = !this.props.allEmrHealthData.allClusterMetricsMonthlyError ? this.props.allEmrHealthData.clusterMetricsAdviceMonthlyData : {advice: ''};
+          this.state.adviceArray[1].adviceObj = !this.props.allEmrHealthData.allClusterMetricsMonthlyError ? this.props.allEmrHealthData.allClusterMetricsMonthlyData : {advice: '',  criticalApps: [], severeApps: [], moderateApps: []};
         }
         
 
@@ -736,6 +737,7 @@ class RowData extends React.Component {
                         </div> 
                     )
                 } else {
+                    console.log('hi', this.state)
                     let data = this.state.adviceArray;
                     if (data[0].adviceObj === undefined) {
                         data[0].adviceObj = {
@@ -743,7 +745,7 @@ class RowData extends React.Component {
                         }
                     }
 
-                    if (data[1].adviceObj === undefined) {
+                    if (data[1].adviceObj.advice === undefined) {
                         data[1].adviceObj = {
                             advice: "No data to show."
                         }
@@ -769,7 +771,7 @@ class RowData extends React.Component {
                             </div>
         
                         )                    
-                    } else if(data[1].adviceObj !== undefined && (data[1].adviceObj.advice === 'All of your jobs have great job performance. Way to go!' || data[1].adviceObj.advice === 'No data to show.')){
+                    } else if(data[1].adviceObj == undefined || data[1].adviceObj.advice === 'All of your jobs have great job performance. Way to go!' || data[1].adviceObj.advice === 'No data to show.'){
                         return (
                             <div className='tab-components expert-grid'>
                             <StatefulGrid

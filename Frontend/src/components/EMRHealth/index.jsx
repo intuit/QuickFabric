@@ -856,10 +856,18 @@ shortlistData = data => {
       let hour = date.getHours()
       let minutes = date.getMinutes()
       let seconds = date.getSeconds()
-
+      hour = hour < 10 ? (`0${hour}`) : hour
+      minutes = minutes < 10 ? (`0${minutes}`) : minutes
+      seconds = seconds < 10 ? (`0${seconds}`) : seconds
+      
       let h = refreshDate.getHours()
       let m = refreshDate.getMinutes()
       let s = refreshDate.getSeconds()
+
+      h = h < 10 ? (`0${h}`) : h
+      m = m < 10 ? (`0${m}`) : m
+      s = s < 10 ? (`0${s}`) : s
+
       let ampm = (hour < 12 || hour === 24) ? 'AM' : 'PM';
 
       let updateObj = `${hour}:${minutes}:${seconds}${ampm}`
