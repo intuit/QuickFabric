@@ -1,4 +1,8 @@
 # To add a code owner, give a file pattern followed by the usernames or emails of the owner.
-* khilawar_verma@intuit.com  @khilawar4
-* Sanooj_Mananghat@intuit.com @sanoojm
-* sandip_nahak@intuit.com @sandipnahak
+* @khilawar4
+/DB/ @khilawar4 @gdoon @drussotto
+/Backend/ @gdoon @sandipnahak
+/Middleware/ @khilawar4 @gdoon @drussotto
+/Frontend/ @nishakk
+/terraform/ @khilawar4 @sanoojm
+/terraform_local/ @khilawar4 @sanoojm
