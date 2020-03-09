@@ -265,8 +265,11 @@ class CreateCluster extends React.Component {
     }
 
     hardwareErrors = () => {
-        return this.state.coreInstanceCountError || 
+        return this.state.masterInstanceType.length == 0 ||
+        this.state.coreInstanceCountError || 
+        (this.state.coreInstanceCount > 0 && this.state.coreInstanceType.length == 0) ||
         this.state.taskInstanceCountError || 
+        (this.state.taskInstanceCount > 0 && this.state.taskInstanceType.length == 0) ||
         (this.state.autoScaling && 
         (this.state.instanceMinCountError || 
         this.state.instanceMaxCountError)) ||
@@ -470,7 +473,7 @@ class CreateCluster extends React.Component {
                 return (
                     <div className='hardware'>
                             <label className='formField'>
-                                <span>Master Node Instance Type:</span>
+                                <span className="required">Master Node Instance Type:</span>
                                 <i className='m-icons'>help</i>
                                 <div className='combobox-container'>
                                     <Typeahead
@@ -479,6 +482,7 @@ class CreateCluster extends React.Component {
                                         selected={this.state.masterInstanceType}
                                     />
                                 </div>
+                                <div>{this.state.masterInstanceType.length == 0 && <span className='errorField'>This is a required field. Please select a value from the dropdown.</span>}</div>
                                 <div className='help-content2'>EC2 instance type for Master Node. Default is M5.xlarge.</div>
                             </label>
                             <label className='formField'>
@@ -490,7 +494,7 @@ class CreateCluster extends React.Component {
                                 <div className='help-content2'>Number of Core Node instances.</div>
                             </label>
                             {this.state.coreInstanceCount > 0 && <label className='formField'>
-                                <span>Core Node Instance Type:</span>
+                                <span className="required">Core Node Instance Type:</span>
                                 <i className='m-icons'>help</i>
                                 <div className='combobox-container'>
                                     <Typeahead
@@ -499,6 +503,7 @@ class CreateCluster extends React.Component {
                                         selected={this.state.coreInstanceType}
                                     />
                                 </div>
+                                <div>{this.state.coreInstanceType.length == 0 && <span className='errorField'>This is a required field. Please select a value from the dropdown.</span>}</div>
                                 <div className='help-content2'>EC2 instance type for Core Node. Default is M5.xlarge.</div>
                             </label>}
                             <label className='formField'>
@@ -509,7 +514,7 @@ class CreateCluster extends React.Component {
                                 <div className='help-content2'>Number of Task Node instances.</div>
                             </label>
                             {this.state.taskInstanceCount > 0 && <label className='formField'>
-                                <span>Task Node Instance Type:</span>
+                                <span className="required">Task Node Instance Type:</span>
                                 <i className='m-icons'>help</i>
                                 <div className='combobox-container'>
                                     <Typeahead
@@ -518,6 +523,7 @@ class CreateCluster extends React.Component {
                                         selected={this.state.taskInstanceType}
                                     />
                                 </div>
+                                <div>{this.state.taskInstanceType.length == 0 && <span className='errorField'>This is a required field.  Please select a value from the dropdown.</span>}</div>
                                 <div className='help-content2'>EC2 insrance type for Task Node. Default is M5.xlarge.</div>
                             </label>}
                             {(this.state.coreInstanceCount > 0 || this.state.taskInstanceCount > 0) && <label className="formField" >
@@ -553,14 +559,15 @@ class CreateCluster extends React.Component {
                             <label className='formField'>
                                 <span className="required">Instance Min Count:</span>
                                 <i className='m-icons'>help</i>
-                                <input className="textFieldHardware" defaultValue="0" placeholder="Minimum Instance Count for Auto-Scaling (Required)" value={this.state.autoScalingMin} onChange={this.handleAutoScalingMin} />
+                                <div className="numericField"><NumericTextBox placeholder="Minimum Instance Count for Auto-Scaling (Required)" value={this.state.autoScalingMin} onChange={this.handleAutoScalingMin} /></div>
                                 <div>{this.state.instanceMinCountError ? <span className='errorField'>This is a required field</span> : null }</div>
                                 <div className='help-content2'>Minimum Instance Count for Auto-Scaling.</div>
                             </label>
                             <label className='formField'>
                                 <span className="required">Instance Max Count:</span>
                                 <i className='m-icons'>help</i>
-                                <input className="textFieldHardware" defaultValue="0" placeholder="Maximum Instance Count for Auto-Scaling (Required)" value={this.state.autoScalingMax} onChange={this.handleAutoScalingMax} />
+                                {/* <input className="textFieldHardware" defaultValue="0" placeholder="Maximum Instance Count for Auto-Scaling (Required)" value={this.state.autoScalingMax} onChange={this.handleAutoScalingMax} /> */}
+                                <div className="numericField"><NumericTextBox placeholder="Number of Core Instances (Required)" value={this.state.autoScalingMax} onChange={this.handleAutoScalingMax} /></div>
                                 <div>{this.state.instanceMaxCountError ? <span className='errorField'>This is a required field</span> : null }</div>
                                 <div className='help-content2'>Maximum Instance Count for Auto-Scaling.</div>
                             </label>
@@ -1342,28 +1349,29 @@ class CreateCluster extends React.Component {
     }
 
     handleAutoScalingMin = (e) => {
-        if (e.target.value.length === 0) {
+        if (e.target.value == null) {
             this.setState({
                 ...this.state,
-                autoScalingMin: e.target.value,
-                instanceMinCountError : true,
+                autoScalingMin: 0,
+                instanceMinCountError : false,
             })
-        } else if (e.target.value.match("^([0-9]*)$"))
+        } else if (e.target.value >= 0) {
             this.setState({
                 ...this.state,
                 autoScalingMin: e.target.value,
                 instanceMinCountError : false,
             })
+        }
     }
 
     handleAutoScalingMax = (e) => {
-        if (e.target.value.length === 0) {
+        if (e.target.value == null) {
             this.setState({
                 ...this.state,
-                autoScalingMax: e.target.value,
-                instanceMaxCountError : true,
+                autoScalingMax: 0,
+                instanceMaxCountError : false,
             })
-        } else if (e.target.value.match("^([0-9]*)$"))
+        } else if (e.target.value >= 0)
             this.setState({
                 ...this.state,
                 autoScalingMax: e.target.value,

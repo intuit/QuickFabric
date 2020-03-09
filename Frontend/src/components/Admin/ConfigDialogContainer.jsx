@@ -69,7 +69,7 @@ export default class DialogContainer extends React.Component {
                     </div>
                     <div className="dialog-action">
                         {   this.state.objectInEdit.configDataType === 'String' ? <Input id={this.state.objectInEdit.configId} type="text" name="configValue" value={this.state.objectInEdit.configValue || ''} onChange={this.onDialogInputChange} /> :
-                            this.state.objectInEdit.configDataType === 'Int' ?  <NumericTextBox id={this.state.objectInEdit.configId}  name="configValue" value={this.state.objectInEdit.configValue != null || this.state.objectInEdit.configValue != undefined ? this.state.objectInEdit.configValue : 0} onChange={this.onDialogInputChange} /> : 
+                            this.state.objectInEdit.configDataType === 'Int' ?  <NumericTextBox id={this.state.objectInEdit.configId}  min={1} name="configValue" value={this.state.objectInEdit.configValue != null || this.state.objectInEdit.configValue != undefined ? this.state.objectInEdit.configValue : 0} onChange={this.onDialogInputChange} /> : 
                             this.state.objectInEdit.configDataType === 'Boolean' ? this.renderToggleButton() : ''
                         }   
                     </div>
