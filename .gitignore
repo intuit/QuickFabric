@@ -18,7 +18,6 @@ Middleware/schedulers/bin/
 
 crash.log
 *package-lock.json*
-*package.json*
 *cfn-stack-output.json*
 input.tfvars
 *dist/*

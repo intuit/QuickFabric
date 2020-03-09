@@ -354,12 +354,32 @@ background-image: none !important;
   color: #0097E6;
 }
 
-.exportBtn span {
+.export-container .exportBtn  {
+  height: 30px
+}
+/* .exportBtn span {
   position: absolute;
   margin-top: 7px;
   margin-left: -47px;
-}
+} */
 
+.exportBtn span {
+  position: absolute;
+  margin-top: 3px;
+  margin-left: -47px;
+}
+.export-container {
+  right: 30px;
+  top: 111px;
+  position: absolute;
+}
+.export-container .material-icons {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  display: inline-block;
+  line-height: 1; 
+}
 .material-icons {
   float: left
 }
