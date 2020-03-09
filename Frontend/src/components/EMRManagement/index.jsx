@@ -331,9 +331,9 @@ export default class EMRManagement extends Component {
           {this.state.primaryAction === 'rotateAMI' ? <Column field="creationTimestamp" title={Creation_Timestamp} width={rotateAMI_createdAt_WIDTH} /> :
           <Column field="creationTimestamp" title={Creation_Timestamp} width={default_createdAt_WIDTH} /> }
 
-          {this.state.primaryAction === "rotateAMI" ? <Column field='rotationDaysToGo' title={AMIRotationDays} width={default_RotationDays_WIDTH} cell={amirotationStatus}/> : null}
+          {this.state.primaryAction === "rotateAMI" && <Column field='rotationDaysToGo' title={AMIRotationDays} width={default_RotationDays_WIDTH} cell={amirotationStatus}/>}
 
-          {this.state.primaryAction === 'rotateAMI' ? <Column field="actions" title={AutoPilot} width="230px" cell={(props) => <SubmitActionButtonCell {...props} {...this.props} action='autopilot' tab={this.state.primaryTab} handleActionBtnClick={this.handleActionBtnClick} />}/> : null }
+          {this.state.primaryAction === 'rotateAMI' && <Column field="actions" title={AutoPilot} width="230px" cell={(props) => <SubmitActionButtonCell {...props} {...this.props} action='autopilot' tab={this.state.primaryTab} handleActionBtnClick={this.handleActionBtnClick} />}/> }
 
           {this.state.primaryAction === "allClusters" ? <Column field="actions" title={Workflows} width="auto" cell={(props) => <SubmitActionButtonCell {...props} {...this.props} action={this.state.primaryAction} tab={this.state.primaryTab} handleActionBtnClick={this.handleActionBtnClick} />}/> :
           <Column field="actions" title={Actions} width="auto" cell={(props) => <SubmitActionButtonCell {...props} {...this.props} action={this.state.primaryAction} tab={this.state.primaryTab} handleActionBtnClick={this.handleActionBtnClick} />}/> }
