@@ -211,7 +211,6 @@ class RotateAMIWorkflow extends React.Component {
                             <h3>Rotate AMI Workflow Data: <span>{this.props.data.clusterName}</span> </h3>
                             <h4>Account:</h4><p>{this.props.requestWorkflowData.account}</p>
                             <h4>Cluster ID:</h4><p>{this.props.requestWorkflowData.clusterId}</p>
-                            <h4>Name:</h4><p>{this.props.requestWorkflowData.name}</p>
                             <h4>Segment:</h4><p>{this.props.requestWorkflowData.segment}</p>
                             <h4>Status:</h4><p>{this.props.requestWorkflowData.status}</p>
                             <h4>Cluster Details:</h4><p>{this.props.requestWorkflowData.clusterDetails}</p>

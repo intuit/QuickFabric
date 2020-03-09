@@ -18,9 +18,14 @@ export const fetchAllClusterMetaData = (token) => {
       })
       .then(res => res.json())
       .then(res => {
+        let dataObj = res.emrClusterMetadataReport.map((m,i) => {
+          m.id = m.clusterId;
+          m.key = m.clusterId;
+          return m;
+        })
         return dispatch({
           type: EMRManagementActionTypes.EMRMETADATA_STATUS_SUCCESS,
-          payload: { data: res.emrClusterMetadataReport }
+          payload: { data: dataObj }
 
         })
       })

@@ -1,6 +1,10 @@
 DROP DATABASE IF EXISTS `quickfabric`;
 CREATE DATABASE IF NOT EXISTS `quickfabric` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `quickfabric`;
+
+-- Disabling only_full_group_by globally to allow selecting nonaggregated columns in group by clause
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+
 -- MySQL dump 10.13  Distrib 8.0.17, for macos10.14 (x86_64)
 --
 -- Host: 127.0.0.1    Database: quickfabric
