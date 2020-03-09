@@ -10,3 +10,6 @@ output "bastion_ip" {
   value = module.bastion.server_ip
 }
 
+output "api_gw_credentials" {
+   value = local.api_creds
+}
