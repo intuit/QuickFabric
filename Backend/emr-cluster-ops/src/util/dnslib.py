@@ -23,7 +23,6 @@ def get_dns_records(record, zone_name):
     route53 = session.client('route53')
 
     zone_id = get_dns_hostedid(zone_name)
-    record = record + "."  # scheduled-care.emr-sbg.a.intuit.com.
 
     logger.info("Retrieved Zone ID: ", zone_id)
 
