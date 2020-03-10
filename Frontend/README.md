@@ -1,7 +1,7 @@
 # Quickfabric Frontend Local Installation
 ---
 
-# To build and run Quickfabric Frontend locally
+# To build and run Quickfabric Frontend locally/laptop
 
 Requirements
 ------------
