@@ -626,7 +626,7 @@ public class EMRClusterMetadataDaoImpl implements EMRClusterMetadataDao {
                 "FROM " +
                 "    emr_cluster_metadata " +
                 "WHERE " +
-                "    status IN ('RUNNING' , 'WAITING');";
+                "    status IN ('RUNNING' , 'WAITING')";
 
         String sql = baseQuery;
         MapSqlParameterSource params = new MapSqlParameterSource();

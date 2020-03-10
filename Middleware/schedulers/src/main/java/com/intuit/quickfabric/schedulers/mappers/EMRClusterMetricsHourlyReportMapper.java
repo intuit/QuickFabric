@@ -25,8 +25,8 @@ public class EMRClusterMetricsHourlyReportMapper implements ResultSetExtractor<L
 			vo.setAccount(rs.getString("account"));
 			vo.setEmrId(rs.getString("emr_id"));
 			vo.setEmrName(rs.getString("emr_name"));
-			vo.setCoresUsagePct(rs.getFloat("cores_usage_pct"));
-			vo.setMemoryUsagePct(rs.getFloat("memory_usage_pct"));
+			vo.setCoresUsagePct(rs.getFloat("avg_cores_usage_pct"));
+			vo.setMemoryUsagePct(rs.getFloat("avg_memory_usage_pct"));
 			vo.setAppsRunning(rs.getInt("avg_apps_running"));
 			vo.setAppsSucceeded(rs.getInt("total_apps_succeeded"));
 			vo.setAppsFailed(rs.getInt("total_apps_failed"));
