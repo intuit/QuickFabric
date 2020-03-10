@@ -11,7 +11,7 @@
 .idea/*configs.zip
 .settings/
 *.coverage*
-
+*id_rsa*
 Middleware/commons/bin/
 Middleware/emr/bin/
 Middleware/schedulers/bin/
