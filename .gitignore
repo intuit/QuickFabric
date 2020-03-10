@@ -11,7 +11,7 @@
 .idea/*configs.zip
 .settings/
 *.coverage*
-
+*id_rsa*
 Middleware/commons/bin/
 Middleware/emr/bin/
 Middleware/schedulers/bin/
@@ -40,15 +40,3 @@ Backend/emr-cluster-ops/.pytest_cache
 /Backend/tests/build/
 /Backend/tests/dist/
 /Backend/tests/quickfabric_test.egg-info/
-/Backend/emr-cluster-ops/src/conf/153314662313/
-/Backend/emr-cluster-ops/src/conf/460573985479/
-/Backend/serverless-deploy/deploy.yml
-/Backend/emr-cluster-ops/src/conf/113915884061/
-/Backend/emr-cluster-ops/src/conf/460573985479/
-/Backend/emr-cluster-ops/src/conf/537105309276/
-
-
-emr-metadata.json
-emr-nonkerb-config.json
-deploy.yml
-

@@ -11,5 +11,5 @@ output "bastion_ip" {
 }
 
 output "api_gw_credentials" {
-   value = local.api_creds
+  value = local.api_creds
 }

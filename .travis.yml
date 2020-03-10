@@ -1,0 +1,51 @@
+# Specify which branches to build using a safelist
+branches:
+  only:
+  - master
+  - develop
+  - "/^(?i:feature)/.*$/"
+
+env:
+  global:
+    - tf_version="0.12.19"
+
+# Install dependencies
+before_install:
+  - wget -nc https://releases.hashicorp.com/terraform/${tf_version}/terraform_${tf_version}_linux_amd64.zip
+  - unzip -o terraform_${tf_version}_linux_amd64.zip -d /tmp/
+  - sudo mv /tmp/terraform /usr/local/bin/
+  - rm terraform_${tf_version}_linux_amd64.zip
+
+jobs:
+  include:
+    - stage: QuickFabric Test
+      language: python
+      python: 3.7
+      install: skip
+      script:
+      - Backend/run_test.sh
+
+    - language: java
+      env: 
+      - MYSQL_PASSWORD="test"
+      - AES_SECRET_KEY="test"
+      script:
+      - cd Middleware && mvn test
+  
+    - language: bash
+      if: type IN (pull_request)
+      script:
+        - cd terraform
+        - echo "Executing in Terraform  on pull request code"
+        - terraform init 
+        - terraform fmt -check 
+        - terraform validate 
+    
+    - language: bash
+      if: type IN (pull_request)
+      script:
+        - cd terraform_local
+        - echo "Executing in Terraform Local  on pull request code"
+        - terraform init 
+        - terraform fmt -check
+        - terraform validate 
