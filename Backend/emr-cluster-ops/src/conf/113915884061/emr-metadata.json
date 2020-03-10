@@ -1,0 +1,29 @@
+{
+ "vpc_id": "vpc-09577e1bd19602a12",
+ "public_subnet_ids": ["subnet-05d48b894d1e51d56","subnet-064a9fc358c5ab9a3"],
+ "private_subnet_ids": ["subnet-02f27353401d5f779","subnet-0ac80eeaf1c3668d9","subnet-0adb9da020115c7cf"],
+ "emr_version": "emr-5.26.0",
+ "keypair": "quickfabric-deployer-key", 
+ "artifacts_bucket": "s3://quickfabric-emr-data-113915884061-us-west-2",
+ "emr_s3_log_path": "s3://quickfabric-emr-data-113915884061-us-west-2/logging/",
+ "region": "us-west-2",
+ "r53_hosted_zone": "quickfabric.intuit.com.",
+ "bootstrap_actions": [
+      {
+        "bootstrapScript": "scripts/install-gradle-bootstrap.sh",
+        "bootstrapName": "Install Gradle"
+      }
+  ],
+  "steps": [
+        {
+          "Name": "InstallDrElephant",
+          "OnBoot": true,
+          "Type": "shell",
+          "ActionOnFailure": "CONTINUE",
+          "Script": "scripts/install-dr-elephant.sh",
+          "Jar": "s3://elasticmapreduce/libs/script-runner/script-runner.jar",
+          "Args": []
+        }],
+ "env" : "dev"
+}
+
