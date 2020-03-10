@@ -21,9 +21,9 @@ resource "aws_security_group" "whitelist" {
     for_each = var.whitelist_sg.inbound
 
     content {
-      protocol    = rule.value.protocol
-      from_port   = rule.value.from_port
-      to_port     = rule.value.to_port
+      protocol        = rule.value.protocol
+      from_port       = rule.value.from_port
+      to_port         = rule.value.to_port
       security_groups = var.security_groups
     }
   }

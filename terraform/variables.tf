@@ -19,22 +19,22 @@ variable "emr_version" {
   default = "emr-5.26.0"
 }
 
-variable "MYSQL_PASSWORD" { 
-	type = string
-	default = "" 
+variable "MYSQL_PASSWORD" {
+  type    = string
+  default = ""
 }
 
-variable "AES_SECRET_KEY" { 
-	type = string 
-	default = ""
+variable "AES_SECRET_KEY" {
+  type    = string
+  default = ""
 }
 
 variable "master_sg_group" {
   description = "Security group rules"
   type = map(list(object({
-    protocol    = string
-    from_port   = string
-    to_port     = string
+    protocol        = string
+    from_port       = string
+    to_port         = string
     security_groups = list(string)
   })))
 
@@ -181,6 +181,6 @@ variable "docker_compose_version" {
 }
 variable "bastion_sg" {
   description = "Security group of the already existing bastion server."
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
