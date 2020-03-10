@@ -1,8 +1,8 @@
 # To add a code owner, give a file pattern followed by the usernames or emails of the owner.
 * @khilawar4
-/DB/ @khilawar4 @gdoon @drussotto
-/Backend/ @gdoon @sandipnahak
-/Middleware/ @khilawar4 @gdoon @drussotto
+/DB/ @khilawar4 @gdrossi46 @drussotto
+/Backend/ @gdrossi46 @sandipnahak
+/Middleware/ @khilawar4 @gdrossi46 @drussotto
 /Frontend/ @nishakk
 /terraform/ @khilawar4 @sanoojm
 /terraform_local/ @khilawar4 @sanoojm
