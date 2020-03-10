@@ -20,5 +20,5 @@ def test_emr_list_asg(create_cluster, lambda_context):
     except Exception as error:
         print(error)
     else:
-        assert 'status' in response
-        print("Autoscaling details", response.get('status'))
+        assert 'state' in response
+        print("Autoscaling details", response)
