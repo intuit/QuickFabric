@@ -1,14 +1,23 @@
+# Define environment
+dist: xenial # Ubuntu 16.04
+
 # Specify which branches to build using a safelist
 branches:
   only:
   - master
   - develop
 
-language: python
+# Install dependencies
+before_install:
+  - wget -nc https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip
+  - unzip -o terraform_"$tf_version"_linux_amd64.zip -d /tmp/
+  - sudo mv /tmp/terraform /usr/local/bin/
+  - rm terraform_"$tf_version"_linux_amd64.zip
 
 jobs:
   include:
-    - language: python
+    - stage: QuickFabric Test
+      language: python
       python: 3.7
       script:
       - Backend/run_test.sh
@@ -18,4 +27,22 @@ jobs:
       - MYSQL_PASSWORD="test"
       - AES_SECRET_KEY="test"
       script:
-      - cd Middleware && mvn test  
+      - cd Middleware && mvn test
+  
+    - language: bash
+      if: type IN (pull_request)
+      script:
+        - cd terraform
+        - echo "Executing in Terraform  on pull request code"
+        - terraform init 
+        - terraform fmt -check
+        - terraform validate 
+    
+    - language: bash
+      if: type IN (pull_request)
+      script:
+        - cd terraform_local
+        - echo "Executing in Terraform Local  on pull request code"
+        - terraform init 
+        - terraform fmt -check
+        - terraform validate 
