@@ -1,3 +1,9 @@
+# Specify which branches to build using a safelist
+branches:
+  only:
+  - master
+  - develop
+
 language: python
 
 jobs:
