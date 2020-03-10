@@ -1,6 +1,3 @@
-# Define environment
-dist: xenial # Ubuntu 16.04
-
 # Specify which branches to build using a safelist
 branches:
   only:
@@ -8,7 +5,6 @@ branches:
   - develop
   - "/^(?i:feature)/.*$/"
 
-<<<<<<< HEAD
 env:
   global:
     - tf_version="0.12.19"
@@ -19,14 +15,6 @@ before_install:
   - unzip -o terraform_${tf_version}_linux_amd64.zip -d /tmp/
   - sudo mv /tmp/terraform /usr/local/bin/
   - rm terraform_${tf_version}_linux_amd64.zip
-=======
-# Install dependencies
-before_install:
-  - wget -nc https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip
-  - unzip -o terraform_"$tf_version"_linux_amd64.zip -d /tmp/
-  - sudo mv /tmp/terraform /usr/local/bin/
-  - rm terraform_"$tf_version"_linux_amd64.zip
->>>>>>> 6c67308b8ea4bc54b39d551335609e8e56369afc
 
 jobs:
   include:
@@ -50,11 +38,7 @@ jobs:
         - cd terraform
         - echo "Executing in Terraform  on pull request code"
         - terraform init 
-<<<<<<< HEAD
         - terraform fmt -check 
-=======
-        - terraform fmt -check
->>>>>>> 6c67308b8ea4bc54b39d551335609e8e56369afc
         - terraform validate 
     
     - language: bash
