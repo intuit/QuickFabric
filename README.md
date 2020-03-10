@@ -679,3 +679,5 @@ go to `QuickFabric/terraform` directory and execute the below command.
 
 
 
+**_Limitation:_**
+* Quickfabric supports one region per account (Multiple region support is coming soon...).

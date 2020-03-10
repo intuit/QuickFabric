@@ -83,9 +83,9 @@ module "sg" {
   vpc_id               = module.vpc.vpc_id
   sg_name              = "Master security Group"
   whitelist            = var.master_sg
-  whitelist_sg            = var.master_sg_group
-  security_groups         = list(module.bastion_sg.sg_id)
-  cidr_admin_whitelist = concat(var.cidr_admin_whitelist,list("${module.bastion.private_ip}/32"))
+  whitelist_sg         = var.master_sg_group
+  security_groups      = list(module.bastion_sg.sg_id)
+  cidr_admin_whitelist = concat(var.cidr_admin_whitelist, list("${module.bastion.private_ip}/32"))
 
 
   tags = var.tags
@@ -132,7 +132,7 @@ module "bastion_sg" {
 module "bastion" {
   source = "./modules/ec2"
 
-  provision     = var.bastion_sg == "" ? true : false
+  provision = var.bastion_sg == "" ? true : false
 
   region        = var.region
   server_name   = "quickfabric-bastion-server"
@@ -263,11 +263,11 @@ resource "null_resource" "run_serverless" {
 }
 
 data "external" "api" {
-        program = ["echo","{\"file_path\":\"/tmp/apigateway-output.json\", \"depends_on\" : \"${null_resource.run_serverless.id}\" }"]
+  program = ["echo", "{\"file_path\":\"/tmp/apigateway-output.json\", \"depends_on\" : \"${null_resource.run_serverless.id}\" }"]
 }
 
 locals {
-  api_creds = fileexists(lookup(data.external.api.result,"file_path")) ? jsondecode(file(lookup(data.external.api.result,"file_path"))) : jsondecode("None")
+  api_creds = fileexists(lookup(data.external.api.result, "file_path")) ? jsondecode(file(lookup(data.external.api.result, "file_path"))) : jsondecode("None")
 }
 
 
