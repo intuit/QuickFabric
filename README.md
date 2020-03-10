@@ -1,5 +1,6 @@
 # QuickFabric
 ---                                                                       
+[![TravisCI](https://travis-ci.com/intuit/QuickFabric.svg?token=3PcHaPf7DR43hcZdadiE&branch=master)]
 
 ![QuickFabric Architecture diagram](/Frontend/src/assets/help/EMR_Graph.png)  
 
