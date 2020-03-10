@@ -6,6 +6,7 @@ describe('User Reducer testing', () => {
         signedIn: false,
         signInFetching: false,
         signInError: false,
+        signInErrorData: {},
         authenticateUserFetching: false, 
         authenticateUserSuccess: false, 
         authenticateUserError: false
@@ -20,6 +21,7 @@ describe('User Reducer testing', () => {
             signedIn: false,
             signInFetching: false,
             signInError: false,
+            signInErrorData: {},
             authenticateUserFetching: false, 
             authenticateUserSuccess: false, 
             authenticateUserError: false
@@ -38,6 +40,7 @@ describe('User Reducer testing', () => {
             signedIn: false,
             signInFetching: false,
             signInError: false,
+            signInErrorData: {},
             authenticateUserFetching: false, 
             authenticateUserSuccess: false, 
             authenticateUserError: false
@@ -56,6 +59,7 @@ describe('User Reducer testing', () => {
             signedIn: false,
             signInFetching: false,
             signInError: false,
+            signInErrorData: {},
             authenticateUserFetching: false, 
             authenticateUserSuccess: false, 
             authenticateUserError: false
