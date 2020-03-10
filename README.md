@@ -1,16 +1,15 @@
 # QuickFabric
 ---                                                                       
+[![Build Status](https://travis-ci.org/intuit/QuickFabric.svg?branch=master)](https://travis-ci.org/intuit/QuickFabric)
+
+A one-stop shop for all management and monitoring of Amazon Elastic Map Reduce 
+(EMR) clusters across different AWS accounts and purposes.
 
 ![QuickFabric Architecture diagram](/Frontend/src/assets/help/EMR_Graph.png)  
 
 
 ![QuickFabric Architecture diagram](/Frontend/src/assets/help/ViewWorkflow.png)
 
-
-## Objective:
-
-A one-stop shop for all management and monitoring of Amazon Elastic Map Reduce 
-(EMR) clusters across different AWS accounts and purposes.
 
 ## Benefits: 
 
@@ -679,3 +678,5 @@ go to `QuickFabric/terraform` directory and execute the below command.
 
 
 
+**_Limitation:_**
+* Quickfabric supports one region per account (Multiple region support is coming soon...).
