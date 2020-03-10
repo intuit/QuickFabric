@@ -6,9 +6,9 @@ locals {
 }
 
 resource "null_resource" "tmp_dir" {
-    provisioner "local-exec" {
-	command = "mkdir -p ${var.data_store_path}/mysql"
-    }
+  provisioner "local-exec" {
+    command = "mkdir -p ${var.data_store_path}/mysql"
+  }
 }
 
 # Find the latest Ubuntu precise image.
@@ -68,8 +68,8 @@ resource "null_resource" "DB_container" {
     working_dir = "${local.local_app_path}/DB/"
   }
   provisioner "local-exec" {
-    when = "destroy"
-    command     = "docker rmi -f $(docker images -f reference=db -q)"
+    when    = "destroy"
+    command = "docker rmi -f $(docker images -f reference=db -q)"
   }
 
 }
@@ -80,7 +80,7 @@ module "db" {
   container_name = "db"
   data_store     = var.data_store_path
 
-  image  = "db"
+  image = "db"
 
   network = { "name" : "${docker_network.quickfabric_network.name}" }
   ports   = { "3306" : "3306" }
@@ -103,8 +103,8 @@ resource "null_resource" "EMR_container" {
     working_dir = "${local.local_app_path}/Middleware/emr/"
   }
   provisioner "local-exec" {
-    when = "destroy"
-    command     = "docker rmi -f $(docker images -f reference=emr -q)"
+    when    = "destroy"
+    command = "docker rmi -f $(docker images -f reference=emr -q)"
   }
 }
 
@@ -114,12 +114,12 @@ module "emr" {
   container_name = "emr"
   data_store     = var.data_store_path
 
-  image  = "emr"
+  image = "emr"
 
   network = { "name" : "${docker_network.quickfabric_network.name}" }
   ports   = { "8080" : "8080" }
 
-   env = [
+  env = [
     "MYSQL_PASSWORD=${var.MYSQL_PASSWORD}",
     "AES_SECRET_KEY=${var.AES_SECRET_KEY}",
     "depends_on = ${null_resource.EMR_container.id}"
@@ -133,8 +133,8 @@ resource "null_resource" "SCHEDULER_container" {
     working_dir = "${local.local_app_path}/Middleware/schedulers/"
   }
   provisioner "local-exec" {
-    when = "destroy"
-    command     = "docker rmi -f $(docker images -f reference=scheduler -q)"
+    when    = "destroy"
+    command = "docker rmi -f $(docker images -f reference=scheduler -q)"
   }
 }
 
@@ -144,11 +144,11 @@ module "scheduler" {
   container_name = "scheduler"
   data_store     = var.data_store_path
 
-  image  = "scheduler"
+  image = "scheduler"
 
   network = { "name" : "${docker_network.quickfabric_network.name}" }
 
-    env = [
+  env = [
     "MYSQL_PASSWORD=${var.MYSQL_PASSWORD}",
     "AES_SECRET_KEY=${var.AES_SECRET_KEY}",
     "depends_on = ${null_resource.SCHEDULER_container.id}"
@@ -163,8 +163,8 @@ resource "null_resource" "FRONTEND_container" {
     working_dir = "${local.local_app_path}/Frontend/"
   }
   provisioner "local-exec" {
-    when = "destroy"
-    command     = "docker rmi -f $(docker images -f reference=frontend -q)"
+    when    = "destroy"
+    command = "docker rmi -f $(docker images -f reference=frontend -q)"
   }
 }
 
@@ -174,12 +174,12 @@ module "frontend_container" {
   container_name = "frontend"
   data_store     = var.data_store_path
 
-  image  = "frontend"
+  image = "frontend"
 
   network = { "name" : "${docker_network.quickfabric_network.name}" }
   ports   = { "80" : "80" }
 
- env = [
+  env = [
     "depends_on = ${null_resource.FRONTEND_container.id}"
   ]
 
