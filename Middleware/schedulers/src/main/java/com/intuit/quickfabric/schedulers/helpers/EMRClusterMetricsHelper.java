@@ -311,6 +311,7 @@ public class EMRClusterMetricsHelper {
 
         String report = builder.openHtmlTag()
                 .openBodyTag()
+                .appendAMIRotationReport(clusters, currentTime)
                 .appendMetricsReport(reportMetrics, lastWeek, currentTime)
                 .closeBodyTag()
                 .closeHtmlTag()
