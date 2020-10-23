@@ -267,7 +267,7 @@ data "external" "api" {
 }
 
 locals {
-  api_creds = fileexists(lookup(data.external.api.result, "file_path")) ? jsondecode(file(lookup(data.external.api.result, "file_path"))) : jsondecode("None")
+  api_creds = fileexists(lookup(data.external.api.result, "file_path")) ? jsondecode(file(lookup(data.external.api.result, "file_path"))) : jsondecode("\"\"")
 }
 
 
