@@ -324,10 +324,17 @@ public class EMRClusterMetricsHelper {
         logger.info("Fetching Metrics for EMR Clusters for monthly report");
         List<EMRClusterMetricsVO> reportMetrics = emrClusterMetricsDao.getClusterMetricsReport(lastMonth, currentTime, "all");
 
+        logger.info("Fetching clusters close to rotation SLA for AMI rotation monthly report");
+        List<ClusterVO> clusters =
+                this.emrClusterMetadataDao.getAMIRotationReport("all").stream()
+                        .filter(c -> c.getAMIRotationDaysToGo() < 7).collect(Collectors.toList());
+        logger.info("Picked up clusters close to rotation SLA for AMI rotation monthly report");
+
         ReportBuilder builder = new ReportBuilder();
 
         String report = builder.openHtmlTag()
                 .openBodyTag()
+                .appendAMIRotationReport(clusters, currentTime)
                 .appendMetricsReport(reportMetrics, lastMonth, currentTime)
                 .closeBodyTag()
                 .closeHtmlTag()
