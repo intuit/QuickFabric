@@ -1,0 +1,59 @@
+[
+  {
+    "Classification": "hive-site",
+    "Properties": {
+      "hive.tez.container.size": "3584",
+      "hive.exec.reducers.max": "10009",
+      "hive.driver.parallel.compilation": "true",
+      "hive.exec.reducers.bytes.per.reducer": "158998272",
+      "hive.blobstore.optimizations.enabled": "false",
+      "hive.cbo.enable": "true",
+      "hive.compute.query.using.stats": "true",
+      "hive.exec.dynamic.partition ": " true",
+      "hive.exec.dynamic.partition.mode": "nonstrict",
+      "hive.exec.parallel": "true",
+      "hive.exec.stagingdir": "/tmp/hive/.staging",
+      "hive.execution.engine": "tez",
+      "hive.optimize.ppd": "true",
+      "hive.server2.logging.operation.level": "VERBOSE",
+      "hive.stats.dbclass": "fs",
+      "hive.stats.fetch.column.stats": "true",
+      "hive.stats.fetch.partition.stats": "true",
+      "hive.default.fileformat": "Parquet",
+      "hive.default.fileformat.managed": "Parquet"
+    }
+  },
+  {
+    "Classification": "tez-site",
+    "Properties": {
+      "tez.am.resource.memory.mb": "3584",
+      "tez.container.max.java.heap.fraction": "0.8",
+      "tez.grouping.max-size": "573741824",
+      "tez.grouping.min-size": "67108864"
+    }
+  },
+  {
+    "Classification": "yarn-site",
+    "Properties": {
+      "yarn.timeline-service.http-authentication.type": "simple",
+      "yarn.nodemanager.localizer.cache.target-size-mb": "4096",
+      "yarn.nodemanager.localizer.cache.cleanup.interval-ms": "300000",
+      "yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage": "99.99"
+    }
+  },
+
+  {
+    "Classification": "hiveserver2-site",
+    "Properties": {
+      "hive.security.authorization.sqlstd.confwhitelist.append": "tez\\.grouping\\..*",
+      "hive.async.log.enabled": "false",
+      "hive.server2.in.place.progress": "true"
+    }
+  },
+  {
+    "Classification": "emrfs-site",
+    "Properties": {
+      "fs.s3.maxConnections": "50000"
+    }
+  }
+]
