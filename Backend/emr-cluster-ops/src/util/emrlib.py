@@ -299,7 +299,14 @@ def get_emr_cluster_settings(user_inputs: dict, config_file: str, metadata_file:
     # BOOTSTRAP ACTIONS are going to be a list, similar to steps.
     # required settings/configurations should be inserted at the start of the
     src_dir = os.path.dirname(os.path.dirname(__file__))
-    emr_sw_config_file = f'{src_dir}/conf/common/configurations.json'
+    try:
+        account_id = get_account_id()
+        emr_sw_config_file = f'{src_dir}/conf/{account_id}/configurations.json'
+        if not os.path.isfile(emr_sw_config_file):
+            emr_sw_config_file = f'{src_dir}/conf/common/configurations.json'
+    except Exception as error:
+        logger.error(f"Unable to parse common tag file {str(error)}")
+        raise
     with open(emr_sw_config_file) as config_json:
         configuration = json.load(config_json)
 
@@ -567,6 +574,20 @@ def tag_list(role_config: dict, metadata_config: dict, cluster_name: str):
     Returns:
         Returns list of dict, each dict is an ec2 tag object.
     """
+    
+    try:
+        account_id = get_account_id()
+        src_dir = os.path.dirname(os.path.dirname(__file__))
+        tag_file = f'{src_dir}/conf/{account_id}/common-tags.json'
+        if not os.path.isfile(tag_file):
+            tag_file = f'{src_dir}/conf/common/common-tags.json'
+
+        with open(tag_file) as f:
+            tags = json.load(f)
+    except Exception as error:
+        logger.error(f"Unable to parse common tag file {str(error)}")
+        raise
+    
     role_tags = []
 
     for tag in role_config.get('tags', []):
@@ -1102,3 +1123,24 @@ def get_network_interface_association(sg_group_id: str):
     else:
         return False
 
+def get_account_id():
+    """Get aws account id
+
+    Raises:
+        botocore.exceptions.ClientError: Raise exception for client errors
+
+    Returns:
+        [str]: [account id]
+    """
+    sts = boto3.client('sts')
+    account_id = None
+
+    try:
+        response = sts.get_caller_identity()
+        account_id = response.get('Account')
+
+    except Exception as exception:
+        log_error(exception)
+        raise botocore.exceptions.ClientError
+
+    return account_id
