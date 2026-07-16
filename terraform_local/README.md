@@ -31,7 +31,7 @@ NB: Add this file to gitignore to avoid pushing secrets to git repo.
 
 1. Clone the GitHub repo in your local computer if not done already.
    ```bash 
-   git clone https://github.intuit.com/SBSEG-quickdata/QuickFabric.git 
+   git clone https://github.com/intuit/QuickFabric.git 
    ```
    
 2. Copy the example configuration file and modify the parameters. Refer [Configuration] (#Configuring Input.tfvars file) section above.
